@@ -17,7 +17,7 @@ public class Main {
 		Thread queueMonitorThread = new Thread(queueMonitor);
 		queueMonitorThread.start();
 		
-		Thread messageListener = new Thread(new MessageListener(queueMonitor));
+		Thread messageListener = new Thread(new MessageListener());
 		messageListener.start();
 	}
 }

@@ -18,11 +18,9 @@ public class MessageListener implements Runnable {
 	private DatagramSocket socket;
 	private boolean keepRunning;
 	private QueueManager queueManager;
-	private Runnable queueMonitor;
 
-	public MessageListener(Runnable queueMonitor) {
+	public MessageListener() {
 		queueManager = QueueManager.getInstance();
-		this.queueMonitor = queueMonitor;
 		keepRunning = true;
 		try {
 			socket = new DatagramSocket(9999);
