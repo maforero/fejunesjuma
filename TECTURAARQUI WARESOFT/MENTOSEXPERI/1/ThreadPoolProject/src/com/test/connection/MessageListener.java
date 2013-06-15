@@ -24,6 +24,7 @@ public class MessageListener implements Runnable {
 		keepRunning = true;
 		try {
 			socket = new DatagramSocket(9999);
+			socket.setReceiveBufferSize(1000000);
 		} catch (SocketException e) {
 			e.printStackTrace();
 		}
@@ -31,12 +32,12 @@ public class MessageListener implements Runnable {
 
 	public void run() {
 		while (keepRunning) {
-			byte values[] = new byte[1000];
+			byte values[] = new byte[12];
 			DatagramPacket packet = new DatagramPacket(values, values.length);
 			try {
 				socket.receive(packet);
-				String message = new String(packet.getData());
-				queueManager.addMessage(message);
+				byte[] data = packet.getData();
+				queueManager.addMessage(data);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

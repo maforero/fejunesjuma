@@ -11,10 +11,10 @@ import java.util.LinkedList;
 public class QueueManager {
 
 	private static QueueManager instance;
-	private LinkedList<String> queue;
+	private LinkedList<byte[]> queue;
 	
 	private QueueManager() {
-		queue = new LinkedList<String>();
+		queue = new LinkedList<byte[]>();
 	}
 	
 	public static QueueManager getInstance() {
@@ -29,11 +29,11 @@ public class QueueManager {
 		return !queue.isEmpty();
 	}
 	
-	public synchronized void addMessage(String message) {
+	public synchronized void addMessage(byte[] message) {
 		queue.addLast(message);
 	}
 	
-	public synchronized String pollMessage() {
+	public synchronized byte[] pollMessage() {
 		return queue.poll();
 	}
 }

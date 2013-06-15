@@ -23,13 +23,8 @@ public class QueueMonitor implements Runnable {
 	public void run() {
 		while (keepRunning) {
 			if (queueManager.hasMessage()) {
-				final String message = queueManager.pollMessage();
-				threadPool.execute(new Runnable() {
-					@Override
-					public void run() {
-						System.out.println(message);
-					}
-				});
+				final byte[] data = queueManager.pollMessage();
+				threadPool.execute(data);
 			}
 		}
 	}
