@@ -1,5 +1,6 @@
 package com.test.queue;
 
+import com.test.monitoring.TransAlpesMonitor;
 import com.test.thread.ThreadPool;
 
 /**
@@ -23,8 +24,8 @@ public class QueueMonitor implements Runnable {
 	public void run() {
 		while (keepRunning) {
 			if (queueManager.hasMessage()) {
-				final byte[] data = queueManager.pollMessage();
-				threadPool.execute(data);
+				TransAlpesMonitor monitor = queueManager.pollMessage();
+				threadPool.execute(monitor);
 			}
 		}
 	}

@@ -4,6 +4,8 @@ import java.util.concurrent.BlockingQueue;
 
 import com.test.dto.RegularFrameDTO;
 import com.test.frame.FrameDemultiplexer;
+import com.test.module.GenericModule;
+import com.test.monitoring.TransAlpesMonitor;
 
 /**
  * @class PoolThread.java
@@ -13,43 +15,44 @@ import com.test.frame.FrameDemultiplexer;
  */
 public class PoolThread extends Thread {
 
-	private BlockingQueue<byte[]> threadQueue;
+	private BlockingQueue<TransAlpesMonitor> threadQueue;
 	private boolean keepRunning;
 	private FrameDemultiplexer demultiplexer;
-	private static int count;
-	
-	public PoolThread(BlockingQueue<byte[]> threadQueue) {
+	private GenericModule genericModule;
+
+	public PoolThread(BlockingQueue<TransAlpesMonitor> threadQueue) {
 		this.threadQueue = threadQueue;
 		keepRunning = true;
 		demultiplexer = new FrameDemultiplexer();
+		genericModule = new GenericModule();
 	}
-	
+
 	@Override
 	public void run() {
 		while (keepRunning) {
-			byte data[];
+			TransAlpesMonitor monitor;
 			try {
-				data = threadQueue.take();
-				demultiplexData(data);
+				monitor = threadQueue.take();
+				demultiplexData(monitor);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 		}
 	}
-	
+
 	/**
 	 * @param data
 	 */
-	private void demultiplexData(byte[] data) {
-		RegularFrameDTO frame = demultiplexer.demultiplexFrame(data);
-//		System.out.println(new String(data) + " " + count++);
+	private void demultiplexData(TransAlpesMonitor monitor) {
+		RegularFrameDTO frame = demultiplexer.demultiplexFrame(monitor);
+//		genericModule.doSomething(frame);
 	}
 
 	public synchronized void stopThread() {
 		keepRunning = false;
 		this.interrupt();
 	}
-	
+
 	public boolean isRunning() {
 		return !keepRunning;
 	}

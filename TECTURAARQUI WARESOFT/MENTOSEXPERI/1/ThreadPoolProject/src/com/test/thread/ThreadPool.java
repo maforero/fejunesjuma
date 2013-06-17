@@ -6,6 +6,8 @@ import java.util.Queue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
+import com.test.monitoring.TransAlpesMonitor;
+
 /**
  * @class ThreadPool.java
  * @author Felipe
@@ -21,21 +23,21 @@ public class ThreadPool {
 	private static final int DEFAULT_POOL_SIZE = 30;
 	
 	private List<PoolThread> threads;
-	private BlockingQueue<byte[]> threadQueue;
+	private BlockingQueue<TransAlpesMonitor> threadQueue;
 
 	public ThreadPool() {
 		this(DEFAULT_NUMBER_OF_THREADS, DEFAULT_POOL_SIZE);
 	}
 
 	public ThreadPool(int numberOfThreads, int poolSize) {
-		threadQueue = new LinkedBlockingQueue<byte[]>(poolSize);
+		threadQueue = new LinkedBlockingQueue<TransAlpesMonitor>(poolSize);
 		createThreads(numberOfThreads);
 		startThreads();
 	}
 
-	public synchronized void execute(byte[] data) {
+	public synchronized void execute(TransAlpesMonitor monitor) {
 		if (threadQueue.remainingCapacity() > 0) {
-			threadQueue.add(data);
+			threadQueue.add(monitor);
 		}
 	}
 

@@ -2,6 +2,8 @@ package com.test.queue;
 
 import java.util.LinkedList;
 
+import com.test.monitoring.TransAlpesMonitor;
+
 /**
  * @class QueueManager.java
  * @author Felipe
@@ -11,10 +13,10 @@ import java.util.LinkedList;
 public class QueueManager {
 
 	private static QueueManager instance;
-	private LinkedList<byte[]> queue;
+	private LinkedList<TransAlpesMonitor> queue;
 	
 	private QueueManager() {
-		queue = new LinkedList<byte[]>();
+		queue = new LinkedList<TransAlpesMonitor>();
 	}
 	
 	public static QueueManager getInstance() {
@@ -29,11 +31,11 @@ public class QueueManager {
 		return !queue.isEmpty();
 	}
 	
-	public synchronized void addMessage(byte[] message) {
+	public synchronized void addMessage(TransAlpesMonitor message) {
 		queue.addLast(message);
 	}
 	
-	public synchronized byte[] pollMessage() {
+	public synchronized TransAlpesMonitor pollMessage() {
 		return queue.poll();
 	}
 }

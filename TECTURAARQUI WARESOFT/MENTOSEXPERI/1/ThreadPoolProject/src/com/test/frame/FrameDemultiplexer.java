@@ -2,6 +2,8 @@ package com.test.frame;
 
 import com.test.dto.AlarmFrameDTO;
 import com.test.dto.RegularFrameDTO;
+import com.test.module.GenericModule;
+import com.test.monitoring.TransAlpesMonitor;
 
 /**
  * @class FrameDemultiplexer.java
@@ -11,8 +13,10 @@ import com.test.dto.RegularFrameDTO;
  */
 public class FrameDemultiplexer {
 
-	public RegularFrameDTO demultiplexFrame(byte[] data) {
+	public RegularFrameDTO demultiplexFrame(TransAlpesMonitor monitor) {
 
+		byte data[] = monitor.getData();
+		
 		RegularFrameDTO regularFrameDTO = new RegularFrameDTO();
 		regularFrameDTO.setVehicleType(data[0] >> 4);
 		regularFrameDTO.setLaSign((data[0] >> 3) & 1);
@@ -29,6 +33,8 @@ public class FrameDemultiplexer {
 		regularFrameDTO.setTemperature(((data[8] & 1) << 7) | data[9]);
 		regularFrameDTO.setVehicleId((data[10] << 4) | (data[11] >> 3));
 		
+		monitor.addEndTrace(System.nanoTime());
+		monitor.printTrace();
 		return regularFrameDTO;
 	}
 

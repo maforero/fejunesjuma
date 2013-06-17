@@ -5,6 +5,7 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.SocketException;
 
+import com.test.monitoring.TransAlpesMonitor;
 import com.test.queue.QueueManager;
 
 /**
@@ -36,11 +37,15 @@ public class MessageListener implements Runnable {
 			DatagramPacket packet = new DatagramPacket(values, values.length);
 			try {
 				socket.receive(packet);
+				TransAlpesMonitor monitor = TransAlpesMonitor.getInstance();
+				monitor.addInitTrace(System.nanoTime());
 				byte[] data = packet.getData();
-				queueManager.addMessage(data);
+				monitor.setData(data);
+				queueManager.addMessage(monitor);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
 	}
+
 }
