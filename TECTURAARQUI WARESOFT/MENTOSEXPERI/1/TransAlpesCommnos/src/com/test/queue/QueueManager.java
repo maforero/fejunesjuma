@@ -2,7 +2,7 @@ package com.test.queue;
 
 import java.util.LinkedList;
 
-import com.test.monitoring.TransAlpesMonitor;
+import com.test.monitoring.Trace;
 
 /**
  * @class QueueManager.java
@@ -13,10 +13,10 @@ import com.test.monitoring.TransAlpesMonitor;
 public class QueueManager {
 
 	private static QueueManager instance;
-	private LinkedList<TransAlpesMonitor> queue;
+	private LinkedList<Trace> queue;
 	
 	private QueueManager() {
-		queue = new LinkedList<TransAlpesMonitor>();
+		queue = new LinkedList<Trace>();
 	}
 	
 	public static QueueManager getInstance() {
@@ -31,11 +31,11 @@ public class QueueManager {
 		return !queue.isEmpty();
 	}
 	
-	public synchronized void addMessage(TransAlpesMonitor message) {
+	public synchronized void addMessage(Trace message) {
 		queue.addLast(message);
 	}
 	
-	public synchronized TransAlpesMonitor pollMessage() {
+	public synchronized Trace pollMessage() {
 		return queue.poll();
 	}
 }

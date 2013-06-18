@@ -7,68 +7,59 @@ import java.net.SocketException;
 
 import Repartidor.Repartidor;
 
+import com.test.configuration.ConfigurationManager;
+import com.test.configuration.Properties;
+import com.test.monitoring.Monitor;
+import com.test.monitoring.Trace;
 
-public class Main implements Runnable{
+public class Main {
 
-	private DatagramSocket socket;
-	private Repartidor repartidor;
-	private static int count;
-	
-	public Main(DatagramSocket s){
-		this.socket=s;
-		repartidor=new Repartidor();
-		
-	}
-	
-	
-	public static void main(String args[]){
-		try {
-			DatagramSocket socket1 = new DatagramSocket(5000);
-			socket1.setReceiveBufferSize(100000);
+    private DatagramSocket socket;
+    private Repartidor repartidor;
 
-		Main a=	new Main(socket1);
-		Thread tMain=new Thread(a,"a");
-		
-		Main b=	new Main(socket1);
-		Thread tbMain=new Thread(b,"b");
-		Main c=	new Main(socket1);
-		Thread tcMain=new Thread(c,"c");
-		Main d=	new Main(socket1);
-		Thread tdMain=new Thread(d,"d");
-		tMain.start();
-//		tbMain.start();
-//		tcMain.start();
-//		tdMain.start();
-		} catch (SocketException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		
-	}
+    public Main() {
 
+        try {
+            String port = ConfigurationManager.getInstance().getProperty(Properties.BALANCER_PORT.name());
+            socket = new DatagramSocket(Integer.parseInt(port));
+            repartidor = new Repartidor();
+            while (true) {
+                int packetSize = Integer.parseInt(ConfigurationManager.getInstance().getProperty(Properties.PACKET_SIZE.name()));
+                byte datos[] = new byte[packetSize];
+                DatagramPacket recibirPaquete = new DatagramPacket(datos, datos.length);
+                socket.receive(recibirPaquete);
+                byte[] data = recibirPaquete.getData();
+                Trace trace = Trace.getInstance();
+                trace.addInitTrace(System.nanoTime());
+                repartidor.repartirMensaje(data);
+                trace.addEndTrace(System.nanoTime());
+                writeTraces(data[0]);
+            }
 
-	
-	public void run() {
-		try {
+        } catch (SocketException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-			
-			while(true){
-				byte datos[]=new byte[10];
-				DatagramPacket recibirPaquete=new DatagramPacket(datos,datos.length);
-				socket.receive(recibirPaquete);
-				System.out.println(new String(recibirPaquete.getData())+Thread.currentThread().getName()+" "+count++);
-				String message = new String(recibirPaquete.getData());
-				repartidor.repartirMensaje(message);
-			}
-			
-		} catch (SocketException e) {
-			
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		
-	}
+    }
+
+    /**
+     * @param recibirPaquete
+     */
+    private void writeTraces(byte data) {
+        if (data == 127) {
+            Monitor.getInstance().printTraces();
+        }
+    }
+
+    public static void main(String args[]) {
+        if (args != null && args.length > 0) {
+            ConfigurationManager.getInstance().loadProperties(args[0]);
+        } else {
+            ConfigurationManager.getInstance().loadProperties();
+        }
+        new Main();
+    }
+    
 }

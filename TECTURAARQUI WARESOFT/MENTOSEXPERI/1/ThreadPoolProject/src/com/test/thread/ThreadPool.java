@@ -2,11 +2,10 @@ package com.test.thread;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
-import com.test.monitoring.TransAlpesMonitor;
+import com.test.monitoring.Trace;
 
 /**
  * @class ThreadPool.java
@@ -22,27 +21,27 @@ public class ThreadPool {
 	private static final int DEFAULT_NUMBER_OF_THREADS = 30;
 	private static final int DEFAULT_POOL_SIZE = 30;
 	
-	private List<PoolThread> threads;
-	private BlockingQueue<TransAlpesMonitor> threadQueue;
+	private List<Worker> workers;
+	private BlockingQueue<Trace> threadQueue;
 
 	public ThreadPool() {
 		this(DEFAULT_NUMBER_OF_THREADS, DEFAULT_POOL_SIZE);
 	}
 
 	public ThreadPool(int numberOfThreads, int poolSize) {
-		threadQueue = new LinkedBlockingQueue<TransAlpesMonitor>(poolSize);
+		threadQueue = new LinkedBlockingQueue<Trace>(poolSize);
 		createThreads(numberOfThreads);
 		startThreads();
 	}
 
-	public synchronized void execute(TransAlpesMonitor monitor) {
+	public synchronized void execute(Trace monitor) {
 		if (threadQueue.remainingCapacity() > 0) {
 			threadQueue.add(monitor);
 		}
 	}
 
 	public synchronized void stop() {
-		for (PoolThread thread : this.threads) {
+		for (Worker thread : this.workers) {
 			thread.stopThread();
 		}
 	}
@@ -51,7 +50,7 @@ public class ThreadPool {
 	 * 
 	 */
 	private void startThreads() {
-		for (PoolThread thread : threads) {
+		for (Worker thread : workers) {
 			thread.start();
 		}
 	}
@@ -60,9 +59,9 @@ public class ThreadPool {
 	 * 
 	 */
 	private void createThreads(int numberOfThreads) {
-		threads = new LinkedList<PoolThread>();
+		workers = new LinkedList<Worker>();
 		for (int i = 0; i < numberOfThreads; i++) {
-			threads.add(new PoolThread(threadQueue));
+			workers.add(new Worker(threadQueue));
 		}
 	}
 }

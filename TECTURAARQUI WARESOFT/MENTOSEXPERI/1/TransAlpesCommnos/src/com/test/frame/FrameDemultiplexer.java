@@ -2,8 +2,7 @@ package com.test.frame;
 
 import com.test.dto.AlarmFrameDTO;
 import com.test.dto.RegularFrameDTO;
-import com.test.module.GenericModule;
-import com.test.monitoring.TransAlpesMonitor;
+import com.test.monitoring.Trace;
 
 /**
  * @class FrameDemultiplexer.java
@@ -13,7 +12,7 @@ import com.test.monitoring.TransAlpesMonitor;
  */
 public class FrameDemultiplexer {
 
-	public RegularFrameDTO demultiplexFrame(TransAlpesMonitor monitor) {
+	public RegularFrameDTO demultiplexFrame(Trace monitor) {
 
 		byte data[] = monitor.getData();
 		
@@ -34,12 +33,23 @@ public class FrameDemultiplexer {
 		regularFrameDTO.setVehicleId((data[10] << 4) | (data[11] >> 3));
 		
 		monitor.addEndTrace(System.nanoTime());
-		monitor.printTrace();
 		return regularFrameDTO;
 	}
 
 	public AlarmFrameDTO demultiplexAlarmFrame(byte[] data) {
-
-		return null;
+		AlarmFrameDTO alarmFrameDTO  = new AlarmFrameDTO();
+		alarmFrameDTO.setVehicleId((data[0]<<4) |(data[1]>>3));
+		alarmFrameDTO.setLaSign(data[1]>>2 & 1);
+		alarmFrameDTO.setLaGrades(((data[1] & 3)<<5) | (data[2]>>2));
+		alarmFrameDTO.setLaMinutes((data[2] <<5) | (data[3]>>3));
+		alarmFrameDTO.setLaSeconds((data[3]<<4) | (data[4]>>4));
+		alarmFrameDTO.setLoSign(data[4]>> 3 & 1);
+		alarmFrameDTO.setLoGrades((data[4]<<4) | (data[5]>>3));
+		alarmFrameDTO.setLoMinutes((data[5] <<4) | (data[6] >> 4));
+		alarmFrameDTO.setLoSeconds((data[6] << 3) | (data[7] >> 5));
+		alarmFrameDTO.setEmergencyType(data[7]>> 4 & 1);
+		alarmFrameDTO.setDriverStatus(data[7]>>3 & 1);
+		
+		return alarmFrameDTO;
 	}
 }

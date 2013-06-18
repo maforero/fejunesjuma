@@ -5,7 +5,7 @@ import java.util.concurrent.BlockingQueue;
 import com.test.dto.RegularFrameDTO;
 import com.test.frame.FrameDemultiplexer;
 import com.test.module.GenericModule;
-import com.test.monitoring.TransAlpesMonitor;
+import com.test.monitoring.Trace;
 
 /**
  * @class PoolThread.java
@@ -13,14 +13,14 @@ import com.test.monitoring.TransAlpesMonitor;
  * @Date Jun 14, 2013
  * @since 1.0
  */
-public class PoolThread extends Thread {
+public class Worker extends Thread {
 
-	private BlockingQueue<TransAlpesMonitor> threadQueue;
+	private BlockingQueue<Trace> threadQueue;
 	private boolean keepRunning;
 	private FrameDemultiplexer demultiplexer;
 	private GenericModule genericModule;
 
-	public PoolThread(BlockingQueue<TransAlpesMonitor> threadQueue) {
+	public Worker(BlockingQueue<Trace> threadQueue) {
 		this.threadQueue = threadQueue;
 		keepRunning = true;
 		demultiplexer = new FrameDemultiplexer();
@@ -30,7 +30,7 @@ public class PoolThread extends Thread {
 	@Override
 	public void run() {
 		while (keepRunning) {
-			TransAlpesMonitor monitor;
+			Trace monitor;
 			try {
 				monitor = threadQueue.take();
 				demultiplexData(monitor);
@@ -43,9 +43,9 @@ public class PoolThread extends Thread {
 	/**
 	 * @param data
 	 */
-	private void demultiplexData(TransAlpesMonitor monitor) {
+	private void demultiplexData(Trace monitor) {
 		RegularFrameDTO frame = demultiplexer.demultiplexFrame(monitor);
-//		genericModule.doSomething(frame);
+		genericModule.doSomething(frame);
 	}
 
 	public synchronized void stopThread() {

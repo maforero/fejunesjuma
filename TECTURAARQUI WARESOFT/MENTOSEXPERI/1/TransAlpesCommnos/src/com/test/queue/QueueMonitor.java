@@ -1,7 +1,6 @@
 package com.test.queue;
 
-import com.test.monitoring.TransAlpesMonitor;
-import com.test.thread.ThreadPool;
+import com.test.monitoring.Trace;
 
 /**
  * @class QueueMonitor.java
@@ -13,19 +12,19 @@ public class QueueMonitor implements Runnable {
 
 	private boolean keepRunning;
 	private QueueManager queueManager;
-	private ThreadPool threadPool;
+	private QueueExecutor executor;
 
 	public QueueMonitor() {
 		keepRunning = true;
 		queueManager = QueueManager.getInstance();
-		threadPool = new ThreadPool();
+		executor = QueueExecutorFactory.getInstance().getExecutor();
 	}
 
 	public void run() {
 		while (keepRunning) {
 			if (queueManager.hasMessage()) {
-				TransAlpesMonitor monitor = queueManager.pollMessage();
-				threadPool.execute(monitor);
+				Trace monitor = queueManager.pollMessage();
+				executor.execute(monitor);
 			}
 		}
 	}
