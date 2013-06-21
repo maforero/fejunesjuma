@@ -22,10 +22,8 @@ public class QueueMonitor implements Runnable {
 
 	public void run() {
 		while (keepRunning) {
-			if (queueManager.hasMessage()) {
-				Trace monitor = queueManager.pollMessage();
-				executor.execute(monitor);
-			}
+			Trace monitor = queueManager.pollMessage();
+			executor.execute(monitor);
 		}
 	}
 }

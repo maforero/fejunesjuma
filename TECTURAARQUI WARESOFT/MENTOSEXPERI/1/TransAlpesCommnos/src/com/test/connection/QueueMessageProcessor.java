@@ -1,6 +1,5 @@
 package com.test.connection;
 
-import com.test.monitoring.Monitor;
 import com.test.monitoring.Trace;
 import com.test.queue.QueueManager;
 
@@ -10,11 +9,11 @@ import com.test.queue.QueueManager;
  * @Date Jun 16, 2013
  * @since 1.0
  */
-public class LoadMessageProcessor implements MessageProcessor {
+public class QueueMessageProcessor implements MessageProcessor {
 
 	private QueueManager queueManager;
 
-	public LoadMessageProcessor() {
+	public QueueMessageProcessor() {
 		queueManager = QueueManager.getInstance();
 	}
 
@@ -27,9 +26,6 @@ public class LoadMessageProcessor implements MessageProcessor {
 	 */
 	@Override
 	public void processMessage(Trace monitor) {
-		if (monitor.getData()[0] == 127) {
-			Monitor.getInstance().printTraces();
-		}
 		queueManager.addMessage(monitor);
 	}
 }

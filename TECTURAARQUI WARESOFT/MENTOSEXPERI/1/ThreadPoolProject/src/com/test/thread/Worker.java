@@ -54,6 +54,6 @@ public class Worker extends Thread {
 	}
 
 	public boolean isRunning() {
-		return !keepRunning;
+		return keepRunning;
 	}
 }

@@ -32,7 +32,7 @@ public class FrameDemultiplexer {
 		regularFrameDTO.setTemperature(((data[8] & 1) << 7) | data[9]);
 		regularFrameDTO.setVehicleId((data[10] << 4) | (data[11] >> 3));
 		
-		monitor.addEndTrace(System.nanoTime());
+		monitor.addTime(System.nanoTime());
 		return regularFrameDTO;
 	}
 

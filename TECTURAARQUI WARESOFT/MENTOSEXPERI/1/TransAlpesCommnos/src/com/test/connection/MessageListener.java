@@ -7,6 +7,7 @@ import java.net.SocketException;
 
 import com.test.configuration.ConfigurationManager;
 import com.test.configuration.Properties;
+import com.test.monitoring.Monitor;
 import com.test.monitoring.Trace;
 
 /**
@@ -55,9 +56,13 @@ public class MessageListener implements Runnable {
 			DatagramPacket packet = new DatagramPacket(values, values.length);
 			try {
 				socket.receive(packet);
+				if (packet.getData()[0] == 127) {
+					Monitor.getInstance().printTraces();
+					continue;
+				}
 				Trace monitor = Trace.getInstance();
 				long nanoTime = System.nanoTime();
-				monitor.addInitTrace(nanoTime);
+				monitor.addTime(nanoTime);
 				byte[] data = packet.getData();
 				monitor.setData(data);
 				processor.processMessage(monitor);

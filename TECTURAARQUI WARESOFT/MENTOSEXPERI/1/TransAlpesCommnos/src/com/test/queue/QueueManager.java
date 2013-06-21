@@ -14,29 +14,43 @@ public class QueueManager {
 
 	private static QueueManager instance;
 	private LinkedList<Trace> queue;
-	
+
 	private QueueManager() {
 		queue = new LinkedList<Trace>();
 	}
-	
+
 	public static QueueManager getInstance() {
 		if (instance == null) {
 			instance = new QueueManager();
 		}
-		
+
 		return instance;
 	}
-	
+
 	public boolean hasMessage() {
 		return !queue.isEmpty();
 	}
-	
+
 	public synchronized void addMessage(Trace message) {
+		notifyAll();
 		queue.addLast(message);
 	}
-	
+
 	public synchronized Trace pollMessage() {
+		if (!hasMessage()) {
+			putMonitorToWait();
+		}
 		return queue.poll();
 	}
+
+	/**
+	 * 
+	 */
+	private void putMonitorToWait() {
+		try {
+			wait();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
 }
- 

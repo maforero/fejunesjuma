@@ -30,7 +30,7 @@ public class BalancerQueueExecutor implements QueueExecutor {
 	@Override
 	public void execute(Trace monitor) {
 		repartidor.repartirMensaje(monitor.getData());
-        monitor.addEndTrace(System.nanoTime());
+        monitor.addTime(System.nanoTime());
         writeTraces(monitor.getData()[0]);
 	}
 

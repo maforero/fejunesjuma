@@ -13,10 +13,37 @@ import com.test.connection.MessageListener;
 public class Main {
 
 	public static void main(String[] args) {
-		String port = ConfigurationManager.getInstance().getProperty(
-				Properties.NODE_PORT.name());
+		loadConfigurations(args);
+		String port = getPort();
+		startMessageListener(port);
+	}
+
+	/**
+	 * @param port
+	 */
+	private static void startMessageListener(String port) {
 		Thread messageListener = new Thread(new MessageListener(
 				Integer.valueOf(port)));
 		messageListener.start();
+	}
+
+	/**
+	 * @return
+	 */
+	private static String getPort() {
+		String port = ConfigurationManager.getInstance().getProperty(
+				Properties.NODE_PORT.name());
+		return port;
+	}
+	
+	/**
+	 * 
+	 */
+	private static void loadConfigurations(String[] args) {
+	    if (args != null && args.length > 0) {
+            ConfigurationManager.getInstance().loadProperties(args[0]);
+        } else {
+            ConfigurationManager.getInstance().loadProperties();
+        }
 	}
 }

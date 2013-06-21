@@ -2,8 +2,14 @@ package com.test.monitoring;
 
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import com.test.configuration.ConfigurationManager;
 import com.test.configuration.Properties;
@@ -34,21 +40,27 @@ public class Monitor {
 	public void printTraces() {
 		String path = ConfigurationManager.getInstance().getProperty(
 				Properties.LOGS_PATH.name());
+		String actualDate = new SimpleDateFormat("-dd-MM-yyyy-HH-mm-ss").format(new Date());
+		path = path + actualDate + ".log";
 		PrintWriter writer = null;
 		try {
-			long init = traces.get(0).getTraces()[0];
+			long init = traces.get(0).getTraces().get(0);
+			JSONObject jsonMonitor = new JSONObject();
+			JSONArray jsonTraces = new JSONArray();
 			writer = new PrintWriter(path);
 			int counter = 0;
-			long testTime = Long.parseLong(ConfigurationManager.getInstance()
-					.getProperty(Properties.TEST_TIME.name()));
+			long total = 0;
 			for (Trace trace : traces) {
-				if ((trace.getTraces()[1] - init) >= testTime) {
-					break;
-				}
-				trace.printTrace(writer);
+				JSONObject jsonTrace = trace.getJsonTrace();
+				total += jsonTrace.getLong("total");
+				jsonTraces.put(jsonTrace);
 				counter++;
 			}
-			endTrace(writer, counter);
+			addTraceValues(init, jsonMonitor, jsonTraces, counter, total);
+			writer.append(jsonMonitor.toString());
+			traces.clear();
+		} catch (JSONException e) {
+			e.printStackTrace();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} finally {
@@ -58,10 +70,32 @@ public class Monitor {
 		}
 	}
 
-	private void endTrace(PrintWriter writer, int counter) {
-		writer.println("size: " + counter);
-		writer.println("TotalSize: " + traces.size());
-		writer.flush();
-		traces.clear();
+	/**
+	 * @param init
+	 * @param jsonMonitor
+	 * @param jsonTraces
+	 * @param counter
+	 * @param total
+	 * @throws JSONException
+	 */
+	private void addTraceValues(long init, JSONObject jsonMonitor,
+			JSONArray jsonTraces, int counter, long total) throws JSONException {
+		long endTime = getEndTime();
+		jsonMonitor.put("startTime", init);
+		jsonMonitor.put("endTime", endTime);
+		jsonMonitor.put("totalTime", total);
+		jsonMonitor.put("averageTime", total / counter);
+		jsonMonitor.put("size", counter);
+		jsonMonitor.put("traces", jsonTraces);
+	}
+
+	/**
+	 * @return
+	 */
+	private long getEndTime() {
+		Trace lastTrace = traces.get(traces.size() - 1);
+		int lastTime = lastTrace.getTraces().size() -1;
+		long endTime = lastTrace.getTraces().get(lastTime);
+		return endTime;
 	}
 }

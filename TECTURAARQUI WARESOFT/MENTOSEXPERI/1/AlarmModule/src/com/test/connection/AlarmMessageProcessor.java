@@ -37,7 +37,7 @@ public class AlarmMessageProcessor implements MessageProcessor {
 		} else {
 			AlarmFrameDTO alarmDTO = frmDemultiplexer
 					.demultiplexAlarmFrame(monitor.getData());
-			monitor.addEndTrace(System.nanoTime());
+			monitor.addTime(System.nanoTime());
 			alarmModule.doSomething(alarmDTO);
 		}
 	}
