@@ -23,6 +23,7 @@ public class ThreadManager {
 	private static ThreadManager instance = new ThreadManager();
 	private int poolSize;
 	
+	
 	private ThreadManager(){
 		loadConfigurations();
 	}
@@ -53,6 +54,8 @@ public class ThreadManager {
 	private static void loadFrames(List<byte[]> frames) {
 		String framesPath = ConfigurationManager.getInstance().getProperty(Properties.FRAMES_PATH.name());
 		try {
+			RsaEncriptando rsa=new RsaEncriptando();
+			rsa.clave();
 			Scanner scanner = new Scanner(new File(framesPath));
 			scanner.useDelimiter("\n");
 			while (scanner.hasNext()) {
@@ -79,7 +82,7 @@ public class ThreadManager {
 				}
 				
 				//SE AGREGA LA TRAMA ->  AUN FALTA ENCRIPTARLA
-				frames.add(frame);
+				frames.add(rsa.encriptar(frame));
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();

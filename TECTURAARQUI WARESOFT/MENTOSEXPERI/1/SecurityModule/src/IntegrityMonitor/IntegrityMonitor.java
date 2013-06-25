@@ -38,9 +38,11 @@ public class IntegrityMonitor {
     	
     }
     
-    private void desencriptarMensaje(byte[] datos){
+    private void desencriptarMensaje(byte[] datosEncriptados){
     	//AQUI SE DESENCRIPTA EL MENSAJE
-    	
+    	Rsa rsa=new Rsa();
+    	rsa.setValores();
+    	byte[] datos=rsa.desencriptar(datosEncriptados);
     	
     	//AQUI SE SEPARA EL HASH Y LOS DATOS DE LA TRAMA
     	// 12 PRIMEROS BYTES DATOS
