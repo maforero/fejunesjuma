@@ -3,8 +3,8 @@ package com.test.connection;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
+import java.net.InetAddress;
 import java.net.SocketException;
-import java.util.Calendar;
 import java.util.HashMap;
 
 import com.test.configuration.ConfigurationManager;
@@ -38,7 +38,7 @@ public class HeartBeatListener implements Runnable {
 	}
 	
 	/**
-	 * 
+	 * Sets default packet size
 	 */
 	private void getPacketSize() {
 		String packet = ConfigurationManager.getInstance().getProperty(
@@ -62,13 +62,46 @@ public class HeartBeatListener implements Runnable {
 					
 				}
 				
-				//AGREGAR Y VERIFICAR EL ULTIMO
-				
-				
+				String ipNode1 = InetAddress.getByName(
+						ConfigurationManager.getInstance().getProperty(Properties.NODE_1_IP.name())).toString();
+				String ipNode2 = InetAddress.getByName(
+						ConfigurationManager.getInstance().getProperty(Properties.NODE_2_IP.name())).toString();
+								
+				if (lastBeatMessage.get(ipNode1) != null) {
+					if (!isNodeAlive(ipNode1)) {
+						lastBeatMessage.remove(ipNode1);
+					}
+				}				
+				if (lastBeatMessage.get(ipNode2) != null) {
+					if (!isNodeAlive(ipNode2)) {
+						lastBeatMessage.remove(ipNode1);
+					}
+				}
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
+		
+	}
+	
+	/**
+	 * Checks if the node is alive
+	 * @param ipNode Node Ip Address
+	 * @return true isAlive, false isNotAlive
+	 */
+	private boolean isNodeAlive(String ipNode) {
+		Long actualTime = System.nanoTime();
+		Long elapsedNanoTime = actualTime - lastBeatMessage.get(ipNode);
+		double elapsedSecsTime = (double) elapsedNanoTime/1000000000.0;
+
+		//Maximun reponse time node (Seconds)
+		int maxRespondeTimeNode = Integer.valueOf(ConfigurationManager.getInstance().getProperty(
+				Properties.MAX_REPONSE_TIME_NODE.name()));
+		if (elapsedSecsTime <= maxRespondeTimeNode) {
+			return true;
+		}
+		
+		return false;
 		
 	}
 
