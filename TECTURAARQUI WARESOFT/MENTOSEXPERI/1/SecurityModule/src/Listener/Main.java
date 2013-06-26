@@ -7,6 +7,7 @@ import com.test.configuration.ConfigurationManager;
 import com.test.configuration.Properties;
 import com.test.connection.KeepTraceMessageProcessor;
 import com.test.connection.MessageListener;
+import com.test.ping.PingManager;
 import com.test.queue.QueueMonitor;
 import com.test.queue.TraceQueueExecutor;
 
@@ -21,9 +22,15 @@ public class Main {
 		loadConfigurations(args);
 		startQueueMonitor();
 		startMessageListener();
+		startPingListener();
 	}
 
-	/**
+	private static void startPingListener() {
+	    Thread pingListener = new Thread(new PingManager());
+	    pingListener.start();
+    }
+
+    /**
 	 * 
 	 */
 	private static void startMessageListener() {

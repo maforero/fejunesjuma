@@ -1,10 +1,6 @@
 package IntegrityMonitor;
 
 import java.io.IOException;
-import java.net.DatagramSocket;
-import java.net.InetAddress;
-import java.net.SocketException;
-import java.net.UnknownHostException;
 
 import com.test.configuration.ConfigurationManager;
 import com.test.configuration.Properties;
@@ -14,24 +10,12 @@ import com.test.secutiry.Hash;
 
 public class IntegrityMonitor {
 	
-    private DatagramSocket socket;
-    private int port;
-    private InetAddress ipNode1;
     private int TramaSize;
     private int HashSize;
     
     public IntegrityMonitor(){
     	HashSize = Integer.parseInt(ConfigurationManager.getInstance().getProperty(Properties.HASH_SIZE.name()));
     	TramaSize = Integer.parseInt(ConfigurationManager.getInstance().getProperty(Properties.PACKET_SIZE.name()));
-    	port = Integer.parseInt(ConfigurationManager.getInstance().getProperty(Properties.NODE_PORT2.name()));
-        try {
-            ipNode1 = InetAddress.getByName(ConfigurationManager.getInstance().getProperty(Properties.NODE_1_IP.name()));
-            socket = new DatagramSocket();
-        } catch (SocketException e) {
-            e.printStackTrace();
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
-        }
     }
     
     public void validarMensaje(Trace trace){
