@@ -124,10 +124,11 @@ public class Rsa {
 
 		BigInteger c, en, l, c1;
 		en = new BigInteger(n + "");
-		byte[] frame = new byte[enc.length];
+		byte[] frame = new byte[enc.length/4];
 
-		for (int i = 0; i < enc.length; i++) {
-			c1 = new BigInteger(enc[i] + "");
+		for (int i = 0; i < enc.length-3; i+=4) {
+			int entero=(enc[i+3]& 0xFF)|((enc[i+2]& 0xFF)<<8)|((enc[i+1]& 0xFF)<<16)|((enc[i]& 0xFF)<<24);
+			c1 = new BigInteger(entero + "");
 			c = c1.pow((int) (d));
 			l = c.mod(en);
 			frame[i] = (Byte.parseByte(l.toString()));
