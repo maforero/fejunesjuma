@@ -2,6 +2,7 @@ package Listener;
 
 import com.test.configuration.ConfigurationManager;
 import com.test.configuration.Properties;
+import com.test.connection.HeartBeatListener;
 import com.test.connection.MessageListener;
 import com.test.queue.QueueMonitor;
 
@@ -50,8 +51,20 @@ public class Main {
     	loadConfigurations(args);
 		startQueueMonitor();
 		startMessageListener();
+		startHeartBeatListener();
 //        new Main();
     }
+    
+    /**
+	 * It starts the hearbeatlistener Thread
+	 */
+	private static void startHeartBeatListener() {
+		String port = ConfigurationManager.getInstance().getProperty(
+				Properties.HEARTBEAT_PORT.name());
+		Thread heartBeatListener = new Thread(new HeartBeatListener(
+				Integer.valueOf(port)));
+		heartBeatListener.start();
+	}
     
     /**
 	 * 
