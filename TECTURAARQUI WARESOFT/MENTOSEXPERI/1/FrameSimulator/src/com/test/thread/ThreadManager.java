@@ -81,8 +81,8 @@ public class ThreadManager {
 				}
 				
 				//SE AGREGA LA TRAMA ->  AUN FALTA ENCRIPTARLA
-//				framecs.add(rsa.encriptar(frame));
-				frames.add(frame);
+			frames.add(rsa.encriptar(frame));
+				//frames.add(frame);
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
