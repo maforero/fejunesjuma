@@ -1,12 +1,14 @@
 package com.test.dto;
 
+import java.io.Serializable;
+
 /**
  * @class FrameDTO.java
  * @author Felipe
  * @Date Jun 15, 2013
  * @since 1.0
  */
-public class FrameDTO {
+public class FrameDTO implements Serializable {
 
 	private int vehicleId;
 	private int laSign;

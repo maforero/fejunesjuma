@@ -38,25 +38,14 @@ public class Monitor {
 	}
 
 	public void printTraces() {
-		String path = ConfigurationManager.getInstance().getProperty(
-				Properties.LOGS_PATH.name());
-		String actualDate = new SimpleDateFormat("-dd-MM-yyyy-HH-mm-ss").format(new Date());
-		path = path + actualDate + ".log";
+		String path = getPathName();
 		PrintWriter writer = null;
 		try {
 			long init = traces.get(0).getTraces().get(0);
 			JSONObject jsonMonitor = new JSONObject();
 			JSONArray jsonTraces = new JSONArray();
 			writer = new PrintWriter(path);
-			int counter = 0;
-			long total = 0;
-			for (Trace trace : traces) {
-				JSONObject jsonTrace = trace.getJsonTrace();
-				total += jsonTrace.getLong("total");
-				jsonTraces.put(jsonTrace);
-				counter++;
-			}
-			addTraceValues(init, jsonMonitor, jsonTraces, counter, total);
+			creaeTraces(init, jsonMonitor, jsonTraces);
 			writer.append(jsonMonitor.toString());
 			traces.clear();
 		} catch (JSONException e) {
@@ -68,6 +57,36 @@ public class Monitor {
 				writer.close();
 			}
 		}
+	}
+
+	/**
+	 * @param init
+	 * @param jsonMonitor
+	 * @param jsonTraces
+	 * @throws JSONException
+	 */
+	private void creaeTraces(long init, JSONObject jsonMonitor,
+			JSONArray jsonTraces) throws JSONException {
+		int counter = 0;
+		long total = 0;
+		for (Trace trace : traces) {
+			JSONObject jsonTrace = trace.getJsonTrace();
+			total += jsonTrace.getLong("total");
+			jsonTraces.put(jsonTrace);
+			counter++;
+		}
+		addTraceValues(init, jsonMonitor, jsonTraces, counter, total);
+	}
+
+	/**
+	 * @return
+	 */
+	private String getPathName() {
+		String path = ConfigurationManager.getInstance().getProperty(
+				Properties.LOGS_PATH.name());
+		String actualDate = new SimpleDateFormat("-dd-MM-yyyy-HH-mm-ss").format(new Date());
+		path = path + actualDate + ".log";
+		return path;
 	}
 
 	/**
