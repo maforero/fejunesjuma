@@ -42,7 +42,8 @@ class MessageProcessorFactory {
 				Properties.MESSAGE_PROCESSOR_IMPL.name());
 		try {
 			Class<?> clazz = Class.forName(className);
-			return (MessageProcessor) clazz.newInstance();
+			MessageProcessor processor = (MessageProcessor) clazz.newInstance();
+			return new KeepTraceMessageProcessor(processor);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

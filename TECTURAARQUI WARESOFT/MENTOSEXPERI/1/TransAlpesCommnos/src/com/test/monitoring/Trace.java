@@ -18,6 +18,7 @@ public class Trace {
 	private Monitor monitor = Monitor.getInstance();
 	private List<Long> traces;
 	private byte[] data;
+	private String id;
 
 	private Trace() {
 		traces = new LinkedList<Long>();
@@ -44,6 +45,7 @@ public class Trace {
 			array.put(time);
 		}
 		try {
+			jsonTrace.put("id", getId());
 			jsonTrace.put("traces", array);
 			jsonTrace.put("total", getLastTrace() - getFirstTrace());
 		} catch (JSONException e) {
@@ -56,7 +58,7 @@ public class Trace {
 	 * @return
 	 */
 	private Long getLastTrace() {
-		return traces.get(traces.size()-1);
+		return traces.get(traces.size() - 1);
 	}
 
 	/**
@@ -84,4 +86,20 @@ public class Trace {
 	public List<Long> getTraces() {
 		return traces;
 	}
+
+	/**
+	 * @return the id
+	 */
+	public String getId() {
+		return id;
+	}
+
+	/**
+	 * @param id
+	 *            the id to set
+	 */
+	public void setId(String id) {
+		this.id = id;
+	}
+
 }

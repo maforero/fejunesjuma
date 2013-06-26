@@ -24,7 +24,11 @@ public class MessageListener implements Runnable {
 	private int packetSize;
 
 	public MessageListener(int port) {
-		processor = MessageProcessorFactory.getInstance().getMessageProcessor();
+		this(port, MessageProcessorFactory.getInstance().getMessageProcessor());
+	}
+	
+	public MessageListener(int port, MessageProcessor processor) {
+		this.processor = processor;
 		keepRunning = true;
 		getPacketSize();
 		startSocket(port);

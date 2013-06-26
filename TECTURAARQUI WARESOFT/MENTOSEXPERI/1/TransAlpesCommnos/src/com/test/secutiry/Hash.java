@@ -11,6 +11,7 @@ public class Hash {
 		        byte[] array = md.digest(line.getBytes());
 		        return array;
 		    } catch (java.security.NoSuchAlgorithmException e) {
+		    	e.printStackTrace();
 		    }
 		    return null;
 		}

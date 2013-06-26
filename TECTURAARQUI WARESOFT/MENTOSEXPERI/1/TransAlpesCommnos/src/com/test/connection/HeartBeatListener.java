@@ -21,7 +21,7 @@ public class HeartBeatListener implements Runnable {
 	
 	public HeartBeatListener(int port) {
 		keepRunning = true;
-		lastBeatMessage = new HashMap<>();
+		lastBeatMessage = new HashMap<String, Long>();
 		startSocket(port);
 		getPacketSize();
 	}

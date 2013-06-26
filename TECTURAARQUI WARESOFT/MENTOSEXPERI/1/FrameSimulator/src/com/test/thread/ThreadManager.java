@@ -2,7 +2,6 @@ package com.test.thread;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.security.MessageDigest;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -82,7 +81,8 @@ public class ThreadManager {
 				}
 				
 				//SE AGREGA LA TRAMA ->  AUN FALTA ENCRIPTARLA
-				frames.add(rsa.encriptar(frame));
+//				framecs.add(rsa.encriptar(frame));
+				frames.add(frame);
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();

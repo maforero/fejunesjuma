@@ -1,7 +1,6 @@
 package IntegrityMonitor;
 
 import java.io.IOException;
-import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
@@ -9,6 +8,8 @@ import java.net.UnknownHostException;
 
 import com.test.configuration.ConfigurationManager;
 import com.test.configuration.Properties;
+import com.test.monitoring.Trace;
+import com.test.queue.QueueManager;
 import com.test.secutiry.Hash;
 
 public class IntegrityMonitor {
@@ -33,12 +34,13 @@ public class IntegrityMonitor {
         }
     }
     
-    public void validarMensaje(byte[] datos){
-    	desencriptarMensaje(datos);
+    public void validarMensaje(Trace trace){
+    	desencriptarMensaje(trace);
     	
     }
     
-    private void desencriptarMensaje(byte[] datosEncriptados){
+    private void desencriptarMensaje(Trace trace){
+    	byte[] datosEncriptados = trace.getData();
     	//AQUI SE DESENCRIPTA EL MENSAJE
     	Rsa rsa=new Rsa();
     	rsa.setValores();
@@ -70,7 +72,8 @@ public class IntegrityMonitor {
     	if(valido == true)
     	{
     		try {
-				sendPacket(datosTrama,ipNode1);
+    			trace.setData(datosTrama);
+				sendPacket(trace);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -102,9 +105,10 @@ public class IntegrityMonitor {
     	return valido;
     }
     
-    private void sendPacket(byte[] datos, InetAddress ip) throws IOException {
-        DatagramPacket enviarPaquete = new DatagramPacket(datos, datos.length, ip, port);
-        socket.send(enviarPaquete);
+    private void sendPacket(Trace trace) throws IOException {
+//        DatagramPacket enviarPaquete = new DatagramPacket(datos, datos.length, ip, port);
+//        socket.send(enviarPaquete);
+    	QueueManager.getInstance().addMessage(trace);
     }
 
 }

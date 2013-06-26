@@ -3,6 +3,7 @@ package com.test.main;
 import com.test.configuration.ConfigurationManager;
 import com.test.configuration.Properties;
 import com.test.connection.MessageListener;
+import com.test.queue.HeartbeatQueueExecutor;
 import com.test.queue.QueueMonitor;
 
 /**
@@ -34,7 +35,8 @@ public class Main {
 	 * 
 	 */
 	private static void startQueueMonitor() {
-		QueueMonitor queueMonitor = new QueueMonitor();
+		QueueMonitor queueMonitor = new QueueMonitor(
+				new HeartbeatQueueExecutor());
 		Thread queueMonitorThread = new Thread(queueMonitor);
 		queueMonitorThread.start();
 	}

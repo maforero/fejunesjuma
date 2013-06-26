@@ -1,61 +1,28 @@
 package Listener;
 
+import queue.BalancerQueueExecutor;
+
 import com.test.configuration.ConfigurationManager;
 import com.test.configuration.Properties;
 import com.test.connection.HeartBeatListener;
 import com.test.connection.MessageListener;
+import com.test.connection.QueueMessageProcessor;
 import com.test.queue.QueueMonitor;
+import com.test.queue.TraceQueueExecutor;
+
+import connection.StartTraceMessageProcessor;
 
 public class Main {
-//
-//    private DatagramSocket socket;
-//    private Repartidor repartidor;
-//
-//    public Main() {
-//
-//        try {
-//            String port = ConfigurationManager.getInstance().getProperty(Properties.BALANCER_PORT.name());
-//            socket = new DatagramSocket(Integer.parseInt(port));
-//            repartidor = new Repartidor();
-//            while (true) {
-//                int packetSize = Integer.parseInt(ConfigurationManager.getInstance().getProperty(Properties.PACKET_SIZE.name()));
-//                byte datos[] = new byte[packetSize];
-//                DatagramPacket recibirPaquete = new DatagramPacket(datos, datos.length);
-//                socket.receive(recibirPaquete);
-//                byte[] data = recibirPaquete.getData();
-//                Trace trace = Trace.getInstance();
-//                trace.addInitTrace(System.nanoTime());
-//                repartidor.repartirMensaje(data);
-//                trace.addEndTrace(System.nanoTime());
-//                writeTraces(data[0]);
-//            }
-//
-//        } catch (SocketException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//
-//    }
-    
-//    /**
-//     * @param recibirPaquete
-//     */
-//    private void writeTraces(byte data) {
-//        if (data == 127) {
-//            Monitor.getInstance().printTraces();
-//        }
-//    }
 
-    public static void main(String args[]) {
-    	loadConfigurations(args);
+	public static void main(String args[]) {
+		loadConfigurations(args);
 		startQueueMonitor();
 		startMessageListener();
 		startHeartBeatListener();
-//        new Main();
-    }
-    
-    /**
+		// new Main();
+	}
+
+	/**
 	 * It starts the hearbeatlistener Thread
 	 */
 	private static void startHeartBeatListener() {
@@ -65,15 +32,17 @@ public class Main {
 				Integer.valueOf(port)));
 		heartBeatListener.start();
 	}
-    
-    /**
+
+	/**
 	 * 
 	 */
 	private static void startMessageListener() {
 		String port = ConfigurationManager.getInstance().getProperty(
 				Properties.BALANCER_PORT.name());
+		StartTraceMessageProcessor processor = new StartTraceMessageProcessor(
+				new QueueMessageProcessor());
 		Thread messageListener = new Thread(new MessageListener(
-				Integer.valueOf(port)));
+				Integer.valueOf(port), processor));
 		messageListener.start();
 	}
 
@@ -81,7 +50,8 @@ public class Main {
 	 * 
 	 */
 	private static void startQueueMonitor() {
-		QueueMonitor queueMonitor = new QueueMonitor();
+		QueueMonitor queueMonitor = new QueueMonitor(new TraceQueueExecutor(
+				new BalancerQueueExecutor()));
 		Thread queueMonitorThread = new Thread(queueMonitor);
 		queueMonitorThread.start();
 	}
@@ -90,11 +60,11 @@ public class Main {
 	 * 
 	 */
 	private static void loadConfigurations(String[] args) {
-	    if (args != null && args.length > 0) {
-            ConfigurationManager.getInstance().loadProperties(args[0]);
-        } else {
-            ConfigurationManager.getInstance().loadProperties();
-        }
+		if (args != null && args.length > 0) {
+			ConfigurationManager.getInstance().loadProperties(args[0]);
+		} else {
+			ConfigurationManager.getInstance().loadProperties();
+		}
 	}
-    
+
 }

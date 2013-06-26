@@ -1,4 +1,4 @@
-package com.test.queue;
+package queue;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
@@ -9,8 +9,8 @@ import java.net.UnknownHostException;
 
 import com.test.configuration.ConfigurationManager;
 import com.test.configuration.Properties;
-import com.test.monitoring.Monitor;
 import com.test.monitoring.Trace;
+import com.test.queue.QueueExecutor;
 
 /**
  * @class LoadMessageProcessor.java
@@ -18,19 +18,15 @@ import com.test.monitoring.Trace;
  * @Date Jun 16, 2013
  * @since 1.0
  */
-public class HeartbeatQueueExecutor implements QueueExecutor {
+public class SendMessageExecutor implements QueueExecutor {
 
 	private DatagramSocket socket;
 	private InetAddress nodeIP;
 	private int nodePort;
-	private InetAddress balancerIP;
-	private int balancerPort;
 
-	public HeartbeatQueueExecutor() {
-		initBalancerNode();
+	public SendMessageExecutor() {
 		initNode();
 		initSocket();
-		sendHeartbeat(new byte[] { 1 });
 	}
 
 	/**
@@ -47,19 +43,6 @@ public class HeartbeatQueueExecutor implements QueueExecutor {
 		}
 	}
 
-	/**
-	 * 
-	 */
-	private void initBalancerNode() {
-		try {
-			balancerIP = InetAddress.getByName(ConfigurationManager
-					.getInstance().getProperty(Properties.BALANCER_IP.name()));
-			balancerPort = Integer.parseInt(ConfigurationManager.getInstance()
-					.getProperty(Properties.BALANCER_PORT.name()));
-		} catch (UnknownHostException e) {
-			e.printStackTrace();
-		}
-	}
 
 	/**
 	 * 
@@ -79,22 +62,9 @@ public class HeartbeatQueueExecutor implements QueueExecutor {
 	 */
 	@Override
 	public void execute(Trace trace) {
-		byte data[] = { 1 };
-		sendHeartbeat(data);
 		sendFrames(trace);
-		trace.addTime(System.nanoTime());
-        writeTraces(trace.getData()[0]);
 	}
 
-	/**
-     * @param recibirPaquete
-     */
-    private void writeTraces(byte data) {
-        if (data == 127) {
-            Monitor.getInstance().printTraces();
-        }
-    }
-	
 	/**
 	 * @param trace
 	 */
@@ -102,20 +72,6 @@ public class HeartbeatQueueExecutor implements QueueExecutor {
 		byte data[] = trace.getData();
 		DatagramPacket packet = new DatagramPacket(data, data.length, nodeIP,
 				nodePort);
-		try {
-			socket.send(packet);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
-	 * @param data
-	 * @throws IOException
-	 */
-	private void sendHeartbeat(byte[] data) {
-		DatagramPacket packet = new DatagramPacket(data, data.length,
-				balancerIP, balancerPort);
 		try {
 			socket.send(packet);
 		} catch (IOException e) {

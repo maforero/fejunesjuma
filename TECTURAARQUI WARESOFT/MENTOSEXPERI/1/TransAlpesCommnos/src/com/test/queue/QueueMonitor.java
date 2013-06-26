@@ -15,9 +15,13 @@ public class QueueMonitor implements Runnable {
 	private QueueExecutor executor;
 
 	public QueueMonitor() {
+		this(QueueExecutorFactory.getInstance().getExecutor());
+	}
+
+	public QueueMonitor(QueueExecutor queueExecutor) {
 		keepRunning = true;
 		queueManager = QueueManager.getInstance();
-		executor = QueueExecutorFactory.getInstance().getExecutor();
+		executor = queueExecutor;
 	}
 
 	public void run() {
