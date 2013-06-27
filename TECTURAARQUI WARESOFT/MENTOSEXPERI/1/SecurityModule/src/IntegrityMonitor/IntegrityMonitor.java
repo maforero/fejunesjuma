@@ -42,16 +42,19 @@ public class IntegrityMonitor {
     	byte datosTrama[] = new byte[TramaSize];
     	byte hashTrama[] = new byte[HashSize];;
     	
-    	for(int i=0; i < datos.length; i ++)
-    	{
-    		if(i < TramaSize){
-    			datosTrama[i] = datos[i]; 
-    		}
-    		else
-    		{
-    			hashTrama[i] = datos[i];
-    		}
-    	}
+    	datosTrama = java.util.Arrays.copyOfRange(datos, 0, datos.length - HashSize);
+    	hashTrama = java.util.Arrays.copyOfRange(datos, datosTrama.length, datos.length);
+    	
+//    	for(int i=0; i < datos.length; i ++)
+//    	{
+//    		if(i < TramaSize){
+//    			datosTrama[i] = datos[i]; 
+//    		}
+//    		else
+//    		{
+//    			hashTrama[i] = datos[i];
+//    		}
+//    	}
     	
     	//SE ENVIA UNICAMENTE LA TRAMA DE DATOS (SIN HASH)
     	byte hash[] = obtenerHash(datosTrama);
@@ -71,7 +74,7 @@ public class IntegrityMonitor {
     	String trama = "";
     	for(int i=0; i < datosTrama.length; i ++)
     	{
-    		trama += (char)datosTrama[i];
+    		trama += datosTrama[i];
     		if(i != datosTrama.length -1){
     			trama += ";";
     		}
@@ -87,6 +90,7 @@ public class IntegrityMonitor {
     	{
     		if(hashTrama[i] != hash[i]){
     			valido = false;
+    			break;
     		}
     	}
     	return valido;
