@@ -34,7 +34,10 @@ public class IntegrityMonitor {
     	// 12 PRIMEROS BYTES DATOS
     	// 16 BYTES RESTANBTES = HASH
     	// TOTAL DE 28 BYTES SIN ENCRIPTAR
-    	
+    	for (int i = 0; i < datos.length; i++) {
+			System.out.print(datos[i]+" ");
+		}
+    	System.out.println();
     	
     	byte datosTrama[] = new byte[TramaSize];
     	byte hashTrama[] = new byte[HashSize];;

@@ -1,19 +1,104 @@
 package com.test.thread;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
+import java.security.PublicKey;
+
+import javax.crypto.BadPaddingException;
+import javax.crypto.Cipher;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
 
 public class RsaEncriptando {
 
 	private long e;
 	private long n;
-
+	public static final String ALGORITHM = "RSA";
+	public static final String PUBLIC_KEY_FILE = "public.key";
+	private static PublicKey key;
+	static String encryptionKey = "0123456789abcdef";
+	 static String IV = "AAAAAAAAAAAAAAAA";
+	
 	public void clave() {
 		e = 11;
 		n = 239117;
-
+		ObjectInputStream inputStream = null;
+		try {
+			inputStream = new ObjectInputStream(new FileInputStream(PUBLIC_KEY_FILE));
+			key = (PublicKey) inputStream.readObject();
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	      
 	}
+	  public static byte[] encriptar(byte[] plainText)  {
+		    Cipher cipher;
+			try {
+				cipher = Cipher.getInstance("AES/CBC/NoPadding", "SunJCE");
+			    SecretKeySpec key = new SecretKeySpec(encryptionKey.getBytes("UTF-8"), "AES");
+			    cipher.init(Cipher.ENCRYPT_MODE, key,new IvParameterSpec(IV.getBytes("UTF-8")));
+			    return cipher.doFinal(plainText);
+			} catch (NoSuchAlgorithmException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (NoSuchProviderException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (NoSuchPaddingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (InvalidKeyException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (InvalidAlgorithmParameterException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalBlockSizeException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (BadPaddingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return plainText;
 
-	public byte[] encriptar(byte[] frame) {
+		   
+		  }
+	  
+	  public static byte[] encriptar3(byte[] frame) {
+		    byte[] cipherText = null;
+		    try {
+		      // get an RSA cipher object and print the provider
+		      final Cipher cipher = Cipher.getInstance(ALGORITHM);
+		      // encrypt the plain text using the public key
+		      cipher.init(Cipher.ENCRYPT_MODE, key);
+		      cipherText = cipher.doFinal(frame);
+		    } catch (Exception e) {
+		      e.printStackTrace();
+		    }
+		    return cipherText;
+		  }
+	public byte[] encriptar2(byte[] frame) {
 
 		byte[] enc = new byte[frame.length*4];
 
