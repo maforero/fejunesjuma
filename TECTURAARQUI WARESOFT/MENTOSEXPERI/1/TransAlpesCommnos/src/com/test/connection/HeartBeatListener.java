@@ -82,7 +82,7 @@ public class HeartBeatListener implements Runnable {
 				}				
 				if (lastBeatMessage.get(ipNode2) != null) {
 					if (!isNodeAlive(ipNode2)) {
-						lastBeatMessage.remove(ipNode1);
+						lastBeatMessage.remove(ipNode2);
 					}
 				}
 			} catch (SocketTimeoutException e) { 
