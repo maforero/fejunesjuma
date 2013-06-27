@@ -1,0 +1,1 @@
+java -cp ../lib/*;FrameSimulator.jar com.test.main.Main

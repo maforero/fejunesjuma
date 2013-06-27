@@ -1,0 +1,1 @@
+java -cp ../lib/*;Demultiplexer.jar com.test.main.Main

@@ -1,0 +1,1 @@
+java -cp ../lib/*;FrameHeartbeat.jar com.test.main.Main

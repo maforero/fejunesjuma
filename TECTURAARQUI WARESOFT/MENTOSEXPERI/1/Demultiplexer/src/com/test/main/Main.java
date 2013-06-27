@@ -3,6 +3,7 @@ package com.test.main;
 import com.test.configuration.ConfigurationManager;
 import com.test.configuration.Properties;
 import com.test.connection.MessageListener;
+import com.test.ping.PingManager;
 import com.test.queue.QueueMonitor;
 
 /**
@@ -17,8 +18,14 @@ public class Main {
 		loadConfigurations(args);
 		startQueueMonitor();
 		startMessageListener();
+		startPingListener();
 	}
 
+	private static void startPingListener() {
+	    Thread pingListener = new Thread(new PingManager());
+	    pingListener.start();
+    }
+	
 	/**
 	 * 
 	 */

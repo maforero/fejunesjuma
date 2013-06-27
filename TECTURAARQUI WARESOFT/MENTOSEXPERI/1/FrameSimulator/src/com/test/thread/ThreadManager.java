@@ -81,8 +81,14 @@ public class ThreadManager {
 				}
 				
 				//SE AGREGA LA TRAMA ->  AUN FALTA ENCRIPTARLA
-			frames.add(rsa.encriptar(frame));
-				//frames.add(frame);
+				boolean encrypted = Boolean
+						.valueOf(ConfigurationManager.getInstance()
+								.getProperty(Properties.ENCRYPTED.name()));
+				if (encrypted) {
+					frames.add(rsa.encriptar(frame));
+				} else {
+					frames.add(frame);	
+				}
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();

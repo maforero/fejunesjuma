@@ -1,5 +1,7 @@
 package queue;
 
+import java.util.HashMap;
+
 import Repartidor.Repartidor;
 
 import com.test.monitoring.Monitor;
@@ -16,8 +18,8 @@ public class BalancerQueueExecutor implements QueueExecutor {
 
 	private Repartidor repartidor;
 
-	public BalancerQueueExecutor() {
-		repartidor = new Repartidor();
+	public BalancerQueueExecutor(HashMap<String,Long> lastBeatMessage) {
+		repartidor = new Repartidor(lastBeatMessage);
 	}
 
 	/*
@@ -29,7 +31,7 @@ public class BalancerQueueExecutor implements QueueExecutor {
 	 */
 	@Override
 	public void execute(Trace monitor) {
-		repartidor.repartirMensaje(monitor.getData());
+		repartidor.repartirMensaje(monitor);
         monitor.addTime(System.nanoTime());
         writeTraces(monitor.getData()[0]);
 	}

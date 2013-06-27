@@ -5,6 +5,8 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
+import java.net.SocketTimeoutException;
+import java.net.UnknownHostException;
 import java.util.HashMap;
 
 import com.test.configuration.ConfigurationManager;
@@ -17,13 +19,25 @@ public class HeartBeatListener implements Runnable {
 	//It represents IpAddress -> Last heartbeat message received
 	private HashMap<String, Long> lastBeatMessage;
 	private int packetSize;
+	private String ipNode1;
+	private String ipNode2;
 	
 	
-	public HeartBeatListener(int port) {
+	public HeartBeatListener(int port, HashMap<String, Long> lastBeatMessage) {
 		keepRunning = true;
-		lastBeatMessage = new HashMap<String, Long>();
+		this.lastBeatMessage = lastBeatMessage;
 		startSocket(port);
 		getPacketSize();
+		
+		try {
+			ipNode1 = InetAddress.getByName(
+					ConfigurationManager.getInstance().getProperty(Properties.NODE_1_IP.name())).toString();
+			ipNode2 = InetAddress.getByName(
+					ConfigurationManager.getInstance().getProperty(Properties.NODE_2_IP.name())).toString();
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		}
+		
 	}
 	
 	/**
@@ -32,6 +46,7 @@ public class HeartBeatListener implements Runnable {
 	private void startSocket(int port) {
 		try {
 			socket = new DatagramSocket(port);
+//			socket.setSoTimeout(5);
 		} catch (SocketException e) {
 			e.printStackTrace();
 		}
@@ -51,21 +66,14 @@ public class HeartBeatListener implements Runnable {
 		while (keepRunning) {			
 			byte values[] = new byte[packetSize];
 			DatagramPacket packet = new DatagramPacket(values, values.length);
-			try {				
-				
+			try {
 				socket.receive(packet);
 				if (packet.getData() != null) {
 					String ip = packet.getAddress().toString().replace("/", "");
-					System.out.println(ip);
 					lastBeatMessage.put(
 							ip, System.nanoTime());
 					
 				}
-				
-				String ipNode1 = InetAddress.getByName(
-						ConfigurationManager.getInstance().getProperty(Properties.NODE_1_IP.name())).toString();
-				String ipNode2 = InetAddress.getByName(
-						ConfigurationManager.getInstance().getProperty(Properties.NODE_2_IP.name())).toString();
 								
 				if (lastBeatMessage.get(ipNode1) != null) {
 					if (!isNodeAlive(ipNode1)) {
@@ -77,6 +85,8 @@ public class HeartBeatListener implements Runnable {
 						lastBeatMessage.remove(ipNode1);
 					}
 				}
+			} catch (SocketTimeoutException e) { 
+				//continua
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -92,7 +102,7 @@ public class HeartBeatListener implements Runnable {
 	private boolean isNodeAlive(String ipNode) {
 		Long actualTime = System.nanoTime();
 		Long elapsedNanoTime = actualTime - lastBeatMessage.get(ipNode);
-		double elapsedSecsTime = (double) elapsedNanoTime/1000000000.0;
+		double elapsedSecsTime = (double) elapsedNanoTime/1000000.0;
 
 		//Maximun reponse time node (Seconds)
 		int maxRespondeTimeNode = Integer.valueOf(ConfigurationManager.getInstance().getProperty(

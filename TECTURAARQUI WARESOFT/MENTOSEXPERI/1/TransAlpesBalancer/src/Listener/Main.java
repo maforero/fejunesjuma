@@ -1,5 +1,7 @@
 package Listener;
 
+import java.util.HashMap;
+
 import queue.BalancerQueueExecutor;
 
 import com.test.configuration.ConfigurationManager;
@@ -15,21 +17,22 @@ import connection.StartTraceMessageProcessor;
 public class Main {
 
 	public static void main(String args[]) {
+		HashMap<String, Long> lastBeatMessage = new HashMap<String, Long>();
 		loadConfigurations(args);
-		startQueueMonitor();
+		startQueueMonitor(lastBeatMessage);
 		startMessageListener();
-		startHeartBeatListener();
+		startHeartBeatListener(lastBeatMessage);
 		// new Main();
 	}
 
 	/**
 	 * It starts the hearbeatlistener Thread
 	 */
-	private static void startHeartBeatListener() {
+	private static void startHeartBeatListener(HashMap<String, Long> lastBeatMessage) {
 		String port = ConfigurationManager.getInstance().getProperty(
 				Properties.HEARTBEAT_PORT.name());
 		Thread heartBeatListener = new Thread(new HeartBeatListener(
-				Integer.valueOf(port)));
+				Integer.valueOf(port), lastBeatMessage));
 		heartBeatListener.start();
 	}
 
@@ -47,11 +50,12 @@ public class Main {
 	}
 
 	/**
+	 * @param lastBeatMessage 
 	 * 
 	 */
-	private static void startQueueMonitor() {
+	private static void startQueueMonitor(HashMap<String,Long> lastBeatMessage) {
 		QueueMonitor queueMonitor = new QueueMonitor(new TraceQueueExecutor(
-				new BalancerQueueExecutor()));
+				new BalancerQueueExecutor(lastBeatMessage)));
 		Thread queueMonitorThread = new Thread(queueMonitor);
 		queueMonitorThread.start();
 	}

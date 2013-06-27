@@ -31,6 +31,6 @@ public class FileHandlerTest {
     public void testJsonJoiner() {
 
         JsonJoiner joiner = new JsonJoiner();
-        System.out.println(joiner.joinFiles("file/log-26-06-2013-02-05-43.log", "file/log-26-06-2013-02-06-09.log"));
+        System.out.println(joiner.joinFiles("file/log-27-06-2013-01-48-43.log", "file/log-27-06-2013-01-48-59.log"));
     }
 }

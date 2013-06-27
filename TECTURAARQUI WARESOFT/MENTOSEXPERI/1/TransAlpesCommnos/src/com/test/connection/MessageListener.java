@@ -68,12 +68,36 @@ public class MessageListener implements Runnable {
 				long nanoTime = System.nanoTime();
 				monitor.addTime(nanoTime);
 				byte[] data = packet.getData();
+				data = removeEmtpyBytes(data);
 				monitor.setData(data);
 				processor.processMessage(monitor);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
+	}
+
+	/**
+	 * @param data
+	 * @return
+	 */
+	private byte[] removeEmtpyBytes(byte[] data) {
+		
+		byte[] realBytes;
+		int index;
+		for (index = data.length - 1; index >= 0; index--) {
+			if (data[index] != 0) {
+				break;
+			}
+		}
+		
+		realBytes = new byte[index + 1];
+		
+		for (int i = 0; i <= index; i++) {
+			realBytes[i] = data[i];
+		}
+		
+		return realBytes;
 	}
 
 }

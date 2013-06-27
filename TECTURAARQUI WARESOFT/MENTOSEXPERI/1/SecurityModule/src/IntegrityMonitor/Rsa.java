@@ -126,16 +126,20 @@ public class Rsa {
 		en = new BigInteger(n + "");
 		byte[] frame = new byte[enc.length/4];
 
-		for (int i = 0; i < enc.length-3; i+=4) {
-			int entero=(enc[i+3]& 0xFF)|((enc[i+2]& 0xFF)<<8)|((enc[i+1]& 0xFF)<<16)|((enc[i]& 0xFF)<<24);
-			c1 = new BigInteger(entero + "");
-			c = c1.pow((int) (d));
-			l = c.mod(en);
-			frame[i] = (Byte.parseByte(l.toString()));
+		try {
+			for (int i = 0; i < enc.length - 3; i += 4) {
+				int entero = (enc[i + 3] & 0xFF) | ((enc[i + 2] & 0xFF) << 8)
+						| ((enc[i + 1] & 0xFF) << 16) | ((enc[i] & 0xFF) << 24);
+				c1 = new BigInteger(entero + "");
+				c = c1.pow((int) (d));
+				l = c.mod(en);
+				frame[i] = (Byte.parseByte(l.toString()));
 
-			System.out.println(l);
+				System.out.println(l);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-
 		return frame;
 
 	}

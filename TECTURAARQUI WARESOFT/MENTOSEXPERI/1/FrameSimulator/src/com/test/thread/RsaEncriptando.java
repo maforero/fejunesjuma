@@ -33,7 +33,7 @@ public class RsaEncriptando {
 			enc[j+3] =aux[3] ;
 
 		}
-			imprimir(enc);
+//			imprimir(enc);
 		return enc;
 	}
 	public void imprimir(byte[] enc){
