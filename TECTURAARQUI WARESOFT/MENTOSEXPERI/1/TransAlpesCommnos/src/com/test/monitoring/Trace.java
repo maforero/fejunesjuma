@@ -19,6 +19,7 @@ public class Trace {
 	private List<Long> traces;
 	private byte[] data;
 	private String id;
+	private boolean error;
 
 	private Trace() {
 		traces = new LinkedList<Long>();
@@ -48,6 +49,7 @@ public class Trace {
 			jsonTrace.put("id", getId());
 			jsonTrace.put("traces", array);
 			jsonTrace.put("total", getLastTrace() - getFirstTrace());
+			jsonTrace.put("error", error);
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
@@ -100,6 +102,21 @@ public class Trace {
 	 */
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	/**
+	 * @return the error
+	 */
+	public boolean isError() {
+		return error;
+	}
+
+	/**
+	 * @param error
+	 *            the error to set
+	 */
+	public void setError(boolean error) {
+		this.error = error;
 	}
 
 }

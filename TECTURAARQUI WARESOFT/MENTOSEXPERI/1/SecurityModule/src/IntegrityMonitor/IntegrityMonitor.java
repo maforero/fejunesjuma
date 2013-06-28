@@ -28,7 +28,13 @@ public class IntegrityMonitor {
     	//AQUI SE DESENCRIPTA EL MENSAJE
     	Rsa rsa=new Rsa();
     	rsa.setValores();
-    	byte[] datos=rsa.desencriptar(datosEncriptados);
+    	byte[] datos = null;
+		try {
+			datos = rsa.desencriptar(datosEncriptados);
+		} catch (Exception e) {
+			trace.setError(true);
+			return;
+		}
     	
     	//AQUI SE SEPARA EL HASH Y LOS DATOS DE LA TRAMA
     	// 12 PRIMEROS BYTES DATOS
@@ -67,6 +73,8 @@ public class IntegrityMonitor {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+    	} else {
+    		trace.setError(true);
     	}
     }
     

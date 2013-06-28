@@ -63,28 +63,35 @@ public class HeartBeatListener implements Runnable {
 	
 	@Override
 	public void run() {
+		int i = 0;
 		while (keepRunning) {			
 			byte values[] = new byte[packetSize];
 			DatagramPacket packet = new DatagramPacket(values, values.length);
+			String node1 = ipNode1.replace("/", "");
+			String node2 = ipNode2.replace("/", "");
+//			System.out.println(ipNode1+" "+ipNode2);
 			try {
 				socket.receive(packet);
+				String ip = "";
 				if (packet.getData() != null) {
-					String ip = packet.getAddress().toString().replace("/", "");
+					ip = packet.getAddress().toString().replace("/", "");
 					lastBeatMessage.put(
 							ip, System.nanoTime());
-					
 				}
-								
-				if (lastBeatMessage.get(ipNode1) != null) {
-					if (!isNodeAlive(ipNode1)) {
-						lastBeatMessage.remove(ipNode1);
+//				System.out.println(lastBeatMessage);
+				if (i > 3) {
+					if (lastBeatMessage.get(node1) != null) {
+						if (!isNodeAlive(node1)) {
+							lastBeatMessage.remove(node1);
+						}
 					}
-				}				
-				if (lastBeatMessage.get(ipNode2) != null) {
-					if (!isNodeAlive(ipNode2)) {
-						lastBeatMessage.remove(ipNode2);
+					if (lastBeatMessage.get(node2) != null) {
+						if (!isNodeAlive(node2)) {
+							lastBeatMessage.remove(node2);
+						}
 					}
 				}
+				i++;
 			} catch (SocketTimeoutException e) { 
 				//continua
 			} catch (IOException e) {
@@ -103,6 +110,9 @@ public class HeartBeatListener implements Runnable {
 		Long actualTime = System.nanoTime();
 		Long elapsedNanoTime = actualTime - lastBeatMessage.get(ipNode);
 		double elapsedSecsTime = (double) elapsedNanoTime/1000000.0;
+//		System.out.println(ipNode);
+//		System.out.println("nano "+elapsedNanoTime);
+//		System.out.println("sec "+elapsedSecsTime);
 
 		//Maximun reponse time node (Seconds)
 		int maxRespondeTimeNode = Integer.valueOf(ConfigurationManager.getInstance().getProperty(

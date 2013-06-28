@@ -38,6 +38,12 @@ public class Monitor {
 	}
 
 	public void printTraces() {
+		
+		if (traces == null || traces.isEmpty()) {
+			System.out.println("no frames");
+			return;
+		}
+		
 		String path = getPathName();
 		PrintWriter writer = null;
 		try {
@@ -69,13 +75,17 @@ public class Monitor {
 			JSONArray jsonTraces) throws JSONException {
 		int counter = 0;
 		long total = 0;
+		long totalError = 0;
 		for (Trace trace : traces) {
+			if (trace.isError()) {
+				totalError++;
+			}
 			JSONObject jsonTrace = trace.getJsonTrace();
 			total += jsonTrace.getLong("total");
 			jsonTraces.put(jsonTrace);
 			counter++;
 		}
-		addTraceValues(init, jsonMonitor, jsonTraces, counter, total);
+		addTraceValues(init, jsonMonitor, jsonTraces, counter, total, totalError);
 	}
 
 	/**
@@ -95,10 +105,11 @@ public class Monitor {
 	 * @param jsonTraces
 	 * @param counter
 	 * @param total
+	 * @param totalError 
 	 * @throws JSONException
 	 */
 	private void addTraceValues(long init, JSONObject jsonMonitor,
-			JSONArray jsonTraces, int counter, long total) throws JSONException {
+			JSONArray jsonTraces, int counter, long total, long totalError) throws JSONException {
 		long endTime = getEndTime();
 		jsonMonitor.put("startTime", init);
 		jsonMonitor.put("endTime", endTime);
@@ -106,6 +117,7 @@ public class Monitor {
 		jsonMonitor.put("averageTime", total / counter);
 		jsonMonitor.put("size", counter);
 		jsonMonitor.put("traces", jsonTraces);
+		jsonMonitor.put("totalError", totalError);
 	}
 
 	/**
