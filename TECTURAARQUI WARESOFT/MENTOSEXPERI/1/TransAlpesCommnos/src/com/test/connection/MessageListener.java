@@ -60,7 +60,7 @@ public class MessageListener implements Runnable {
 			DatagramPacket packet = new DatagramPacket(values, values.length);
 			try {
 				socket.receive(packet);
-				if (packet.getData()[0] == 127) {
+				if (packet.getData()[0] == 127 && packet.getData()[1] == 127 && packet.getData()[2] == 127 && packet.getData()[3] == 127) {
 					Monitor.getInstance().printTraces();
 					continue;
 				}

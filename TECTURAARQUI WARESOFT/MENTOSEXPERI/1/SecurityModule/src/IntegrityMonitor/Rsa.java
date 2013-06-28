@@ -1,6 +1,23 @@
 package IntegrityMonitor;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
+import java.security.PrivateKey;
+
+import javax.crypto.BadPaddingException;
+import javax.crypto.Cipher;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
 
 public class Rsa {
 
@@ -10,7 +27,12 @@ public class Rsa {
 	private long fi;
 	private long e;
 	private long d;
-
+	public static final String ALGORITHM = "RSA";
+	public static final String PRIVATE_KEY_FILE = "private.key";
+	private static PrivateKey key;
+	private static String IV = "AAAAAAAAAAAAAAAA";
+	private static String encryptionKey = "0123456789abcdef";
+	  
 	public void setValores() {
 		p = 487;
 		q = 491;
@@ -18,6 +40,73 @@ public class Rsa {
 		fi = 238140;
 		e = 11;
 		d = 216491;
+		ObjectInputStream inputStream = null;
+		try {
+			inputStream = new ObjectInputStream(new FileInputStream(PRIVATE_KEY_FILE));
+			key = (PrivateKey) inputStream.readObject();
+			
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	      
+	}
+	  public static byte[] desencriptar(byte[] cipherText){
+		    try {
+				Cipher cipher = Cipher.getInstance("AES/CBC/NoPadding", "SunJCE");
+				SecretKeySpec key = new SecretKeySpec(encryptionKey.getBytes("UTF-8"), "AES");
+				cipher.init(Cipher.DECRYPT_MODE, key,new IvParameterSpec(IV.getBytes("UTF-8")));
+				//imprimir(cipherText);
+				return  cipherText;
+			} catch (InvalidKeyException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (NoSuchAlgorithmException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (NoSuchProviderException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (NoSuchPaddingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (InvalidAlgorithmParameterException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return cipherText;
+		  }
+	  
+	  public static byte[] desencriptar3(byte[] text ) {
+		    byte[] dectyptedText = null;
+		    try {
+		      System.out.println(text.length);
+		      final Cipher cipher = Cipher.getInstance(ALGORITHM);
+
+		      
+		      cipher.init(Cipher.DECRYPT_MODE, key);
+		      dectyptedText = cipher.doFinal(text);
+
+		    } catch (Exception ex) {
+		      ex.printStackTrace();
+		    }
+		    imprimir(dectyptedText);
+		    return dectyptedText;
+		  }
+	private static void imprimir(byte[] dectyptedText) {
+		for (int i = 0; i < dectyptedText.length; i++) {
+			System.out.println(dectyptedText[i]);
+		}
+		
 	}
 
 	public long obtenerp(long num) {
@@ -120,7 +209,7 @@ public class Rsa {
 		return d + "";
 	}
 
-	public byte[] desencriptar(byte[] enc) {
+	public byte[] desencriptar2(byte[] enc) {
 
 		BigInteger c, en, l, c1;
 		en = new BigInteger(n + "");

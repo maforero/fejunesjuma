@@ -36,7 +36,7 @@ public class Main {
 						Properties.NODES.name());
 				String nodeValues[] = nodes.split(";");
 				DatagramSocket socket = new DatagramSocket();
-				byte data[] = { 127 };
+				byte data[] = { 127, 127, 127, 127 };
 				for (String nodeValue : nodeValues) {
 					String value[] = nodeValue.split(":");
 					InetAddress ip = InetAddress.getByName(value[0]);

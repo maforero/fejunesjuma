@@ -25,8 +25,8 @@ public class SecutrityMessageProcessor implements MessageProcessor {
 	@Override
 	public void processMessage(Trace monitor) {
 		byte[] data = monitor.getData();
-//		byte realData[] = Arrays.copyOfRange(data, 0, data.length - 1 - data[data.length - 1]);
-		monitor.setData(data);
+		byte realData[] = Arrays.copyOfRange(data, 0, data.length - 1 - data[data.length - 1]);
+		monitor.setData(realData);
 		Integridad.validarMensaje(monitor);
 	}
 }
