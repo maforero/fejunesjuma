@@ -32,20 +32,20 @@ public class RsaEncriptando {
 	public void clave() {
 		e = 11;
 		n = 239117;
-		ObjectInputStream inputStream = null;
-		try {
-			inputStream = new ObjectInputStream(new FileInputStream(PUBLIC_KEY_FILE));
-			key = (PublicKey) inputStream.readObject();
-		} catch (FileNotFoundException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		ObjectInputStream inputStream = null;
+//		try {
+//			inputStream = new ObjectInputStream(new FileInputStream(PUBLIC_KEY_FILE));
+//			key = (PublicKey) inputStream.readObject();
+//		} catch (FileNotFoundException e1) {
+//			// TODO Auto-generated catch block
+//			e1.printStackTrace();
+//		} catch (IOException e1) {
+//			// TODO Auto-generated catch block
+//			e1.printStackTrace();
+//		} catch (ClassNotFoundException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 	      
 	}
 	  public static byte[] encriptar(byte[] plainText)  {

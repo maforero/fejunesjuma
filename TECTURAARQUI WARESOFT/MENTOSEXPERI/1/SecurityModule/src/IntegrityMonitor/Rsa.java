@@ -40,21 +40,21 @@ public class Rsa {
 		fi = 238140;
 		e = 11;
 		d = 216491;
-		ObjectInputStream inputStream = null;
-		try {
-			inputStream = new ObjectInputStream(new FileInputStream(PRIVATE_KEY_FILE));
-			key = (PrivateKey) inputStream.readObject();
-			
-		} catch (FileNotFoundException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		ObjectInputStream inputStream = null;
+//		try {
+//			inputStream = new ObjectInputStream(new FileInputStream(PRIVATE_KEY_FILE));
+//			key = (PrivateKey) inputStream.readObject();
+//			
+//		} catch (FileNotFoundException e1) {
+//			// TODO Auto-generated catch block
+//			e1.printStackTrace();
+//		} catch (IOException e1) {
+//			// TODO Auto-generated catch block
+//			e1.printStackTrace();
+//		} catch (ClassNotFoundException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 	      
 	}
 	  public static byte[] desencriptar(byte[] cipherText){
