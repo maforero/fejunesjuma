@@ -29,6 +29,7 @@ public class IntegrityMonitor {
     	Rsa rsa=new Rsa();
     	rsa.setValores();
     	byte[] datos = null;
+    	trace.addTime(System.nanoTime());
 		try {
 			datos = rsa.desencriptar(datosEncriptados);
 		} catch (Exception e) {
@@ -65,6 +66,7 @@ public class IntegrityMonitor {
     	//SE ENVIA UNICAMENTE LA TRAMA DE DATOS (SIN HASH)
     	byte hash[] = obtenerHash(datosTrama);
     	boolean valido = validarHash(hashTrama ,hash);
+    	trace.addTime(System.nanoTime());
     	if(valido == true)
     	{
     		try {

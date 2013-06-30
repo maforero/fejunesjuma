@@ -74,6 +74,7 @@ public class SendMessageExecutor implements QueueExecutor {
 				nodePort);
 		try {
 			socket.send(packet);
+			trace.addTime(System.nanoTime());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

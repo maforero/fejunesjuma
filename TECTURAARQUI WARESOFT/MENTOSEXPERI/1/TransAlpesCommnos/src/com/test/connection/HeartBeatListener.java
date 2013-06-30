@@ -64,11 +64,11 @@ public class HeartBeatListener implements Runnable {
 	@Override
 	public void run() {
 		int i = 0;
+		String node1 = ipNode1.replace("/", "");
+		String node2 = ipNode2.replace("/", "");
 		while (keepRunning) {			
 			byte values[] = new byte[packetSize];
 			DatagramPacket packet = new DatagramPacket(values, values.length);
-			String node1 = ipNode1.replace("/", "");
-			String node2 = ipNode2.replace("/", "");
 //			System.out.println(ipNode1+" "+ipNode2);
 			try {
 				socket.receive(packet);
@@ -78,7 +78,7 @@ public class HeartBeatListener implements Runnable {
 					lastBeatMessage.put(
 							ip, System.nanoTime());
 				}
-//				System.out.println(lastBeatMessage);
+				System.out.println(lastBeatMessage);
 				if (i > 3) {
 					if (lastBeatMessage.get(node1) != null) {
 						if (!isNodeAlive(node1)) {
