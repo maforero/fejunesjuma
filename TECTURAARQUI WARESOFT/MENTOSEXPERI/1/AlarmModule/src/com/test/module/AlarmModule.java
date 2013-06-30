@@ -22,6 +22,5 @@ public class AlarmModule {
 		System.out.println(frame.getLoSeconds());
 		System.out.println(frame.getEmergencyType());
 		System.out.println(frame.getDriverStatus());
-		
 	}
 }

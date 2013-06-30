@@ -3,6 +3,8 @@ package com.test.main;
 import com.test.configuration.ConfigurationManager;
 import com.test.configuration.Properties;
 import com.test.connection.MessageListener;
+import com.test.queue.HeartbeatQueueExecutor;
+import com.test.queue.QueueMonitor;
 
 /**
  * @class Main.java
@@ -14,28 +16,31 @@ public class Main {
 
 	public static void main(String[] args) {
 		loadConfigurations(args);
-		String port = getPort();
-		startMessageListener(port);
+		startQueueMonitor();
+		startMessageListener();
 	}
 
 	/**
-	 * @param port
+	 * 
 	 */
-	private static void startMessageListener(String port) {
+	private static void startMessageListener() {
+		String port = ConfigurationManager.getInstance().getProperty(
+				Properties.NODE_PORT.name());
 		Thread messageListener = new Thread(new MessageListener(
 				Integer.valueOf(port)));
 		messageListener.start();
 	}
 
 	/**
-	 * @return
+	 * 
 	 */
-	private static String getPort() {
-		String port = ConfigurationManager.getInstance().getProperty(
-				Properties.NODE_PORT.name());
-		return port;
+	private static void startQueueMonitor() {
+		QueueMonitor queueMonitor = new QueueMonitor(
+				new HeartbeatQueueExecutor());
+		Thread queueMonitorThread = new Thread(queueMonitor);
+		queueMonitorThread.start();
 	}
-	
+
 	/**
 	 * 
 	 */
