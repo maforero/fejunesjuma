@@ -215,6 +215,11 @@
 <MM_Value name="nm" type="string" xml:lang="en">UPD (Port 7010)</MM_Value>
 </MM_ProfileValues>
 </ArchiMate:ApplicationComponentApplicationComponentFlow>
+<ArchiMate:ApplicationComponentApplicationComponentFlow id="434" from="47" to="48">
+<MM_ProfileValues>
+<MM_Value name="nm" type="string" xml:lang="en">UDP (Port 5010)</MM_Value>
+</MM_ProfileValues>
+</ArchiMate:ApplicationComponentApplicationComponentFlow>
 </ArchiMate:Relations>
 </ArchiMate:ApplicationScheme>
 <ArchiMate:BusinessScheme id="12">
@@ -238,6 +243,23 @@
 <MM_ProfileValues>
 <MM_Value name="nm" type="string" xml:lang="en">Total view</MM_Value>
 </MM_ProfileValues>
+<ArchiMate:ViewGraphics name="viewGraphics" id="447">
+<ArchiMate:ViewGraphic id="449">
+<MM_ProfileValues>
+<MM_Value name="nm" type="string" xml:lang="en">IP (10.0.2.102)</MM_Value>
+</MM_ProfileValues>
+</ArchiMate:ViewGraphic>
+<ArchiMate:ViewGraphic id="448">
+<MM_ProfileValues>
+<MM_Value name="nm" type="string" xml:lang="en">IP (10.0.2.101)</MM_Value>
+</MM_ProfileValues>
+</ArchiMate:ViewGraphic>
+<ArchiMate:ViewGraphic id="453">
+<MM_ProfileValues>
+<MM_Value name="nm" type="string" xml:lang="en">IP (10.0.2.103)</MM_Value>
+</MM_ProfileValues>
+</ArchiMate:ViewGraphic>
+</ArchiMate:ViewGraphics>
 <ArchiMate:RefObjects name="refObjects" id="60">
 <ArchiMate:InfrastructureNodeRef id="64" to="42">
 <ArchiMate:MM_RefObjects name="childRefObjects" id="68">
@@ -249,17 +271,17 @@
 <ArchiMate:InfrastructureNodeRef id="81" to="45"/>
 <ArchiMate:FlowRelationRef id="85" to="87">
 <MM_ProfileValues>
-<MM_Value name="formattednm" type="string" xml:lang="en">  UDP (Port 5000)</MM_Value>
+<MM_Value name="formattednm" type="string" xml:lang="en">UDP (Port 5000)</MM_Value>
 </MM_ProfileValues>
 </ArchiMate:FlowRelationRef>
 <ArchiMate:FlowRelationRef id="97" to="98">
 <MM_ProfileValues>
-<MM_Value name="formattednm" type="string" xml:lang="en">  UDP (Port 5000)</MM_Value>
+<MM_Value name="formattednm" type="string" xml:lang="en">UDP (Port 5000)</MM_Value>
 </MM_ProfileValues>
 </ArchiMate:FlowRelationRef>
 <ArchiMate:FlowRelationRef id="102" to="103">
 <MM_ProfileValues>
-<MM_Value name="formattednm" type="string" xml:lang="en">   UDP (Port 5000)</MM_Value>
+<MM_Value name="formattednm" type="string" xml:lang="en">UDP (Port 5000)</MM_Value>
 </MM_ProfileValues>
 </ArchiMate:FlowRelationRef>
 <ArchiMate:InfrastructureNodeRef id="111" to="33">
@@ -279,17 +301,17 @@
 </ArchiMate:ApplicationComponentApplicationComponentFlowRef>
 <ArchiMate:ApplicationComponentApplicationComponentFlowRef id="227" to="228">
 <MM_ProfileValues>
-<MM_Value name="formattednm" type="string" xml:lang="en"> UDP (Port 9090)</MM_Value>
+<MM_Value name="formattednm" type="string" xml:lang="en">UDP (Port 9090)</MM_Value>
 </MM_ProfileValues>
 </ArchiMate:ApplicationComponentApplicationComponentFlowRef>
 <ArchiMate:ApplicationComponentApplicationComponentFlowRef id="230" to="231">
 <MM_ProfileValues>
-<MM_Value name="formattednm" type="string" xml:lang="en"> UPD&#xa;(Port 9070)</MM_Value>
+<MM_Value name="formattednm" type="string" xml:lang="en">UPD&#xa;(Port 9070)</MM_Value>
 </MM_ProfileValues>
 </ArchiMate:ApplicationComponentApplicationComponentFlowRef>
 <ArchiMate:ApplicationComponentApplicationComponentFlowRef id="233" to="234">
 <MM_ProfileValues>
-<MM_Value name="formattednm" type="string" xml:lang="en"> UDP (Port 9080)</MM_Value>
+<MM_Value name="formattednm" type="string" xml:lang="en">UDP (Port 9080)</MM_Value>
 </MM_ProfileValues>
 </ArchiMate:ApplicationComponentApplicationComponentFlowRef>
 <ArchiMate:ApplicationComponentApplicationComponentFlowRef id="236" to="237">
@@ -348,18 +370,22 @@
 </ArchiMate:ApplicationComponentApplicationComponentFlowRef>
 <ArchiMate:ApplicationComponentApplicationComponentFlowRef id="392" to="228"/>
 <ArchiMate:ApplicationComponentApplicationComponentFlowRef id="396" to="234"/>
+<ArchiMate:ApplicationComponentApplicationComponentFlowRef id="403" to="246"/>
+<ArchiMate:ApplicationComponentApplicationComponentFlowRef id="410" to="251"/>
 </ArchiMate:MM_RefObjects>
 </ArchiMate:InfrastructureNodeRef>
 <ArchiMate:ApplicationComponentApplicationComponentFlowRef id="142" to="144">
 <MM_ProfileValues>
-<MM_Value name="formattednm" type="string" xml:lang="en">   UDP (Port 6000)</MM_Value>
+<MM_Value name="formattednm" type="string" xml:lang="en">UDP (Port 6000)</MM_Value>
 </MM_ProfileValues>
 </ArchiMate:ApplicationComponentApplicationComponentFlowRef>
 <ArchiMate:ApplicationComponentApplicationComponentFlowRef id="212" to="213">
 <MM_ProfileValues>
-<MM_Value name="formattednm" type="string" xml:lang="en">   UDP (Port 5010)</MM_Value>
+<MM_Value name="formattednm" type="string" xml:lang="en">UDP (Port 5010)</MM_Value>
 </MM_ProfileValues>
 </ArchiMate:ApplicationComponentApplicationComponentFlowRef>
+<ArchiMate:ApplicationComponentApplicationComponentFlowRef id="419" to="190"/>
+<ArchiMate:ApplicationComponentApplicationComponentFlowRef id="440" to="213"/>
 </ArchiMate:RefObjects>
 </ArchiMate:AllView>
 </ArchiMate:AbstractViews>
@@ -438,37 +464,37 @@
 <MM_Diagram:MM_Graphics name="mm_graphics" id="117">
 <MM_Diagram:MM_Decoration id="118" mm_concept="label"/>
 </MM_Diagram:MM_Graphics>
-<MM_Rect name="mm_rect" x="20" y="480" w="360" h="160"/>
+<MM_Rect name="mm_rect" x="20" y="460" w="360" h="160"/>
 </MM_Diagram:MM_Compound>
 <MM_Diagram:MM_Compound id="119" mm_concept="ApplicationComponent" mm_semanticObject="120">
 <MM_Diagram:MM_Graphics name="mm_graphics" id="121">
 <MM_Diagram:MM_Decoration id="122" mm_concept="label"/>
 </MM_Diagram:MM_Graphics>
-<MM_Rect name="mm_rect" x="20" y="100" w="360" h="160"/>
+<MM_Rect name="mm_rect" x="20" y="80" w="360" h="160"/>
 </MM_Diagram:MM_Compound>
 <MM_Diagram:MM_Compound id="123" mm_concept="ApplicationComponent" mm_semanticObject="124">
 <MM_Diagram:MM_Graphics name="mm_graphics" id="125">
 <MM_Diagram:MM_Decoration id="126" mm_concept="label"/>
 </MM_Diagram:MM_Graphics>
-<MM_Rect name="mm_rect" x="580" y="100" w="400" h="160"/>
+<MM_Rect name="mm_rect" x="580" y="80" w="400" h="160"/>
 </MM_Diagram:MM_Compound>
 <MM_Diagram:MM_Compound id="127" mm_concept="ApplicationComponent" mm_semanticObject="128">
 <MM_Diagram:MM_Graphics name="mm_graphics" id="129">
 <MM_Diagram:MM_Decoration id="130" mm_concept="label"/>
 </MM_Diagram:MM_Graphics>
-<MM_Rect name="mm_rect" x="1160" y="100" w="420" h="160"/>
+<MM_Rect name="mm_rect" x="1160" y="80" w="420" h="160"/>
 </MM_Diagram:MM_Compound>
 <MM_Diagram:MM_Compound id="131" mm_concept="ApplicationComponent" mm_semanticObject="132">
 <MM_Diagram:MM_Graphics name="mm_graphics" id="133">
 <MM_Diagram:MM_Decoration id="134" mm_concept="label"/>
 </MM_Diagram:MM_Graphics>
-<MM_Rect name="mm_rect" x="780" y="440" w="280" h="160"/>
+<MM_Rect name="mm_rect" x="780" y="420" w="280" h="160"/>
 </MM_Diagram:MM_Compound>
 <MM_Diagram:MM_Compound id="135" mm_concept="ApplicationComponent" mm_semanticObject="136">
 <MM_Diagram:MM_Graphics name="mm_graphics" id="137">
 <MM_Diagram:MM_Decoration id="138" mm_concept="label"/>
 </MM_Diagram:MM_Graphics>
-<MM_Rect name="mm_rect" x="1140" y="440" w="420" h="160"/>
+<MM_Rect name="mm_rect" x="1140" y="420" w="420" h="160"/>
 </MM_Diagram:MM_Compound>
 <MM_Diagram:MM_DirectedRel id="221" mm_from="119" mm_to="123" mm_fromx="320" mm_fromy="100" mm_tox="40" mm_toy="100" mm_concept="ApplicationComponentApplicationComponentFlow" mm_semanticObject="222">
 <MM_Diagram:MM_Graphics name="mm_graphics" id="224">
@@ -492,9 +518,9 @@
 </MM_Diagram:MM_Graphics>
 </MM_Diagram:MM_DirectedRel>
 <MM_Diagram:MM_DirectedRel id="232" mm_from="123" mm_to="135" mm_fromx="380" mm_fromy="140" mm_tox="80" mm_toy="40" mm_concept="ApplicationComponentApplicationComponentFlow" mm_semanticObject="233">
-<MM_Diagram:MM_MultiLine name="mm_line" id="270">
-<MM_Diagram:MM_Point id="276" mm_x="960" mm_y="360"/>
-<MM_Diagram:MM_Point id="275" mm_x="1220" mm_y="360"/>
+<MM_Diagram:MM_MultiLine name="mm_line" id="457">
+<MM_Diagram:MM_Point id="458" mm_x="960" mm_y="340"/>
+<MM_Diagram:MM_Point id="459" mm_x="1220" mm_y="340"/>
 </MM_Diagram:MM_MultiLine>
 <MM_Diagram:MM_Graphics name="mm_graphics" id="285">
 <MM_Diagram:MM_Decoration id="286" mm_concept="label">
@@ -510,8 +536,8 @@
 </MM_Diagram:MM_Graphics>
 </MM_Diagram:MM_DirectedRel>
 <MM_Diagram:MM_DirectedRel id="244" mm_from="114" mm_to="123" mm_fromx="320" mm_fromy="20" mm_tox="120" mm_toy="160" mm_concept="ApplicationComponentApplicationComponentFlow" mm_semanticObject="245">
-<MM_Diagram:MM_MultiLine name="mm_line" id="268">
-<MM_Diagram:MM_Point id="282" mm_x="700" mm_y="500"/>
+<MM_Diagram:MM_MultiLine name="mm_line" id="460">
+<MM_Diagram:MM_Point id="461" mm_x="700" mm_y="480"/>
 </MM_Diagram:MM_MultiLine>
 <MM_Diagram:MM_Graphics name="mm_graphics" id="247">
 <MM_Diagram:MM_Decoration id="248" mm_concept="label">
@@ -520,8 +546,8 @@
 </MM_Diagram:MM_Graphics>
 </MM_Diagram:MM_DirectedRel>
 <MM_Diagram:MM_DirectedRel id="249" mm_from="123" mm_to="114" mm_fromx="180" mm_fromy="160" mm_tox="320" mm_toy="60" mm_concept="ApplicationComponentApplicationComponentFlow" mm_semanticObject="250">
-<MM_Diagram:MM_MultiLine name="mm_line" id="261">
-<MM_Diagram:MM_Point id="280" mm_x="760" mm_y="540"/>
+<MM_Diagram:MM_MultiLine name="mm_line" id="462">
+<MM_Diagram:MM_Point id="463" mm_x="760" mm_y="520"/>
 </MM_Diagram:MM_MultiLine>
 <MM_Diagram:MM_Graphics name="mm_graphics" id="256">
 <MM_Diagram:MM_Decoration id="257" mm_concept="label">
@@ -544,15 +570,15 @@
 </MM_Diagram:MM_Graphics>
 </MM_Diagram:MM_DirectedRel>
 </MM_Diagram:MM_Graphics>
-<MM_Rect name="mm_rect" x="1400" y="840" w="1620" h="680"/>
+<MM_Rect name="mm_rect" x="1400" y="840" w="1620" h="640"/>
 </MM_Diagram:MM_Compound>
 <MM_Diagram:MM_DirectedRel id="139" mm_from="67" mm_to="114" mm_fromx="340" mm_fromy="40" mm_tox="40" mm_toy="80" mm_concept="ApplicationComponentApplicationComponentFlow" mm_semanticObject="142">
 <MM_Diagram:MM_MultiLine name="mm_line" id="140">
-<MM_Diagram:MM_Point id="265" mm_x="920" mm_y="1400"/>
+<MM_Diagram:MM_Point id="464" mm_x="920" mm_y="1380"/>
 </MM_Diagram:MM_MultiLine>
 <MM_Diagram:MM_Graphics name="mm_graphics" id="145">
 <MM_Diagram:MM_Decoration id="146" mm_concept="label">
-<MM_Rect name="mm_offset" x="42" y="-65" w="0" h="0"/>
+<MM_Rect name="mm_offset" x="42" y="-75" w="0" h="0"/>
 </MM_Diagram:MM_Decoration>
 </MM_Diagram:MM_Graphics>
 </MM_Diagram:MM_DirectedRel>
@@ -563,42 +589,42 @@
 <MM_Diagram:MM_Graphics name="mm_graphics" id="351">
 <MM_Diagram:MM_Decoration id="352" mm_concept="label"/>
 </MM_Diagram:MM_Graphics>
-<MM_Rect name="mm_rect" x="20" y="100" w="360" h="160"/>
+<MM_Rect name="mm_rect" x="20" y="80" w="360" h="160"/>
 </MM_Diagram:MM_Compound>
 <MM_Diagram:MM_Compound id="353" mm_concept="ApplicationComponent" mm_semanticObject="344">
 <MM_Diagram:MM_Graphics name="mm_graphics" id="354">
 <MM_Diagram:MM_Decoration id="355" mm_concept="label"/>
 </MM_Diagram:MM_Graphics>
-<MM_Rect name="mm_rect" x="20" y="480" w="360" h="160"/>
+<MM_Rect name="mm_rect" x="20" y="460" w="360" h="160"/>
 </MM_Diagram:MM_Compound>
 <MM_Diagram:MM_Compound id="356" mm_concept="ApplicationComponent" mm_semanticObject="345">
 <MM_Diagram:MM_Graphics name="mm_graphics" id="357">
 <MM_Diagram:MM_Decoration id="358" mm_concept="label"/>
 </MM_Diagram:MM_Graphics>
-<MM_Rect name="mm_rect" x="580" y="100" w="400" h="160"/>
+<MM_Rect name="mm_rect" x="580" y="80" w="400" h="160"/>
 </MM_Diagram:MM_Compound>
 <MM_Diagram:MM_Compound id="359" mm_concept="ApplicationComponent" mm_semanticObject="347">
 <MM_Diagram:MM_Graphics name="mm_graphics" id="360">
 <MM_Diagram:MM_Decoration id="361" mm_concept="label"/>
 </MM_Diagram:MM_Graphics>
-<MM_Rect name="mm_rect" x="1160" y="100" w="420" h="160"/>
+<MM_Rect name="mm_rect" x="1160" y="80" w="420" h="160"/>
 </MM_Diagram:MM_Compound>
 <MM_Diagram:MM_Compound id="362" mm_concept="ApplicationComponent" mm_semanticObject="348">
 <MM_Diagram:MM_Graphics name="mm_graphics" id="363">
 <MM_Diagram:MM_Decoration id="364" mm_concept="label"/>
 </MM_Diagram:MM_Graphics>
-<MM_Rect name="mm_rect" x="780" y="440" w="280" h="160"/>
+<MM_Rect name="mm_rect" x="780" y="420" w="280" h="160"/>
 </MM_Diagram:MM_Compound>
 <MM_Diagram:MM_Compound id="365" mm_concept="ApplicationComponent" mm_semanticObject="349">
 <MM_Diagram:MM_Graphics name="mm_graphics" id="366">
 <MM_Diagram:MM_Decoration id="367" mm_concept="label"/>
 </MM_Diagram:MM_Graphics>
-<MM_Rect name="mm_rect" x="1140" y="440" w="420" h="160"/>
+<MM_Rect name="mm_rect" x="1140" y="420" w="420" h="160"/>
 </MM_Diagram:MM_Compound>
 <MM_Diagram:MM_DirectedRel id="368" mm_from="353" mm_to="350" mm_fromx="40" mm_fromy="0" mm_tox="40" mm_toy="160" mm_concept="ApplicationComponentApplicationComponentFlow" mm_semanticObject="369">
 <MM_Diagram:MM_Graphics name="mm_graphics" id="371">
 <MM_Diagram:MM_Decoration id="372" mm_concept="label">
-<MM_Rect name="mm_offset" x="-94" y="11" w="0" h="0"/>
+<MM_Rect name="mm_offset" x="-94" y="-29" w="0" h="0"/>
 </MM_Diagram:MM_Decoration>
 </MM_Diagram:MM_Graphics>
 </MM_Diagram:MM_DirectedRel>
@@ -638,9 +664,9 @@
 </MM_Diagram:MM_Graphics>
 </MM_Diagram:MM_DirectedRel>
 <MM_Diagram:MM_DirectedRel id="395" mm_from="356" mm_to="365" mm_fromx="380" mm_fromy="160" mm_tox="100" mm_toy="0" mm_concept="ApplicationComponentApplicationComponentFlow" mm_semanticObject="396">
-<MM_Diagram:MM_MultiLine name="mm_line" id="399">
-<MM_Diagram:MM_Point id="401" mm_x="960" mm_y="360"/>
-<MM_Diagram:MM_Point id="400" mm_x="1240" mm_y="360"/>
+<MM_Diagram:MM_MultiLine name="mm_line" id="465">
+<MM_Diagram:MM_Point id="466" mm_x="960" mm_y="340"/>
+<MM_Diagram:MM_Point id="467" mm_x="1240" mm_y="340"/>
 </MM_Diagram:MM_MultiLine>
 <MM_Diagram:MM_Graphics name="mm_graphics" id="397">
 <MM_Diagram:MM_Decoration id="398" mm_concept="label">
@@ -648,8 +674,28 @@
 </MM_Diagram:MM_Decoration>
 </MM_Diagram:MM_Graphics>
 </MM_Diagram:MM_DirectedRel>
+<MM_Diagram:MM_DirectedRel id="402" mm_from="353" mm_to="356" mm_fromx="360" mm_fromy="40" mm_tox="120" mm_toy="160" mm_concept="ApplicationComponentApplicationComponentFlow" mm_semanticObject="403">
+<MM_Diagram:MM_MultiLine name="mm_line" id="468">
+<MM_Diagram:MM_Point id="469" mm_x="700" mm_y="500"/>
+</MM_Diagram:MM_MultiLine>
+<MM_Diagram:MM_Graphics name="mm_graphics" id="404">
+<MM_Diagram:MM_Decoration id="405" mm_concept="label">
+<MM_Rect name="mm_offset" x="3" y="105" w="0" h="0"/>
+</MM_Diagram:MM_Decoration>
 </MM_Diagram:MM_Graphics>
-<MM_Rect name="mm_rect" x="1400" y="1580" w="1640" h="680"/>
+</MM_Diagram:MM_DirectedRel>
+<MM_Diagram:MM_DirectedRel id="409" mm_from="356" mm_to="353" mm_fromx="180" mm_fromy="160" mm_tox="360" mm_toy="100" mm_concept="ApplicationComponentApplicationComponentFlow" mm_semanticObject="410">
+<MM_Diagram:MM_MultiLine name="mm_line" id="470">
+<MM_Diagram:MM_Point id="471" mm_x="760" mm_y="560"/>
+</MM_Diagram:MM_MultiLine>
+<MM_Diagram:MM_Graphics name="mm_graphics" id="411">
+<MM_Diagram:MM_Decoration id="412" mm_concept="label">
+<MM_Rect name="mm_offset" x="-48" y="175" w="0" h="0"/>
+</MM_Diagram:MM_Decoration>
+</MM_Diagram:MM_Graphics>
+</MM_Diagram:MM_DirectedRel>
+</MM_Diagram:MM_Graphics>
+<MM_Rect name="mm_rect" x="1400" y="1600" w="1640" h="640"/>
 </MM_Diagram:MM_Compound>
 <MM_Diagram:MM_DirectedRel id="211" mm_from="114" mm_to="67" mm_fromx="80" mm_fromy="160" mm_tox="420" mm_toy="20" mm_concept="ApplicationComponentApplicationComponentFlow" mm_semanticObject="212">
 <MM_Diagram:MM_MultiLine name="mm_line" id="258">
@@ -661,6 +707,45 @@
 </MM_Diagram:MM_Decoration>
 </MM_Diagram:MM_Graphics>
 </MM_Diagram:MM_DirectedRel>
+<MM_Diagram:MM_DirectedRel id="416" mm_from="67" mm_to="353" mm_fromx="340" mm_fromy="160" mm_tox="20" mm_toy="140" mm_concept="ApplicationComponentApplicationComponentFlow" mm_semanticObject="419">
+<MM_Diagram:MM_MultiLine name="mm_line" id="417">
+<MM_Diagram:MM_Point id="477" mm_x="920" mm_y="2200"/>
+<MM_Diagram:MM_Point id="478" mm_x="1340" mm_y="2200"/>
+</MM_Diagram:MM_MultiLine>
+<MM_Diagram:MM_Graphics name="mm_graphics" id="420">
+<MM_Diagram:MM_Decoration id="421" mm_concept="label">
+<MM_Rect name="mm_offset" x="42" y="245" w="0" h="0"/>
+</MM_Diagram:MM_Decoration>
+</MM_Diagram:MM_Graphics>
+</MM_Diagram:MM_DirectedRel>
+<MM_Diagram:MM_DirectedRel id="437" mm_from="353" mm_to="67" mm_fromx="0" mm_fromy="40" mm_tox="400" mm_toy="160" mm_concept="ApplicationComponentApplicationComponentFlow" mm_semanticObject="440">
+<MM_Diagram:MM_MultiLine name="mm_line" id="438">
+<MM_Diagram:MM_Point id="476" mm_x="980" mm_y="2100"/>
+</MM_Diagram:MM_MultiLine>
+<MM_Diagram:MM_Graphics name="mm_graphics" id="441">
+<MM_Diagram:MM_Decoration id="442" mm_concept="label">
+<MM_Rect name="mm_offset" x="12" y="175" w="0" h="0"/>
+</MM_Diagram:MM_Decoration>
+</MM_Diagram:MM_Graphics>
+</MM_Diagram:MM_DirectedRel>
+<MM_Diagram:MM_Compound id="444" mm_concept="ViewGraphic" mm_symbolName="rectangle" mm_lineStyle="5" mm_fillOpacity="0" mm_semanticObject="448">
+<MM_Diagram:MM_Graphics name="mm_graphics" id="445">
+<MM_Diagram:MM_Decoration id="446" mm_concept="label"/>
+</MM_Diagram:MM_Graphics>
+<MM_Rect name="mm_rect" x="700" y="1300" w="260" h="60"/>
+</MM_Diagram:MM_Compound>
+<MM_Diagram:MM_Compound id="450" mm_concept="ViewGraphic" mm_symbolName="rectangle" mm_lineStyle="5" mm_fillOpacity="0" mm_semanticObject="449">
+<MM_Diagram:MM_Graphics name="mm_graphics" id="451">
+<MM_Diagram:MM_Decoration id="452" mm_concept="label"/>
+</MM_Diagram:MM_Graphics>
+<MM_Rect name="mm_rect" x="2060" y="780" w="260" h="61"/>
+</MM_Diagram:MM_Compound>
+<MM_Diagram:MM_Compound id="454" mm_concept="ViewGraphic" mm_symbolName="rectangle" mm_lineStyle="5" mm_fillOpacity="0" mm_semanticObject="453">
+<MM_Diagram:MM_Graphics name="mm_graphics" id="455">
+<MM_Diagram:MM_Decoration id="456" mm_concept="label"/>
+</MM_Diagram:MM_Graphics>
+<MM_Rect name="mm_rect" x="2060" y="1540" w="260" h="61"/>
+</MM_Diagram:MM_Compound>
 </MM_Diagram:MM_Graphics>
 <MM_Rect name="mm_rect" x="0" y="0" w="2147483647" h="2147483647"/>
 </MM_Diagram:MM_Compound>
