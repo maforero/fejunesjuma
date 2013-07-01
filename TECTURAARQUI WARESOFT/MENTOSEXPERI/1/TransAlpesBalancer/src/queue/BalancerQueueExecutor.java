@@ -2,11 +2,12 @@ package queue;
 
 import java.util.HashMap;
 
-import Repartidor.Repartidor;
 
 import com.test.monitoring.Monitor;
 import com.test.monitoring.Trace;
 import com.test.queue.QueueExecutor;
+
+import distributor.Repartidor;
 
 /**
  * @class ThreadQueueExecutor.java
