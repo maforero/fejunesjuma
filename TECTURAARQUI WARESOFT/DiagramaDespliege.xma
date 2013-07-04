@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <MM_Document version="2.0" format="XML" includeMetaModels="false" xmlns:builtins="http://www.bizzdesign.com/metamodels/builtins" xmlns:Base="http://www.bizzdesign.com/metamodels/Base" xmlns:MM_ModelPackage="http://www.bizzdesign.com/metamodels/MM_ModelPackage" xmlns:MM_Diagram="http://www.bizzdesign.com/metamodels/MM_Diagram" xmlns:Component="http://www.bizzdesign.com/metamodels/Component" xmlns:ArchiMate="http://www.bizzdesign.com/metamodels/ArchiMate2.0" xmlns:BMC="http://www.bizzdesign.com/metamodels/BMC" xmlns:Amber="http://www.bizzdesign.com/metamodels/Amber" xmlns:Repository="http://www.bizzdesign.com/metamodels/Repository" xmlns:TableDefinitions="http://www.bizzdesign.com/metamodels/TableDefinitions">
-<MM_StorageUnit name="file:///C:\Users\NCRUZ\Documents\Documentos\Personal\UNIANDES\ECOS\DiagramaDespliege.xma" fqn="">
+<MM_StorageUnit name="file:///C:\Users\Felipe\Dropbox\repositorio\fejunesjuma\TECTURAARQUI WARESOFT\DiagramaDespliege.xma" fqn="">
 <MM_ModelPackage:MM_ModelPackage name="root" id="0">
 <nm>ncruz's Model package 1</nm>
 <MM_ModelPackage:MM_Models name="models" id="1">
@@ -41,17 +41,17 @@
 </ArchiMate:InfrastructureNode>
 <ArchiMate:InfrastructureNode id="43">
 <MM_ProfileValues>
-<MM_Value name="nm" type="string" xml:lang="en">Device1</MM_Value>
+<MM_Value name="nm" type="string" xml:lang="en">Vehicle1</MM_Value>
 </MM_ProfileValues>
 </ArchiMate:InfrastructureNode>
 <ArchiMate:InfrastructureNode id="44">
 <MM_ProfileValues>
-<MM_Value name="nm" type="string" xml:lang="en">Device2</MM_Value>
+<MM_Value name="nm" type="string" xml:lang="en">Vehicle2</MM_Value>
 </MM_ProfileValues>
 </ArchiMate:InfrastructureNode>
 <ArchiMate:InfrastructureNode id="45">
 <MM_ProfileValues>
-<MM_Value name="nm" type="string" xml:lang="en">DeviceN</MM_Value>
+<MM_Value name="nm" type="string" xml:lang="en">VehicleN</MM_Value>
 </MM_ProfileValues>
 </ArchiMate:InfrastructureNode>
 </ArchiMate:InfrastructureNodes>
@@ -71,6 +71,7 @@
 <MM_Value name="nm" type="string" xml:lang="en">UDP (Port 5000)</MM_Value>
 </MM_ProfileValues>
 </ArchiMate:FlowRelation>
+<ArchiMate:FlowRelation id="487" from="45" to="42"/>
 </ArchiMate:Relations>
 </ArchiMate:TechnicalInfrastructureScheme>
 <ArchiMate:ApplicationScheme id="11">
@@ -85,32 +86,32 @@
 </ArchiMate:ApplicationComponent>
 <ArchiMate:ApplicationComponent id="48">
 <MM_ProfileValues>
-<MM_Value name="nm" type="string" xml:lang="en">HeartBitModule</MM_Value>
+<MM_Value name="nm" type="string" xml:lang="en">HeartBeat tMonitor</MM_Value>
 </MM_ProfileValues>
 </ArchiMate:ApplicationComponent>
 <ArchiMate:ApplicationComponent id="49">
 <MM_ProfileValues>
-<MM_Value name="nm" type="string" xml:lang="en">DemultiplexerModule</MM_Value>
+<MM_Value name="nm" type="string" xml:lang="en">FrameDemultiplexer</MM_Value>
 </MM_ProfileValues>
 </ArchiMate:ApplicationComponent>
 <ArchiMate:ApplicationComponent id="50">
 <MM_ProfileValues>
-<MM_Value name="nm" type="string" xml:lang="en">SecurityModule</MM_Value>
+<MM_Value name="nm" type="string" xml:lang="en">SecurityComponent</MM_Value>
 </MM_ProfileValues>
 </ArchiMate:ApplicationComponent>
 <ArchiMate:ApplicationComponent id="51">
 <MM_ProfileValues>
-<MM_Value name="nm" type="string" xml:lang="en">VehicleMonitorMudule</MM_Value>
+<MM_Value name="nm" type="string" xml:lang="en">VehicleMonitor</MM_Value>
 </MM_ProfileValues>
 </ArchiMate:ApplicationComponent>
 <ArchiMate:ApplicationComponent id="52">
 <MM_ProfileValues>
-<MM_Value name="nm" type="string" xml:lang="en">PersistenceModule</MM_Value>
+<MM_Value name="nm" type="string" xml:lang="en">PersistenceComponent</MM_Value>
 </MM_ProfileValues>
 </ArchiMate:ApplicationComponent>
 <ArchiMate:ApplicationComponent id="53">
 <MM_ProfileValues>
-<MM_Value name="nm" type="string" xml:lang="en">AlertModule</MM_Value>
+<MM_Value name="nm" type="string" xml:lang="en">AlertComponent</MM_Value>
 </MM_ProfileValues>
 </ArchiMate:ApplicationComponent>
 </ArchiMate:ApplicationComponents>
@@ -346,7 +347,11 @@
 </MM_ProfileValues>
 </ArchiMate:ApplicationComponentApplicationComponentFlowRef>
 <ArchiMate:ApplicationComponentRef id="343" to="50"/>
-<ArchiMate:ApplicationComponentRef id="344" to="48"/>
+<ArchiMate:ApplicationComponentRef id="344" to="48">
+<MM_ProfileValues>
+<MM_Value name="formattednm" type="string" xml:lang="en">HeartBeat&#xa;tMonitor</MM_Value>
+</MM_ProfileValues>
+</ArchiMate:ApplicationComponentRef>
 <ArchiMate:ApplicationComponentRef id="345" to="49">
 <ArchiMate:MM_RefObjects name="childRefObjects" id="346"/>
 </ArchiMate:ApplicationComponentRef>
@@ -470,7 +475,7 @@
 <MM_Diagram:MM_Graphics name="mm_graphics" id="121">
 <MM_Diagram:MM_Decoration id="122" mm_concept="label"/>
 </MM_Diagram:MM_Graphics>
-<MM_Rect name="mm_rect" x="20" y="80" w="360" h="160"/>
+<MM_Rect name="mm_rect" x="20" y="80" w="380" h="160"/>
 </MM_Diagram:MM_Compound>
 <MM_Diagram:MM_Compound id="123" mm_concept="ApplicationComponent" mm_semanticObject="124">
 <MM_Diagram:MM_Graphics name="mm_graphics" id="125">
@@ -488,13 +493,13 @@
 <MM_Diagram:MM_Graphics name="mm_graphics" id="133">
 <MM_Diagram:MM_Decoration id="134" mm_concept="label"/>
 </MM_Diagram:MM_Graphics>
-<MM_Rect name="mm_rect" x="780" y="420" w="280" h="160"/>
+<MM_Rect name="mm_rect" x="780" y="420" w="340" h="160"/>
 </MM_Diagram:MM_Compound>
 <MM_Diagram:MM_Compound id="135" mm_concept="ApplicationComponent" mm_semanticObject="136">
 <MM_Diagram:MM_Graphics name="mm_graphics" id="137">
 <MM_Diagram:MM_Decoration id="138" mm_concept="label"/>
 </MM_Diagram:MM_Graphics>
-<MM_Rect name="mm_rect" x="1140" y="420" w="420" h="160"/>
+<MM_Rect name="mm_rect" x="1140" y="420" w="440" h="160"/>
 </MM_Diagram:MM_Compound>
 <MM_Diagram:MM_DirectedRel id="221" mm_from="119" mm_to="123" mm_fromx="320" mm_fromy="100" mm_tox="40" mm_toy="100" mm_concept="ApplicationComponentApplicationComponentFlow" mm_semanticObject="222">
 <MM_Diagram:MM_Graphics name="mm_graphics" id="224">
@@ -589,7 +594,7 @@
 <MM_Diagram:MM_Graphics name="mm_graphics" id="351">
 <MM_Diagram:MM_Decoration id="352" mm_concept="label"/>
 </MM_Diagram:MM_Graphics>
-<MM_Rect name="mm_rect" x="20" y="80" w="360" h="160"/>
+<MM_Rect name="mm_rect" x="20" y="80" w="380" h="160"/>
 </MM_Diagram:MM_Compound>
 <MM_Diagram:MM_Compound id="353" mm_concept="ApplicationComponent" mm_semanticObject="344">
 <MM_Diagram:MM_Graphics name="mm_graphics" id="354">
@@ -613,13 +618,13 @@
 <MM_Diagram:MM_Graphics name="mm_graphics" id="363">
 <MM_Diagram:MM_Decoration id="364" mm_concept="label"/>
 </MM_Diagram:MM_Graphics>
-<MM_Rect name="mm_rect" x="780" y="420" w="280" h="160"/>
+<MM_Rect name="mm_rect" x="780" y="420" w="340" h="160"/>
 </MM_Diagram:MM_Compound>
 <MM_Diagram:MM_Compound id="365" mm_concept="ApplicationComponent" mm_semanticObject="349">
 <MM_Diagram:MM_Graphics name="mm_graphics" id="366">
 <MM_Diagram:MM_Decoration id="367" mm_concept="label"/>
 </MM_Diagram:MM_Graphics>
-<MM_Rect name="mm_rect" x="1140" y="420" w="420" h="160"/>
+<MM_Rect name="mm_rect" x="1140" y="420" w="440" h="160"/>
 </MM_Diagram:MM_Compound>
 <MM_Diagram:MM_DirectedRel id="368" mm_from="353" mm_to="350" mm_fromx="40" mm_fromy="0" mm_tox="40" mm_toy="160" mm_concept="ApplicationComponentApplicationComponentFlow" mm_semanticObject="369">
 <MM_Diagram:MM_Graphics name="mm_graphics" id="371">
@@ -768,6 +773,9 @@
 </MM_ModelPackage:MM_User>
 <MM_ModelPackage:MM_User id="208">
 <nm>ncruz</nm>
+</MM_ModelPackage:MM_User>
+<MM_ModelPackage:MM_User id="479">
+<nm>felipe</nm>
 </MM_ModelPackage:MM_User>
 </MM_ModelPackage:MM_Users>
 <Any name="taggedValues"><Structure><Structure name="grid"><Long value="20" name="y"/><Long value="20" name="x"/></Structure></Structure></Any>
