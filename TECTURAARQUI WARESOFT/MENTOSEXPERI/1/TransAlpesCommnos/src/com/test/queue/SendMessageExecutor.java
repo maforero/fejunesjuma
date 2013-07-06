@@ -1,4 +1,4 @@
-package queue;
+package com.test.queue;
 
 import java.io.IOException;
 import java.net.DatagramPacket;

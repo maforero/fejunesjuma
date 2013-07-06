@@ -1,13 +1,12 @@
 package queue;
 
-import java.util.HashMap;
-
+import Repartidor.Dispatcher;
+import Repartidor.DispatcherQueue;
+import Repartidor.Node;
 
 import com.test.monitoring.Monitor;
 import com.test.monitoring.Trace;
 import com.test.queue.QueueExecutor;
-
-import distributor.Repartidor;
 
 /**
  * @class ThreadQueueExecutor.java
@@ -17,10 +16,10 @@ import distributor.Repartidor;
  */
 public class BalancerQueueExecutor implements QueueExecutor {
 
-	private Repartidor repartidor;
+	private Dispatcher repartidor;
 
-	public BalancerQueueExecutor(HashMap<String,Long> lastBeatMessage) {
-		repartidor = new Repartidor(lastBeatMessage);
+	public BalancerQueueExecutor(DispatcherQueue<Node> dispatcherQueue) {
+		repartidor = new Dispatcher(dispatcherQueue);
 	}
 
 	/*

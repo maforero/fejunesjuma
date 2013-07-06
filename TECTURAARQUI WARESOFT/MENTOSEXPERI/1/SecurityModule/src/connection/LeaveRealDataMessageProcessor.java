@@ -14,11 +14,11 @@ import IntegrityMonitor.IntegrityMonitor;
 import com.test.connection.MessageProcessor;
 import com.test.monitoring.Trace;
 
-public class SecutrityMessageProcessor implements MessageProcessor {
+public class LeaveRealDataMessageProcessor implements MessageProcessor {
 
 	private IntegrityMonitor Integridad;
 
-	public SecutrityMessageProcessor() {
+	public LeaveRealDataMessageProcessor() {
 		Integridad = new IntegrityMonitor();
 	}
 

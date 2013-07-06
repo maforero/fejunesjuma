@@ -1,17 +1,16 @@
 package Listener;
 
 
-import queue.SendMessageExecutor;
-
 import com.test.configuration.ConfigurationManager;
 import com.test.configuration.Properties;
 import com.test.connection.KeepTraceMessageProcessor;
 import com.test.connection.MessageListener;
 import com.test.ping.PingManager;
 import com.test.queue.QueueMonitor;
+import com.test.queue.SendMessageExecutor;
 import com.test.queue.TraceQueueExecutor;
 
-import connection.SecutrityMessageProcessor;
+import connection.LeaveRealDataMessageProcessor;
 
 public class Main {
 
@@ -36,7 +35,7 @@ public class Main {
 	private static void startMessageListener() {
 		String port = ConfigurationManager.getInstance().getProperty(
 				Properties.NODE_PORT.name());
-		SecutrityMessageProcessor secutrityMessageProcessor = new SecutrityMessageProcessor();
+		LeaveRealDataMessageProcessor secutrityMessageProcessor = new LeaveRealDataMessageProcessor();
 		KeepTraceMessageProcessor keepTraceMessageProcessor = new KeepTraceMessageProcessor(
 				secutrityMessageProcessor);
 		Thread messageListener = new Thread(new MessageListener(

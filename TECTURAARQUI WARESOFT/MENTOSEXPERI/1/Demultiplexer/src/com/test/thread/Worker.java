@@ -14,6 +14,7 @@ import com.test.configuration.ConfigurationManager;
 import com.test.configuration.Properties;
 import com.test.dto.RegularFrameDTO;
 import com.test.frame.FrameDemultiplexer;
+import com.test.module.GenericModule;
 import com.test.monitoring.Trace;
 
 /**
@@ -83,8 +84,9 @@ public class Worker extends Thread {
 	 */
 	private void demultiplexData(Trace monitor) {
 		RegularFrameDTO frame = demultiplexer.demultiplexFrame(monitor);
-		byte data[] = serialize(frame);
-		sendFrames(data);
+//		byte data[] = serialize(frame);
+//		sendFrames(data);
+		new GenericModule().doSomething(frame);
 	}
 	
 	/**

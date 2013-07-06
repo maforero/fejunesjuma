@@ -1,38 +1,56 @@
 package Listener;
 
-import java.util.HashMap;
-
 import queue.BalancerQueueExecutor;
+import Repartidor.DispatcherBuilder;
+import Repartidor.DispatcherQueue;
+import Repartidor.Node;
 
 import com.test.configuration.ConfigurationManager;
 import com.test.configuration.Properties;
-import com.test.connection.HeartBeatListener;
 import com.test.connection.MessageListener;
 import com.test.connection.QueueMessageProcessor;
 import com.test.queue.QueueMonitor;
 import com.test.queue.TraceQueueExecutor;
 
+import connection.HeartBeatListener;
 import connection.StartTraceMessageProcessor;
 
 public class Main {
 
 	public static void main(String args[]) {
-		HashMap<String, Long> lastBeatMessage = new HashMap<String, Long>();
+		startApplication(args);
+	}
+
+	/**
+	 * @param args
+	 */
+	private static void startApplication(String[] args) {
 		loadConfigurations(args);
-		startQueueMonitor(lastBeatMessage);
+		DispatcherQueue<Node> dispatcherQueue = loadDispatcherQueue();
+		startQueueMonitor(dispatcherQueue);
 		startMessageListener();
-		startHeartBeatListener(lastBeatMessage);
-		// new Main();
+		startHeartBeatListener(dispatcherQueue);
+	}
+
+	/**
+	 * @return
+	 */
+	private static DispatcherQueue<Node> loadDispatcherQueue() {
+		DispatcherBuilder dispatcherBuilder = DispatcherBuilder
+				.createInstance();
+		dispatcherBuilder.buildDispatcherNode();
+		DispatcherQueue<Node> dispatcherQueue = dispatcherBuilder
+				.getDispatcherQueue();
+		return dispatcherQueue;
 	}
 
 	/**
 	 * It starts the hearbeatlistener Thread
 	 */
-	private static void startHeartBeatListener(HashMap<String, Long> lastBeatMessage) {
-		String port = ConfigurationManager.getInstance().getProperty(
-				Properties.HEARTBEAT_PORT.name());
+	private static void startHeartBeatListener(
+			DispatcherQueue<Node> dispatcherQueue) {
 		Thread heartBeatListener = new Thread(new HeartBeatListener(
-				Integer.valueOf(port), lastBeatMessage));
+				dispatcherQueue));
 		heartBeatListener.start();
 	}
 
@@ -50,12 +68,12 @@ public class Main {
 	}
 
 	/**
-	 * @param lastBeatMessage 
+	 * @param dispatcherQueue
 	 * 
 	 */
-	private static void startQueueMonitor(HashMap<String,Long> lastBeatMessage) {
+	private static void startQueueMonitor(DispatcherQueue<Node> dispatcherQueue) {
 		QueueMonitor queueMonitor = new QueueMonitor(new TraceQueueExecutor(
-				new BalancerQueueExecutor(lastBeatMessage)));
+				new BalancerQueueExecutor(dispatcherQueue)));
 		Thread queueMonitorThread = new Thread(queueMonitor);
 		queueMonitorThread.start();
 	}

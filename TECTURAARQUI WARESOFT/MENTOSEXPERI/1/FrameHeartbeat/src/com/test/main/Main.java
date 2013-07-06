@@ -2,9 +2,10 @@ package com.test.main;
 
 import com.test.configuration.ConfigurationManager;
 import com.test.configuration.Properties;
+import com.test.connection.HeartBeatMessageListener;
 import com.test.connection.MessageListener;
-import com.test.queue.HeartbeatQueueExecutor;
 import com.test.queue.QueueMonitor;
+import com.test.queue.SendMessageExecutor;
 
 /**
  * @class Main.java
@@ -18,6 +19,18 @@ public class Main {
 		loadConfigurations(args);
 		startQueueMonitor();
 		startMessageListener();
+		startHeatBeatListener();
+	}
+
+	/**
+	 * 
+	 */
+	private static void startHeatBeatListener() {
+		String port = ConfigurationManager.getInstance().getProperty(
+				Properties.PING_PORT.name());
+		Thread messageListener = new Thread(new HeartBeatMessageListener(
+				Integer.valueOf(port)));
+		messageListener.start();
 	}
 
 	/**
@@ -35,8 +48,7 @@ public class Main {
 	 * 
 	 */
 	private static void startQueueMonitor() {
-		QueueMonitor queueMonitor = new QueueMonitor(
-				new HeartbeatQueueExecutor());
+		QueueMonitor queueMonitor = new QueueMonitor(new SendMessageExecutor());
 		Thread queueMonitorThread = new Thread(queueMonitor);
 		queueMonitorThread.start();
 	}
@@ -45,10 +57,10 @@ public class Main {
 	 * 
 	 */
 	private static void loadConfigurations(String[] args) {
-	    if (args != null && args.length > 0) {
-            ConfigurationManager.getInstance().loadProperties(args[0]);
-        } else {
-            ConfigurationManager.getInstance().loadProperties();
-        }
+		if (args != null && args.length > 0) {
+			ConfigurationManager.getInstance().loadProperties(args[0]);
+		} else {
+			ConfigurationManager.getInstance().loadProperties();
+		}
 	}
 }
