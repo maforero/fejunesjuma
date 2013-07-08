@@ -13,9 +13,9 @@ import com.test.connection.MessageListener;
 public class Main {
 
 	public static void main(String[] args) {
-		loadConfigurations(args);
-		String port = getPort();
-		startMessageListener(port);
+		 loadConfigurations(args);
+		 String port = getPort();
+		 startMessageListener(port);
 	}
 
 	/**
@@ -35,15 +35,15 @@ public class Main {
 				Properties.NODE_PORT.name());
 		return port;
 	}
-	
+
 	/**
 	 * 
 	 */
 	private static void loadConfigurations(String[] args) {
-	    if (args != null && args.length > 0) {
-            ConfigurationManager.getInstance().loadProperties(args[0]);
-        } else {
-            ConfigurationManager.getInstance().loadProperties();
-        }
+		if (args != null && args.length > 0) {
+			ConfigurationManager.getInstance().loadProperties(args[0]);
+		} else {
+			ConfigurationManager.getInstance().loadProperties();
+		}
 	}
 }

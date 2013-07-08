@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="TransAlpesIntegrationEAR">
+        <wb-resource deploy-path="/" source-path="/EarContent" tag="defaultRootSource"/>
+        <dependent-module archiveName="TransAlpesIntegration.jar" deploy-path="/" handle="module:/resource/TransAlpesIntegration/TransAlpesIntegration">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="axis.jar" deploy-path="/lib" handle="module:/classpath/lib/TransAlpesIntegration/lib/axis.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="jaxrpc.jar" deploy-path="/lib" handle="module:/classpath/lib/TransAlpesIntegration/lib/jaxrpc.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-discovery-0.2.jar" deploy-path="/lib" handle="module:/classpath/lib/TransAlpesIntegration/lib/commons-discovery-0.2.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="javax.wsdl_1.6.2.v201012040545.jar" deploy-path="/lib" handle="module:/classpath/lib/TransAlpesIntegration/lib/javax.wsdl_1.6.2.v201012040545.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="org.apache.commons.logging_1.1.1.v201101211721.jar" deploy-path="/lib" handle="module:/classpath/lib/TransAlpesIntegration/lib/org.apache.commons.logging_1.1.1.v201101211721.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="saaj.jar" deploy-path="/lib" handle="module:/classpath/lib/TransAlpesIntegration/lib/saaj.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="TransAlpesCommnos.jar" deploy-path="/lib" handle="module:/resource/TransAlpesCommnos/TransAlpesCommnos">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="TransAlpesPersistence.jar" deploy-path="/" handle="module:/resource/TransAlpesPersistence/TransAlpesPersistence">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+    </wb-module>
+</project-modules>

@@ -2,12 +2,17 @@ package com.test.integration;
 
 import java.rmi.RemoteException;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebService;
 
 import org.tempuri.Service1SoapProxy;
+
+import com.test.configuration.ConfigurationManager;
+import com.test.configuration.Properties;
+import com.test.dto.AlarmFrameDTO;
 
 /**
  * @class IntegrationWS.java
@@ -19,12 +24,25 @@ import org.tempuri.Service1SoapProxy;
 @WebService
 public class IntegrationWS {
 
+	@PostConstruct
+	private void initConfigurations() {
+		String propertiesPath = System.getenv("INTEGRATION_PROPERTIES");
+		ConfigurationManager.getInstance().loadProperties(propertiesPath);
+	}
+
 	@WebMethod(operationName = "sendAlarm")
-	public String sendAlarm(@WebParam(name = "name") String name) {
-		Service1SoapProxy proxy = new Service1SoapProxy("http://localhost/WebPolicia/Service1.asmx?WSDL");
+	public String sendAlarm(@WebParam(name = "alarm") AlarmFrameDTO alarm) {
+		String policeEndPoint = ConfigurationManager.getInstance().getProperty(
+				Properties.POLICE_END_POINT.name());
+		System.out.println(policeEndPoint+" --------------");
+		Service1SoapProxy proxy = new Service1SoapProxy(policeEndPoint);
 		try {
-			return proxy.alarmaPolicia("12345", new int[] { 123, 234, 434 },
-					new int[] { 23, 456, 234 });
+			int[] alarmLatitude = new int[] { alarm.getLaGrades(),
+					alarm.getLaMinutes(), alarm.getLaSeconds() };
+			return proxy.alarmaPolicia(String.valueOf(alarm.getVehicleId()),
+					alarmLatitude,
+					new int[] { alarm.getLoGrades(), alarm.getLoMinutes(),
+							alarm.getLoSeconds() });
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -35,8 +53,8 @@ public class IntegrationWS {
 	@WebMethod(operationName = "getVehicleInfo")
 	public String[] getVehicleInfo(
 			@WebParam(name = "vehicleId") String vechileId) {
-		
-		return new String[]{"latitud, longitud, id"};
+
+		return new String[] { "latitud, longitud, id" };
 	}
-	
+
 }

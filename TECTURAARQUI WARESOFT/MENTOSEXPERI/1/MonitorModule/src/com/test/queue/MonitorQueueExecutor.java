@@ -1,8 +1,6 @@
 package com.test.queue;
 
-import java.io.ByteArrayInputStream;
-import java.io.ObjectInputStream;
-
+import com.test.byteutil.ByteUtils;
 import com.test.dto.RegularFrameDTO;
 import com.test.module.GenericModule;
 import com.test.monitoring.Trace;
@@ -22,18 +20,8 @@ public class MonitorQueueExecutor implements QueueExecutor {
 	 */
 	@Override
 	public void execute(Trace monitor) {
-		new GenericModule().doSomething(deserialize(monitor.getData()));
-	}
-
-	private RegularFrameDTO deserialize(byte[] data) {
-		ByteArrayInputStream in = new ByteArrayInputStream(data);
-		try {
-			ObjectInputStream is = new ObjectInputStream(in);
-			return (RegularFrameDTO) is.readObject();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return null;
+		RegularFrameDTO frame = ByteUtils.getInstance().deserialize(
+				monitor.getData());
+		new GenericModule().doSomething(frame);
 	}
 }
