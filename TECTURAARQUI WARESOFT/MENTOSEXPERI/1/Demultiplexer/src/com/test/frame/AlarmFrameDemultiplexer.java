@@ -1,7 +1,11 @@
 package com.test.frame;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.rmi.RemoteException;
 
+import com.test.configuration.ConfigurationManager;
+import com.test.configuration.Properties;
 import com.test.dto.AlarmFrameDTO;
 import com.test.persistence.FramePersister;
 import com.test.persistence.PersistenceServiceLocator;
@@ -15,7 +19,17 @@ import com.test.persistence.PersistenceServiceLocator;
 class AlarmFrameDemultiplexer implements FrameDemultiplexer {
 
 	private AlarmFrameDTO alarmFrameDTO;
-	
+	private PersistenceServiceLocator serviceLocator;
+	private FrameSender frameSender;
+
+	/**
+	 * 
+	 */
+	public AlarmFrameDemultiplexer() {
+		serviceLocator = new PersistenceServiceLocator();
+		initNode();
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -24,7 +38,24 @@ class AlarmFrameDemultiplexer implements FrameDemultiplexer {
 	@Override
 	public void demultiplex(byte[] data) {
 		getAlarmFrameDTOFromBytes(data);
+		sendFrame();
 		persistAlarm();
+	}
+
+	/**
+	 * 
+	 */
+	private void initNode() {
+		try {
+			InetAddress nodeIP = InetAddress.getByName(ConfigurationManager
+					.getInstance().getProperty(Properties.NODE_1_IP.name()));
+			int nodePort = Integer.parseInt(ConfigurationManager.getInstance()
+					.getProperty(Properties.NODE_1_PORT.name()));
+
+			frameSender = new FrameSender(nodeIP, nodePort);
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -38,28 +69,20 @@ class AlarmFrameDemultiplexer implements FrameDemultiplexer {
 	}
 
 	/**
+	 * 
+	 */
+	private void sendFrame() {
+		frameSender.sendFrame(alarmFrameDTO);
+	}
+
+	/**
 	 * @param alarmFrameDTO
 	 */
 	private void persistAlarm() {
-		PersistenceServiceLocator serviceLocator = new PersistenceServiceLocator();
 		try {
-			serviceLocator.getPersister().insert(alarmFrameDTO);
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
-	}
-
-	public static void main(String[] args) {
-		
-		AlarmFrameDTO alarmFrameDTO = new AlarmFrameDTO();
-		alarmFrameDTO.setVehicleId(123);
-		alarmFrameDTO.setLaGrades(234);
-		
-		PersistenceServiceLocator serviceLocator = new PersistenceServiceLocator();
-		try {
+			serviceLocator.lookup();
 			FramePersister persister = serviceLocator.getPersister();
 			persister.insert(alarmFrameDTO);
-			System.out.println(persister.searchFrameDTO(123));
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}

@@ -26,7 +26,6 @@ public class FramePersisterBean implements FramePersister {
 	 */
 	@Override
 	public void insert(FrameDTO frameDTO) throws RemoteException {
-		System.out.println(frameDTO.getVehicleId());
 		frameDAO.addFrame(frameDTO);
 	}
 

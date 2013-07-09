@@ -3,6 +3,8 @@ package com.test.connection;
 import java.rmi.RemoteException;
 
 import com.test.byteutil.ByteUtils;
+import com.test.configuration.ConfigurationManager;
+import com.test.configuration.Properties;
 import com.test.dto.AlarmFrameDTO;
 import com.test.integration.IntegrationWSProxy;
 import com.test.monitoring.Trace;
@@ -27,7 +29,8 @@ public class AlarmMessageProcessor implements MessageProcessor {
 	 */
 	@Override
 	public void processMessage(Trace monitor) {
-		IntegrationWSProxy proxy = new IntegrationWSProxy();
+		String endPoint = getIntegrationEndPoint();
+		IntegrationWSProxy proxy = new IntegrationWSProxy(endPoint);
 		try {
 			AlarmFrameDTO alarmFrame = ByteUtils.getInstance().deserialize(
 					monitor.getData());
@@ -36,6 +39,15 @@ public class AlarmMessageProcessor implements MessageProcessor {
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
+	}
+
+	/**
+	 * @return
+	 */
+	private String getIntegrationEndPoint() {
+		String endPoint = ConfigurationManager.getInstance().getProperty(
+				Properties.INTEGRATION_END_POINT.name());
+		return endPoint;
 	}
 
 	/**
