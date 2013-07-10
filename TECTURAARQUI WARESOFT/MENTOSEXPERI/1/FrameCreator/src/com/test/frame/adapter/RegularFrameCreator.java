@@ -143,17 +143,17 @@ class RegularFrameCreator extends AbstractFrameCreator {
 	public static void main(String[] args) {
 		RegularFrameDTO regularFrameDTO = new RegularFrameDTO();
 		regularFrameDTO.setAvailableSpace(100);
-		regularFrameDTO.setLaGrades(90);
-		regularFrameDTO.setLaMinutes(59);
-		regularFrameDTO.setLaSeconds(59);
-		regularFrameDTO.setLaSign(1);
-		regularFrameDTO.setLoGrades(90);
-		regularFrameDTO.setLoMinutes(59);
-		regularFrameDTO.setLoSeconds(59);
+		regularFrameDTO.setLaGrades(4);
+		regularFrameDTO.setLaMinutes(39);
+		regularFrameDTO.setLaSeconds(58);
+		regularFrameDTO.setLaSign(0);
+		regularFrameDTO.setLoGrades(74);
+		regularFrameDTO.setLoMinutes(6);
+		regularFrameDTO.setLoSeconds(38);
 		regularFrameDTO.setLoSign(1);
 		regularFrameDTO.setRoadTime(720);
 		regularFrameDTO.setTemperature(-100);
-		regularFrameDTO.setVehicleId(2047);
+		regularFrameDTO.setVehicleId(2);
 		regularFrameDTO.setVehicleType(7);
 		regularFrameDTO.setWareState(1);
 		

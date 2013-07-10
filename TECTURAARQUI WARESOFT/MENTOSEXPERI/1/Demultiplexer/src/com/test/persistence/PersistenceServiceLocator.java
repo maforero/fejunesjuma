@@ -25,7 +25,7 @@ public class PersistenceServiceLocator {
 		try {
 			initRemotePersistenceProperties();
 		} catch (NamingException e) {
-			throw new IllegalStateException("remote persister not found");
+			throw new IllegalStateException("remote persister not found", e);
 		}
 	}
 

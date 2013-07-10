@@ -84,10 +84,10 @@ public class IntegrationWS {
 		RegularFrameDTO regularFrame = (RegularFrameDTO) frame;
 		return new String[] {
 				String.valueOf(regularFrame.getVehicleType()),
-				String.format("%s,%s,%s", regularFrame.getLaGrades(),
+				String.format("%s;%s;%s", regularFrame.getLaGrades(),
 						regularFrame.getLaMinutes(),
 						regularFrame.getLaSeconds()),
-				String.format("%s,%s,%s", regularFrame.getLoGrades(),
+				String.format("%s;%s;%s", regularFrame.getLoGrades(),
 						regularFrame.getLoMinutes(),
 						regularFrame.getLoSeconds()),
 				String.valueOf(regularFrame.getAvailableSpace()),
@@ -103,10 +103,10 @@ public class IntegrationWS {
 	private String[] getAlarmFrame(FrameDTO frame) {
 		AlarmFrameDTO alarmFrameDTO = (AlarmFrameDTO) frame;
 		return new String[] {
-				String.format("%s,%s,%s", alarmFrameDTO.getLaGrades(),
+				String.format("%s;%s;%s", alarmFrameDTO.getLaGrades(),
 						alarmFrameDTO.getLaMinutes(),
 						alarmFrameDTO.getLaSeconds()),
-				String.format("%s,%s,%s", alarmFrameDTO.getLoGrades(),
+				String.format("%s;%s;%s", alarmFrameDTO.getLoGrades(),
 						alarmFrameDTO.getLoMinutes(),
 						alarmFrameDTO.getLoSeconds()),
 				String.valueOf(alarmFrameDTO.getEmergencyType()),
