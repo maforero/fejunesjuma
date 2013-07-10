@@ -4,6 +4,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.Arrays;
 
 /**
  * @class ByteUtils.java
@@ -42,5 +43,22 @@ public class ByteUtils {
 		} catch (Exception e) {
 			throw new IllegalStateException(e);
 		}
+	}
+
+	public byte[] getByteWithEnding(byte data[]) {
+		byte endingData[] = Arrays.copyOf(data, data.length + 2);
+		endingData[data.length] = 127;
+		endingData[data.length + 1] = 127;
+
+		return endingData;
+	}
+	
+	public void printFrames(byte data[]) {
+		StringBuilder builder = new StringBuilder();
+		for (byte b : data) {
+			builder.append(b);
+			builder.append(";");
+		}
+		System.out.println(builder);
 	}
 }

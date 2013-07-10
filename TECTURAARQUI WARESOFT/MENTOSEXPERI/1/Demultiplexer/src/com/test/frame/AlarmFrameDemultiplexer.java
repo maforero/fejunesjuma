@@ -26,7 +26,7 @@ class AlarmFrameDemultiplexer implements FrameDemultiplexer {
 	 * 
 	 */
 	public AlarmFrameDemultiplexer() {
-		serviceLocator = new PersistenceServiceLocator();
+		initServiceLocator();
 		initNode();
 	}
 
@@ -45,12 +45,19 @@ class AlarmFrameDemultiplexer implements FrameDemultiplexer {
 	/**
 	 * 
 	 */
+	private void initServiceLocator() {
+		serviceLocator = new PersistenceServiceLocator();
+	}
+
+	/**
+	 * 
+	 */
 	private void initNode() {
 		try {
 			InetAddress nodeIP = InetAddress.getByName(ConfigurationManager
-					.getInstance().getProperty(Properties.NODE_1_IP.name()));
+					.getInstance().getProperty(Properties.NODE_2_IP.name()));
 			int nodePort = Integer.parseInt(ConfigurationManager.getInstance()
-					.getProperty(Properties.NODE_1_PORT.name()));
+					.getProperty(Properties.NODE_PORT2.name()));
 
 			frameSender = new FrameSender(nodeIP, nodePort);
 		} catch (UnknownHostException e) {

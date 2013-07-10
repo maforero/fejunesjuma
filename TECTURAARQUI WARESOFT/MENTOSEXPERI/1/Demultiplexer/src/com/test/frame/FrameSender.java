@@ -30,7 +30,9 @@ public class FrameSender {
 	 * 
 	 */
 	public void sendFrame(FrameDTO frame) {
-		byte serializedFrame[] = ByteUtils.getInstance().serialize(frame);
+		ByteUtils byteUtils = ByteUtils.getInstance();
+		byte serializedFrame[] = byteUtils.serialize(frame);
+		serializedFrame = byteUtils.getByteWithEnding(serializedFrame);
 		sendFrames(serializedFrame);
 	}
 

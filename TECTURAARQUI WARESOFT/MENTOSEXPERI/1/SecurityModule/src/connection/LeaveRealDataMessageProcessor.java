@@ -7,8 +7,6 @@ package connection;
  * @since 1.0
  */
 
-import java.util.Arrays;
-
 import IntegrityMonitor.IntegrityMonitor;
 
 import com.test.connection.MessageProcessor;
@@ -24,9 +22,9 @@ public class LeaveRealDataMessageProcessor implements MessageProcessor {
 
 	@Override
 	public void processMessage(Trace monitor) {
-		byte[] data = monitor.getData();
-		byte realData[] = Arrays.copyOfRange(data, 0, data.length - 1 - data[data.length - 1]);
-		monitor.setData(realData);
+//		byte[] data = monitor.getData();
+//		byte realData[] = Arrays.copyOfRange(data, 0, data.length - 1 - data[data.length - 1]);
+		monitor.setData(monitor.getData());
 		Integridad.validarMensaje(monitor);
 	}
 }

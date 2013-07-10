@@ -1,9 +1,5 @@
 package com.test.thread;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
 import java.security.InvalidAlgorithmParameterException;
@@ -54,7 +50,7 @@ public class RsaEncriptando {
 				cipher = Cipher.getInstance("AES/CBC/NoPadding", "SunJCE");
 			    SecretKeySpec key = new SecretKeySpec(encryptionKey.getBytes("UTF-8"), "AES");
 			    cipher.init(Cipher.ENCRYPT_MODE, key,new IvParameterSpec(IV.getBytes("UTF-8")));
-			    return plainText;
+			    return cipher.doFinal(plainText);
 			} catch (NoSuchAlgorithmException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -71,6 +67,12 @@ public class RsaEncriptando {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (InvalidAlgorithmParameterException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalBlockSizeException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (BadPaddingException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} 

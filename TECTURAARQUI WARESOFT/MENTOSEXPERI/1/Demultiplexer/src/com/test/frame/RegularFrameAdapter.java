@@ -8,7 +8,7 @@ import com.test.dto.RegularFrameDTO;
  * @Date Jun 15, 2013
  * @since 1.0
  */
-class RegularFrameAdapter {
+class RegularFrameAdapter extends AbstractFrameAdapter {
 
 	private RegularFrameDTO regularFrameDTO;
 
@@ -17,122 +17,155 @@ class RegularFrameAdapter {
 	}
 
 	public void adapt(byte[] data) {
-		addVehicleType(data);
-		addLatitudeSign(data);
-		addLatitudeGrades(data);
-		addLatitudeMinutes(data);
-		addLatitudeSeconds(data);
-		addLongitudSign(data);
-		addLontitudeGrades(data);
-		addLongitudeMinutes(data);
-		addLongitudeSeconds(data);
-		addAvailableSpace(data);
-		addRoadTime(data);
-		addWareState(data);
-		addTemperature(data);
-		addVehicleId(data);
+		createBitFrame(data);
+		addVehicleType();
+		addLatitudeSign();
+		addLatitudeGrades();
+		addLatitudeMinutes();
+		addLatitudeSeconds();
+		addLongitudSign();
+		addLontitudeGrades();
+		addLongitudeMinutes();
+		addLongitudeSeconds();
+		addAvailableSpace();
+		addRoadTime();
+		addWareState();
+		addTemperature();
+		addVehicleId();
+		setLocationSigns();
 	}
 
 	public RegularFrameDTO getFrameDTO() {
 		return regularFrameDTO;
 	}
-
+	
 	/**
-	 * @param data
+	 * 
 	 */
-	private void addVehicleId(byte[] data) {
-		regularFrameDTO.setVehicleId((data[10] << 4) | (data[11] >> 3));
+	private void setLocationSigns() {
+		if (regularFrameDTO.getLaSign() == 1) {
+			regularFrameDTO.setLaGrades(regularFrameDTO.getLaGrades() * -1);
+		}
+		if (regularFrameDTO.getLoSign() == 1) {
+			regularFrameDTO.setLoGrades(regularFrameDTO.getLoGrades() * -1);
+		}
 	}
 
 	/**
 	 * @param data
 	 */
-	private void addTemperature(byte[] data) {
-		regularFrameDTO.setTemperature(((data[8] & 1) << 7) | data[9]);
+	private void addVehicleId() {
+		int value = getFrameBitValue(11);
+		regularFrameDTO.setVehicleId(value);
 	}
 
 	/**
 	 * @param data
 	 */
-	private void addWareState(byte[] data) {
-		regularFrameDTO.setWareState((data[8] >> 1) & 1);
+	private void addTemperature() {
+		int signValue = getFrameBitValue(1);
+		int value = getFrameBitValue(7);
+		if (signValue == 1) {
+			value = value * -1;
+		}
+		// regularFrameDTO.setTemperature(((data[8] & 1) << 7) | data[9]);
+		regularFrameDTO.setTemperature(value);
 	}
 
 	/**
 	 * @param data
 	 */
-	private void addRoadTime(byte[] data) {
-		regularFrameDTO.setRoadTime(((data[7] & 31) << 5) | (data[8] >> 2));
+	private void addWareState() {
+		int value = getFrameBitValue(1);
+		regularFrameDTO.setWareState(value);
 	}
 
 	/**
 	 * @param data
 	 */
-	private void addAvailableSpace(byte[] data) {
-		regularFrameDTO.setAvailableSpace(((data[6] & 31) << 2)
-				| (data[7] >> 5));
+	private void addRoadTime() {
+		int value = getFrameBitValue(10);
+		regularFrameDTO.setRoadTime(value);
 	}
 
 	/**
 	 * @param data
 	 */
-	private void addLongitudeSeconds(byte[] data) {
-		regularFrameDTO.setLoSeconds(((data[5] & 15) << 3) | (data[6] >> 5));
+	private void addAvailableSpace() {
+		int value = getFrameBitValue(7);
+		regularFrameDTO.setAvailableSpace(value);
 	}
 
 	/**
 	 * @param data
 	 */
-	private void addLongitudeMinutes(byte[] data) {
-		regularFrameDTO.setLoMinutes(((data[4] & 7) << 4) | (data[5] >> 4));
+	private void addLongitudeSeconds() {
+		int value = getFrameBitValue(6);
+		regularFrameDTO.setLoSeconds(value);
 	}
 
 	/**
 	 * @param data
 	 */
-	private void addLontitudeGrades(byte[] data) {
-		regularFrameDTO.setLoGrades((((data[3]) & 15) << 3) | (data[4] >> 3));
+	private void addLongitudeMinutes() {
+		int value = getFrameBitValue(6);
+		regularFrameDTO.setLoMinutes(value);
 	}
 
 	/**
 	 * @param data
 	 */
-	private void addLongitudSign(byte[] data) {
-		regularFrameDTO.setLoSign(((data[3] >> 4) & 1));
+	private void addLontitudeGrades() {
+		int value = getFrameBitValue(7);
+		regularFrameDTO.setLoGrades(value);
 	}
 
 	/**
 	 * @param data
 	 */
-	private void addLatitudeSeconds(byte[] data) {
-		regularFrameDTO.setLaSeconds(((data[2] & 15) << 3) | (data[3] >> 5));
+	private void addLongitudSign() {
+		int value = getFrameBitValue(1);
+		regularFrameDTO.setLoSign(value);
 	}
 
 	/**
 	 * @param data
 	 */
-	private void addLatitudeMinutes(byte[] data) {
-		regularFrameDTO.setLaMinutes(((data[1] & 7) << 4) | (data[2] >> 4));
+	private void addLatitudeSeconds() {
+		int value = getFrameBitValue(6);
+		regularFrameDTO.setLaSeconds(value);
 	}
 
 	/**
 	 * @param data
 	 */
-	private void addLatitudeGrades(byte[] data) {
-		regularFrameDTO.setLaGrades(((data[0] & 7) << 4) | (data[1] >> 3));
+	private void addLatitudeMinutes() {
+		int value = getFrameBitValue(6);
+		regularFrameDTO.setLaMinutes(value);
 	}
 
 	/**
 	 * @param data
 	 */
-	private void addLatitudeSign(byte[] data) {
-		regularFrameDTO.setLaSign((data[0] >> 3) & 1);
+	private void addLatitudeGrades() {
+		int value = getFrameBitValue(7);
+		regularFrameDTO.setLaGrades(value);
 	}
 
 	/**
 	 * @param data
 	 */
-	private void addVehicleType(byte[] data) {
-		regularFrameDTO.setVehicleType(data[0] >> 4);
+	private void addLatitudeSign() {
+		int value = getFrameBitValue(1);
+		regularFrameDTO.setLaSign(value);
 	}
+
+	/**
+	 * @param data
+	 */
+	private void addVehicleType() {
+		int value = getFrameBitValue(3);
+		regularFrameDTO.setVehicleType(value);
+	}
+	
 }

@@ -5,6 +5,7 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.SocketException;
 
+import com.test.byteutil.ByteUtils;
 import com.test.configuration.ConfigurationManager;
 import com.test.configuration.Properties;
 import com.test.monitoring.Monitor;
@@ -71,6 +72,7 @@ public class MessageListener implements Runnable {
 				data = removeEmtpyBytes(data);
 				monitor.setData(data);
 				processor.processMessage(monitor);
+				ByteUtils.getInstance().printFrames(data);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -85,15 +87,18 @@ public class MessageListener implements Runnable {
 		
 		byte[] realBytes;
 		int index;
-		for (index = data.length - 1; index >= 0; index--) {
-			if (data[index] != 0) {
+		byte lastValue = data[data.length - 1];
+		for (index = data.length - 2; index >= 0; index--) {
+			if (data[index] == 127 && lastValue == 127) {
 				break;
+			} else {
+				lastValue = data[index]; 
 			}
 		}
 		
-		realBytes = new byte[index + 1];
+		realBytes = new byte[index];
 		
-		for (int i = 0; i <= index; i++) {
+		for (int i = 0; i < index; i++) {
 			realBytes[i] = data[i];
 		}
 		

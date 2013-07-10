@@ -63,7 +63,7 @@ public class ThreadManager {
 				// GENERA EL HASH DE LA TRAMA EN MD5
 				// EL HASH ESTA EN TERMINOS DE BYTES PARA ADICIONARLO AL FRAME
 				// LA TRAMA QUEDA DE 28 BYTES SIN ENCRIPTAR
-				byte hash[] = Hash.GenerateHashMD5(line);
+				byte hash[] = Hash.GenerateHashMD5(line.trim());
 				
 										
 				String values[] = line.split(";");
@@ -72,6 +72,18 @@ public class ThreadManager {
 				for (int i = 0; i < values.length; i++) {
 					frame[i] = Byte.parseByte(values[i].trim());
 				}
+				
+				StringBuilder regularFrameBuilder = new StringBuilder();
+				StringBuilder framesBuilder = new StringBuilder();
+				for (byte b : frame) {
+					framesBuilder.append(Integer.toBinaryString(b));
+					framesBuilder.append(";");
+					regularFrameBuilder.append(b);
+					regularFrameBuilder.append(";");
+				}
+
+				System.out.println(regularFrameBuilder);
+				System.out.println(framesBuilder);
 				
 				//SE AGREGAN LOS BYTES DEL HASH AL FINAL DE LA TRAMA
 				for (int i = 0; i < hash.length; i++)
@@ -85,7 +97,7 @@ public class ThreadManager {
 						.valueOf(ConfigurationManager.getInstance()
 								.getProperty(Properties.ENCRYPTED.name()));
 				if (encrypted) {
-					frames.add(rsa.encriptar(frame));
+					frames.add(RsaEncriptando.encriptar(frame));
 				} else {
 					frames.add(frame);	
 				}

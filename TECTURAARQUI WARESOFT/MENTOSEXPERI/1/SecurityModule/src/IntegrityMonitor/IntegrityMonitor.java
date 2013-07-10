@@ -31,7 +31,7 @@ public class IntegrityMonitor {
     	byte[] datos = null;
     	trace.addTime(System.nanoTime());
 		try {
-			datos = rsa.desencriptar(datosEncriptados);
+			datos = Rsa.desencriptar(datosEncriptados);
 		} catch (Exception e) {
 			trace.setError(true);
 			return;

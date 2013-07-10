@@ -7,6 +7,7 @@ import java.net.InetAddress;
 import java.net.SocketException;
 import java.net.UnknownHostException;
 
+import com.test.byteutil.ByteUtils;
 import com.test.configuration.ConfigurationManager;
 import com.test.configuration.Properties;
 import com.test.monitoring.Trace;
@@ -70,6 +71,7 @@ public class SendMessageExecutor implements QueueExecutor {
 	 */
 	private void sendFrames(Trace trace) {
 		byte data[] = trace.getData();
+		data = ByteUtils.getInstance().getByteWithEnding(data);
 		DatagramPacket packet = new DatagramPacket(data, data.length, nodeIP,
 				nodePort);
 		try {

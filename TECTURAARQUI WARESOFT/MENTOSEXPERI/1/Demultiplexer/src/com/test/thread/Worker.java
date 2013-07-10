@@ -55,8 +55,8 @@ public class Worker extends Thread {
 				.getInstance();
 		byte[] data = monitor.getData();
 		byte[] realData = getDataWithoutFrameType(data);
-		FrameDemultiplexer demultiplexer = factory.getFrameDemultiplexer(realData);
-		demultiplexer.demultiplex(data);
+		FrameDemultiplexer demultiplexer = factory.getFrameDemultiplexer(data);
+		demultiplexer.demultiplex(realData);
 	}
 
 	/**

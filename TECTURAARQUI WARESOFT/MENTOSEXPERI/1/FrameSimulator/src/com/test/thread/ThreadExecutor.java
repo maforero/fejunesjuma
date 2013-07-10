@@ -8,6 +8,7 @@ import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.util.List;
 
+import com.test.byteutil.ByteUtils;
 import com.test.configuration.ConfigurationManager;
 import com.test.configuration.Properties;
 
@@ -87,6 +88,7 @@ public class ThreadExecutor implements Runnable {
 	 * @param data
 	 */
 	private void sendPacket(byte[] data) {
+		data = ByteUtils.getInstance().getByteWithEnding(data);
 		try {
 			DatagramPacket enviarPaquete = new DatagramPacket(data,
 					data.length, address, port);

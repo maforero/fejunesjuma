@@ -10,10 +10,8 @@ import com.test.configuration.Properties;
 import com.test.connection.MessageListener;
 import com.test.connection.QueueMessageProcessor;
 import com.test.queue.QueueMonitor;
-import com.test.queue.TraceQueueExecutor;
 
 import connection.HeartBeatListener;
-import connection.StartTraceMessageProcessor;
 
 public class Main {
 
@@ -60,8 +58,7 @@ public class Main {
 	private static void startMessageListener() {
 		String port = ConfigurationManager.getInstance().getProperty(
 				Properties.BALANCER_PORT.name());
-		StartTraceMessageProcessor processor = new StartTraceMessageProcessor(
-				new QueueMessageProcessor());
+		QueueMessageProcessor processor = new QueueMessageProcessor();
 		Thread messageListener = new Thread(new MessageListener(
 				Integer.valueOf(port), processor));
 		messageListener.start();
@@ -72,8 +69,7 @@ public class Main {
 	 * 
 	 */
 	private static void startQueueMonitor(DispatcherQueue<Node> dispatcherQueue) {
-		QueueMonitor queueMonitor = new QueueMonitor(new TraceQueueExecutor(
-				new BalancerQueueExecutor(dispatcherQueue)));
+		QueueMonitor queueMonitor = new QueueMonitor(new BalancerQueueExecutor(dispatcherQueue));
 		Thread queueMonitorThread = new Thread(queueMonitor);
 		queueMonitorThread.start();
 	}

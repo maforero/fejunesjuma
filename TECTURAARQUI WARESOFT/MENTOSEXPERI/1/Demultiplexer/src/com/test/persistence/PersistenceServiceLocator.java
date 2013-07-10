@@ -25,10 +25,8 @@ public class PersistenceServiceLocator {
 		try {
 			initRemotePersistenceProperties();
 		} catch (NamingException e) {
-			e.printStackTrace();
+			throw new IllegalStateException("remote persister not found");
 		}
-
-		throw new IllegalStateException("remote persister not found");
 	}
 
 	public FramePersister getPersister() {

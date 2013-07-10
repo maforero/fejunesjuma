@@ -4,6 +4,7 @@ import Repartidor.Dispatcher;
 import Repartidor.DispatcherQueue;
 import Repartidor.Node;
 
+import com.test.byteutil.ByteUtils;
 import com.test.monitoring.Monitor;
 import com.test.monitoring.Trace;
 import com.test.queue.QueueExecutor;
@@ -31,6 +32,9 @@ public class BalancerQueueExecutor implements QueueExecutor {
 	 */
 	@Override
 	public void execute(Trace monitor) {
+		byte realData[] = monitor.getData();
+		byte data[] = ByteUtils.getInstance().getByteWithEnding(realData);
+		monitor.setData(data);
 		repartidor.repartirMensaje(monitor);
         monitor.addTime(System.nanoTime());
         writeTraces(monitor.getData()[0]);
