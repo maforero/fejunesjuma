@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<MM_Document version="2.0" format="XML" includeMetaModels="false" xmlns:builtins="http://www.bizzdesign.com/metamodels/builtins" xmlns:Base="http://www.bizzdesign.com/metamodels/Base" xmlns:MM_ModelPackage="http://www.bizzdesign.com/metamodels/MM_ModelPackage" xmlns:MM_Diagram="http://www.bizzdesign.com/metamodels/MM_Diagram" xmlns:Component="http://www.bizzdesign.com/metamodels/Component" xmlns:ArchiMate="http://www.bizzdesign.com/metamodels/ArchiMate2.0" xmlns:BMC="http://www.bizzdesign.com/metamodels/BMC" xmlns:Amber="http://www.bizzdesign.com/metamodels/Amber" xmlns:Repository="http://www.bizzdesign.com/metamodels/Repository" xmlns:TableDefinitions="http://www.bizzdesign.com/metamodels/TableDefinitions">
+<MM_StorageUnit name="file:///C:\Users\NCRUZ\Documents\Documentos\Personal\UNIANDES\PROYECTO1\Proyecto I\Estrategia 5\ArqApps.xma" fqn="">
+<MM_ModelPackage:MM_ModelPackage name="root" id="0">
+<nm>ja.guevara907's Model package 1</nm>
+<MM_ModelPackage:MM_Models name="models" id="1">
+<ArchiMate:ArchiMateMM_Model id="2">
+<MM_ProfileValues>
+<MM_Value name="nm" type="string" xml:lang="en">Empty model with total view</MM_Value>
+</MM_ProfileValues>
+<MM_ModelPackage:MM_Modules name="modules" id="3">
+<MM_ModelPackage:MM_Module id="21" nm="GraphicalModule" metaModel="MM_Diagram">
+<MM_Diagram:MM_Diagram name="root" id="22">
+<MM_Diagram:MM_Compound name="mm_canvas" id="23" mm_concept="Canvas" mm_semanticObject="19">
+<MM_Diagram:MM_Graphics name="mm_graphics" id="28">
+<MM_Diagram:MM_Compound id="88" mm_concept="ViewGraphic" mm_symbolName="group" mm_lineStyle="0" mm_semanticObject="94">
+<MM_Diagram:MM_Graphics name="mm_graphics" id="89">
+<MM_Diagram:MM_Decoration id="90" mm_textAlignment="0" mm_concept="label" mm_frameStrategy="12"/>
+<MM_Diagram:MM_Compound id="61" mm_concept="ApplicationComponent" mm_semanticObject="63">
+<MM_Diagram:MM_Graphics name="mm_graphics" id="64">
+<MM_Diagram:MM_Decoration id="65" mm_concept="label"/>
+</MM_Diagram:MM_Graphics>
+<MM_Rect name="mm_rect" x="60" y="140" w="400" h="160"/>
+</MM_Diagram:MM_Compound>
+</MM_Diagram:MM_Graphics>
+<MM_Diagram:MM_Color name="mm_lineColor" id="93" mm_r="128" mm_g="128" mm_b="128"/>
+<MM_Diagram:MM_Colors name="mm_fillColors" id="91">
+<MM_Diagram:MM_Color id="92" mm_r="225" mm_g="225" mm_b="225"/>
+</MM_Diagram:MM_Colors>
+<MM_Rect name="mm_rect" x="1820" y="100" w="560" h="380"/>
+</MM_Diagram:MM_Compound>
+<MM_Diagram:MM_Compound id="254" mm_concept="ViewGraphic" mm_symbolName="group" mm_lineStyle="0" mm_semanticObject="260">
+<MM_Diagram:MM_Graphics name="mm_graphics" id="255">
+<MM_Diagram:MM_Decoration id="256" mm_textAlignment="0" mm_concept="label" mm_frameStrategy="12"/>
+<MM_Diagram:MM_Compound id="250" mm_concept="ApplicationComponent" mm_semanticObject="251">
+<MM_Diagram:MM_Graphics name="mm_graphics" id="252">
+<MM_Diagram:MM_Decoration id="253" mm_concept="label"/>
+</MM_Diagram:MM_Graphics>
+<MM_Rect name="mm_rect" x="820" y="640" w="400" h="160"/>
+</MM_Diagram:MM_Compound>
+<MM_Diagram:MM_Compound id="41" mm_concept="ApplicationComponent" mm_semanticObject="43">
+<MM_Diagram:MM_Graphics name="mm_graphics" id="44">
+<MM_Diagram:MM_Decoration id="45" mm_concept="label"/>
+</MM_Diagram:MM_Graphics>
+<MM_Rect name="mm_rect" x="120" y="100" w="380" h="160"/>
+</MM_Diagram:MM_Compound>
+<MM_Diagram:MM_Compound id="80" mm_concept="ViewGraphic" mm_symbolName="group" mm_lineStyle="0" mm_semanticObject="86">
+<MM_Diagram:MM_Graphics name="mm_graphics" id="81">
+<MM_Diagram:MM_Decoration id="82" mm_textAlignment="0" mm_concept="label" mm_frameStrategy="12"/>
+<MM_Diagram:MM_Compound id="51" mm_concept="ApplicationComponent" mm_semanticObject="53">
+<MM_Diagram:MM_Graphics name="mm_graphics" id="54">
+<MM_Diagram:MM_Decoration id="55" mm_concept="label"/>
+</MM_Diagram:MM_Graphics>
+<MM_Rect name="mm_rect" x="60" y="280" w="400" h="160"/>
+</MM_Diagram:MM_Compound>
+<MM_Diagram:MM_Compound id="29" mm_concept="ApplicationComponent" mm_semanticObject="33">
+<MM_Diagram:MM_Graphics name="mm_graphics" id="34">
+<MM_Diagram:MM_Decoration id="35" mm_concept="label"/>
+</MM_Diagram:MM_Graphics>
+<MM_Rect name="mm_rect" x="60" y="80" w="400" h="160"/>
+</MM_Diagram:MM_Compound>
+<MM_Diagram:MM_Compound id="311" mm_concept="ApplicationComponent" mm_semanticObject="313">
+<MM_Diagram:MM_Graphics name="mm_graphics" id="314">
+<MM_Diagram:MM_Decoration id="315" mm_concept="label"/>
+</MM_Diagram:MM_Graphics>
+<MM_Rect name="mm_rect" x="60" y="480" w="400" h="160"/>
+</MM_Diagram:MM_Compound>
+<MM_Diagram:MM_Compound id="318" mm_concept="ApplicationComponent" mm_semanticObject="319">
+<MM_Diagram:MM_Graphics name="mm_graphics" id="320">
+<MM_Diagram:MM_Decoration id="321" mm_concept="label"/>
+</MM_Diagram:MM_Graphics>
+<MM_Rect name="mm_rect" x="60" y="700" w="400" h="160"/>
+</MM_Diagram:MM_Compound>
+</MM_Diagram:MM_Graphics>
+<MM_Diagram:MM_Color name="mm_lineColor" id="85" mm_r="128" mm_g="128" mm_b="128"/>
+<MM_Diagram:MM_Colors name="mm_fillColors" id="83">
+<MM_Diagram:MM_Color id="84" mm_r="225" mm_g="225" mm_b="225"/>
+</MM_Diagram:MM_Colors>
+<MM_Rect name="mm_rect" x="80" y="320" w="560" h="940"/>
+</MM_Diagram:MM_Compound>
+<MM_Diagram:MM_Compound id="56" mm_concept="ApplicationComponent" mm_semanticObject="58">
+<MM_Diagram:MM_Graphics name="mm_graphics" id="59">
+<MM_Diagram:MM_Decoration id="60" mm_concept="label"/>
+</MM_Diagram:MM_Graphics>
+<MM_Rect name="mm_rect" x="820" y="860" w="400" h="160"/>
+</MM_Diagram:MM_Compound>
+<MM_Diagram:MM_Compound id="66" mm_concept="ApplicationComponent" mm_semanticObject="68">
+<MM_Diagram:MM_Graphics name="mm_graphics" id="69">
+<MM_Diagram:MM_Decoration id="70" mm_concept="label"/>
+</MM_Diagram:MM_Graphics>
+<MM_Rect name="mm_rect" x="600" y="100" w="400" h="160"/>
+</MM_Diagram:MM_Compound>
+<MM_Diagram:MM_DirectedRel id="283" mm_from="56" mm_to="250" mm_fromx="220" mm_fromy="0" mm_tox="220" mm_toy="140" mm_concept="ApplicationComponentApplicationComponentFlow" mm_semanticObject="284"/>
+<MM_Diagram:MM_Compound id="295" mm_concept="ApplicationComponent" mm_semanticObject="296">
+<MM_Diagram:MM_Graphics name="mm_graphics" id="297">
+<MM_Diagram:MM_Decoration id="298" mm_concept="label"/>
+</MM_Diagram:MM_Graphics>
+<MM_Rect name="mm_rect" x="1120" y="100" w="400" h="160"/>
+</MM_Diagram:MM_Compound>
+<MM_Diagram:MM_Compound id="299" mm_concept="ApplicationComponent" mm_semanticObject="300">
+<MM_Diagram:MM_Graphics name="mm_graphics" id="301">
+<MM_Diagram:MM_Decoration id="302" mm_concept="label"/>
+</MM_Diagram:MM_Graphics>
+<MM_Rect name="mm_rect" x="820" y="400" w="400" h="160"/>
+</MM_Diagram:MM_Compound>
+<MM_Diagram:MM_Compound id="307" mm_concept="ApplicationComponent" mm_semanticObject="308">
+<MM_Diagram:MM_Graphics name="mm_graphics" id="309">
+<MM_Diagram:MM_Decoration id="310" mm_concept="label"/>
+</MM_Diagram:MM_Graphics>
+<MM_Rect name="mm_rect" x="820" y="1080" w="400" h="160"/>
+</MM_Diagram:MM_Compound>
+</MM_Diagram:MM_Graphics>
+<MM_Diagram:MM_Color name="mm_lineColor" id="259" mm_r="128" mm_g="128" mm_b="128"/>
+<MM_Diagram:MM_Colors name="mm_fillColors" id="257">
+<MM_Diagram:MM_Color id="258" mm_r="225" mm_g="225" mm_b="225"/>
+</MM_Diagram:MM_Colors>
+<MM_Rect name="mm_rect" x="100" y="100" w="1600" h="1280"/>
+</MM_Diagram:MM_Compound>
+<MM_Diagram:MM_Compound id="261" mm_concept="ViewGraphic" mm_symbolName="group" mm_lineStyle="0" mm_semanticObject="267">
+<MM_Diagram:MM_Graphics name="mm_graphics" id="262">
+<MM_Diagram:MM_Decoration id="263" mm_textAlignment="0" mm_concept="label" mm_frameStrategy="12"/>
+<MM_Diagram:MM_Compound id="46" mm_concept="ApplicationComponent" mm_semanticObject="48">
+<MM_Diagram:MM_Graphics name="mm_graphics" id="49">
+<MM_Diagram:MM_Decoration id="50" mm_concept="label"/>
+</MM_Diagram:MM_Graphics>
+<MM_Rect name="mm_rect" x="60" y="140" w="400" h="160"/>
+</MM_Diagram:MM_Compound>
+</MM_Diagram:MM_Graphics>
+<MM_Diagram:MM_Color name="mm_lineColor" id="266" mm_r="128" mm_g="128" mm_b="128"/>
+<MM_Diagram:MM_Colors name="mm_fillColors" id="264">
+<MM_Diagram:MM_Color id="265" mm_r="225" mm_g="225" mm_b="225"/>
+</MM_Diagram:MM_Colors>
+<MM_Rect name="mm_rect" x="1820" y="640" w="560" h="380"/>
+</MM_Diagram:MM_Compound>
+<MM_Diagram:MM_DirectedRel id="303" mm_from="46" mm_to="250" mm_fromx="40" mm_fromy="80" mm_tox="360" mm_toy="120" mm_concept="ApplicationComponentApplicationComponentFlow" mm_semanticObject="304"/>
+</MM_Diagram:MM_Graphics>
+<MM_Rect name="mm_rect" x="0" y="0" w="2147483647" h="2147483647"/>
+</MM_Diagram:MM_Compound>
+</MM_Diagram:MM_Diagram>
+<Any name="tag"><Objectref value="19"/></Any>
+</MM_ModelPackage:MM_Module>
+<MM_ModelPackage:MM_Module id="4" nm="SemanticModule" metaModel="ArchiMate">
+<ArchiMate:ArchiMateComponent name="root" id="5">
+<MM_ProfileValues>
+<MM_Value name="nm" type="string" xml:lang="en">Empty model with total view</MM_Value>
+</MM_ProfileValues>
+<ArchiMate:DomainDataSet name="domainDataSet" id="6"/>
+<ArchiMate:AbstractCommandContainers name="commandContainers" id="7"/>
+<ArchiMate:AbstractSchemes name="schemes" id="8">
+<ArchiMate:IMScheme id="9">
+<MM_ProfileValues>
+<MM_Value name="nm" type="string" xml:lang="en">Implementation and Migration extension</MM_Value>
+</MM_ProfileValues>
+</ArchiMate:IMScheme>
+<ArchiMate:MotivationScheme id="10"/>
+<ArchiMate:TechnicalInfrastructureScheme id="11">
+<MM_ProfileValues>
+<MM_Value name="nm" type="string" xml:lang="en">Infrastructure layer</MM_Value>
+</MM_ProfileValues>
+</ArchiMate:TechnicalInfrastructureScheme>
+<ArchiMate:ApplicationScheme id="12">
+<MM_ProfileValues>
+<MM_Value name="nm" type="string" xml:lang="en">Application layer</MM_Value>
+</MM_ProfileValues>
+<ArchiMate:ApplicationComponents name="components" id="30">
+<ArchiMate:ApplicationComponent id="31">
+<MM_ProfileValues>
+<MM_Value name="nm" type="string" xml:lang="en">POManager</MM_Value>
+</MM_ProfileValues>
+</ArchiMate:ApplicationComponent>
+<ArchiMate:ApplicationComponent id="37">
+<MM_ProfileValues>
+<MM_Value name="nm" type="string" xml:lang="en">Request Bag Administrator</MM_Value>
+</MM_ProfileValues>
+</ArchiMate:ApplicationComponent>
+<ArchiMate:ApplicationComponent id="42">
+<MM_ProfileValues>
+<MM_Value name="nm" type="string" xml:lang="en">Oracle BAM</MM_Value>
+</MM_ProfileValues>
+</ArchiMate:ApplicationComponent>
+<ArchiMate:ApplicationComponent id="47">
+<MM_ProfileValues>
+<MM_Value name="nm" type="string" xml:lang="en">LDAP</MM_Value>
+</MM_ProfileValues>
+</ArchiMate:ApplicationComponent>
+<ArchiMate:ApplicationComponent id="52">
+<MM_ProfileValues>
+<MM_Value name="nm" type="string" xml:lang="en">TransactManager</MM_Value>
+</MM_ProfileValues>
+</ArchiMate:ApplicationComponent>
+<ArchiMate:ApplicationComponent id="57">
+<MM_ProfileValues>
+<MM_Value name="nm" type="string" xml:lang="en">BillingCharges</MM_Value>
+</MM_ProfileValues>
+</ArchiMate:ApplicationComponent>
+<ArchiMate:ApplicationComponent id="62">
+<MM_ProfileValues>
+<MM_Value name="nm" type="string" xml:lang="en">CRM On Demand</MM_Value>
+</MM_ProfileValues>
+</ArchiMate:ApplicationComponent>
+<ArchiMate:ApplicationComponent id="67">
+<MM_ProfileValues>
+<MM_Value name="nm" type="string" xml:lang="en">RiskQualification</MM_Value>
+</MM_ProfileValues>
+</ArchiMate:ApplicationComponent>
+<ArchiMate:ApplicationComponent id="249">
+<MM_ProfileValues>
+<MM_Value name="nm" type="string" xml:lang="en">Mailer</MM_Value>
+</MM_ProfileValues>
+</ArchiMate:ApplicationComponent>
+<ArchiMate:ApplicationComponent id="293">
+<MM_ProfileValues>
+<MM_Value name="nm" type="string" xml:lang="en">MetadataManager</MM_Value>
+</MM_ProfileValues>
+</ArchiMate:ApplicationComponent>
+<ArchiMate:ApplicationComponent id="294">
+<MM_ProfileValues>
+<MM_Value name="nm" type="string" xml:lang="en">FacturacionMPLA</MM_Value>
+</MM_ProfileValues>
+</ArchiMate:ApplicationComponent>
+<ArchiMate:ApplicationComponent id="306">
+<MM_ProfileValues>
+<MM_Value name="nm" type="string" xml:lang="en">FTPManager</MM_Value>
+</MM_ProfileValues>
+</ArchiMate:ApplicationComponent>
+<ArchiMate:ApplicationComponent id="312">
+<MM_ProfileValues>
+<MM_Value name="nm" type="string" xml:lang="en">StockManager</MM_Value>
+</MM_ProfileValues>
+</ArchiMate:ApplicationComponent>
+<ArchiMate:ApplicationComponent id="317">
+<MM_ProfileValues>
+<MM_Value name="nm" type="string" xml:lang="en">Services AgreementEval</MM_Value>
+</MM_ProfileValues>
+</ArchiMate:ApplicationComponent>
+</ArchiMate:ApplicationComponents>
+<ArchiMate:Relations name="relations" id="107">
+<ArchiMate:ApplicationComponentApplicationComponentFlow id="108" from="31" to="42"/>
+<ArchiMate:ApplicationComponentApplicationComponentFlow id="134" from="31" to="52"/>
+<ArchiMate:ApplicationComponentApplicationComponentFlow id="137" from="52" to="31"/>
+<ArchiMate:ApplicationComponentApplicationComponentFlow id="122" from="57" to="42"/>
+<ArchiMate:ApplicationComponentApplicationComponentFlow id="119" from="37" to="42"/>
+<ArchiMate:ApplicationComponentApplicationComponentFlow id="131" from="47" to="62"/>
+<ArchiMate:ApplicationComponentApplicationComponentFlow id="128" from="62" to="47"/>
+<ArchiMate:ApplicationComponentApplicationComponentFlow id="163" from="67" to="62"/>
+<ArchiMate:ApplicationComponentApplicationComponentFlow id="149" from="37" to="31"/>
+<ArchiMate:ApplicationComponentApplicationComponentFlow id="160" from="52" to="57"/>
+<ArchiMate:ApplicationComponentApplicationComponentFlow id="166" from="62" to="67"/>
+<ArchiMate:ApplicationComponentApplicationComponentFlow id="173" from="67" to="42"/>
+<ArchiMate:ApplicationComponentApplicationComponentFlow id="179" from="31" to="37"/>
+<ArchiMate:ApplicationComponentApplicationComponentFlow id="185" from="62" to="31"/>
+<ArchiMate:ApplicationComponentApplicationComponentFlow id="191" from="62" to="37"/>
+<ArchiMate:ApplicationComponentApplicationComponentFlow id="197" from="37" to="62"/>
+<ArchiMate:ApplicationComponentApplicationComponentFlow id="202" from="62" to="42"/>
+<ArchiMate:ApplicationComponentApplicationComponentFlow id="208" from="31" to="62"/>
+<ArchiMate:ApplicationComponentApplicationComponentFlow id="248" from="52" to="42"/>
+<ArchiMate:ApplicationComponentApplicationComponentFlow id="290" from="57" to="31"/>
+<ArchiMate:ApplicationComponentApplicationComponentFlow id="285" from="57" to="249"/>
+<ArchiMate:ApplicationComponentApplicationComponentFlow id="305" from="47" to="249"/>
+</ArchiMate:Relations>
+</ArchiMate:ApplicationScheme>
+<ArchiMate:BusinessScheme id="13">
+<MM_ProfileValues>
+<MM_Value name="nm" type="string" xml:lang="en">Business layer</MM_Value>
+</MM_ProfileValues>
+</ArchiMate:BusinessScheme>
+</ArchiMate:AbstractSchemes>
+<ArchiMate:AbstractViews name="views" id="14"/>
+<ArchiMate:AbstractFolders name="folders" id="15">
+<ArchiMate:AbstractFolder id="16">
+<nm>Views</nm>
+<ArchiMate:AbstractSchemes name="schemes" id="17"/>
+<ArchiMate:AbstractViews name="views" id="18">
+<ArchiMate:AllView id="19">
+<MM_ProfileValues>
+<MM_Value name="nm" type="string" xml:lang="en">Total view</MM_Value>
+</MM_ProfileValues>
+<ArchiMate:ViewGraphics name="viewGraphics" id="77">
+<ArchiMate:ViewGraphic id="94">
+<MM_ProfileValues>
+<MM_Value name="nm" type="string" xml:lang="en">External Services</MM_Value>
+</MM_ProfileValues>
+<ArchiMate:RefObjects name="refObjects" id="95">
+<ArchiMate:ApplicationComponentRef id="63" to="62"/>
+</ArchiMate:RefObjects>
+</ArchiMate:ViewGraphic>
+<ArchiMate:ViewGraphic id="260">
+<MM_ProfileValues>
+<MM_Value name="nm" type="string" xml:lang="en">Backend</MM_Value>
+</MM_ProfileValues>
+<ArchiMate:ViewGraphics name="viewGraphics" id="274">
+<ArchiMate:ViewGraphic id="86">
+<MM_ProfileValues>
+<MM_Value name="nm" type="string" xml:lang="en">Manejo de Transacciones</MM_Value>
+<MM_Value name="formattednm" type="string" xml:lang="en">Manejo de Transacciones&#xa;</MM_Value>
+</MM_ProfileValues>
+<ArchiMate:RefObjects name="refObjects" id="87">
+<ArchiMate:ApplicationComponentRef id="53" to="52"/>
+<ArchiMate:ApplicationComponentRef id="33" to="31"/>
+<ArchiMate:ApplicationComponentRef id="313" to="312"/>
+<ArchiMate:ApplicationComponentRef id="319" to="317"/>
+</ArchiMate:RefObjects>
+</ArchiMate:ViewGraphic>
+</ArchiMate:ViewGraphics>
+<ArchiMate:RefObjects name="refObjects" id="269">
+<ArchiMate:ApplicationComponentRef id="251" to="249"/>
+<ArchiMate:ApplicationComponentRef id="43" to="42"/>
+<ArchiMate:ApplicationComponentRef id="58" to="57"/>
+<ArchiMate:ApplicationComponentRef id="68" to="67"/>
+<ArchiMate:ApplicationComponentApplicationComponentFlowRef id="284" to="285"/>
+<ArchiMate:ApplicationComponentRef id="296" to="293"/>
+<ArchiMate:ApplicationComponentRef id="300" to="294"/>
+<ArchiMate:ApplicationComponentRef id="308" to="306"/>
+</ArchiMate:RefObjects>
+</ArchiMate:ViewGraphic>
+<ArchiMate:ViewGraphic id="267">
+<MM_ProfileValues>
+<MM_Value name="nm" type="string" xml:lang="en">Frontend</MM_Value>
+</MM_ProfileValues>
+<ArchiMate:RefObjects name="refObjects" id="268">
+<ArchiMate:ApplicationComponentRef id="48" to="47"/>
+</ArchiMate:RefObjects>
+</ArchiMate:ViewGraphic>
+</ArchiMate:ViewGraphics>
+<ArchiMate:RefObjects name="refObjects" id="32">
+<ArchiMate:ApplicationComponentApplicationComponentFlowRef id="304" to="305"/>
+</ArchiMate:RefObjects>
+</ArchiMate:AllView>
+</ArchiMate:AbstractViews>
+<ArchiMate:AbstractFolders name="folders" id="20"/>
+</ArchiMate:AbstractFolder>
+</ArchiMate:AbstractFolders>
+</ArchiMate:ArchiMateComponent>
+</MM_ModelPackage:MM_Module>
+</MM_ModelPackage:MM_Modules>
+<Any name="taggedValues"><Structure><String name="createdBy">Architect 3.2.1 Academic 11-12</String></Structure></Any>
+</ArchiMate:ArchiMateMM_Model>
+</MM_ModelPackage:MM_Models>
+<MM_ModelPackage:MM_Languages name="languages" id="24">
+<MM_ModelPackage:MM_Language id="25">
+<nm>en</nm>
+</MM_ModelPackage:MM_Language>
+</MM_ModelPackage:MM_Languages>
+<MM_ModelPackage:MM_Users name="users" id="26">
+<MM_ModelPackage:MM_User id="27">
+<nm>h.bakker</nm>
+<Any name="taggedValues"><Structure><Ident name="activeLanguage">en</Ident></Structure></Any>
+</MM_ModelPackage:MM_User>
+<MM_ModelPackage:MM_User id="104">
+<nm>ja.guevara907</nm>
+</MM_ModelPackage:MM_User>
+<MM_ModelPackage:MM_User id="291">
+<nm>asistente</nm>
+</MM_ModelPackage:MM_User>
+<MM_ModelPackage:MM_User id="292">
+<nm>lg.casas766</nm>
+</MM_ModelPackage:MM_User>
+<MM_ModelPackage:MM_User id="316">
+<nm>julian</nm>
+</MM_ModelPackage:MM_User>
+<MM_ModelPackage:MM_User id="322">
+<nm>ncruz</nm>
+</MM_ModelPackage:MM_User>
+</MM_ModelPackage:MM_Users>
+<Any name="taggedValues"><Structure><Structure name="grid"><Long value="20" name="y"/><Long value="20" name="x"/></Structure></Structure></Any>
+</MM_ModelPackage:MM_ModelPackage>
+</MM_StorageUnit>
+</MM_Document>
