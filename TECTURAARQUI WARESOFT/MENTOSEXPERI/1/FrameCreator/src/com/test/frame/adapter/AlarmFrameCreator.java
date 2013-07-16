@@ -111,15 +111,15 @@ class AlarmFrameCreator extends AbstractFrameCreator {
 	
 	public static void main(String[] args) {
 		AlarmFrameDTO alarmFrameDTO = new AlarmFrameDTO();
-		alarmFrameDTO.setDriverStatus(1);
+		alarmFrameDTO.setDriverStatus(0);
 		alarmFrameDTO.setEmergencyType(1);
 		alarmFrameDTO.setLaGrades(4);
-		alarmFrameDTO.setLaMinutes(43);
-		alarmFrameDTO.setLaSeconds(20);
+		alarmFrameDTO.setLaMinutes(41);
+		alarmFrameDTO.setLaSeconds(2);
 		alarmFrameDTO.setLaSign(0);
 		alarmFrameDTO.setLoGrades(74);
-		alarmFrameDTO.setLoMinutes(3);
-		alarmFrameDTO.setLoSeconds(3);
+		alarmFrameDTO.setLoMinutes(2);
+		alarmFrameDTO.setLoSeconds(46);
 		alarmFrameDTO.setLoSign(1);
 		alarmFrameDTO.setVehicleId(1);
 		

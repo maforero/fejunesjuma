@@ -73,18 +73,6 @@ public class ThreadManager {
 					frame[i] = Byte.parseByte(values[i].trim());
 				}
 				
-				StringBuilder regularFrameBuilder = new StringBuilder();
-				StringBuilder framesBuilder = new StringBuilder();
-				for (byte b : frame) {
-					framesBuilder.append(Integer.toBinaryString(b));
-					framesBuilder.append(";");
-					regularFrameBuilder.append(b);
-					regularFrameBuilder.append(";");
-				}
-
-				System.out.println(regularFrameBuilder);
-				System.out.println(framesBuilder);
-				
 				//SE AGREGAN LOS BYTES DEL HASH AL FINAL DE LA TRAMA
 				for (int i = 0; i < hash.length; i++)
 				{
