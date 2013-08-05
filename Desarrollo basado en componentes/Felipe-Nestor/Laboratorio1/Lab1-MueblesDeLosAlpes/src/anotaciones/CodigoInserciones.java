@@ -36,29 +36,35 @@ public class CodigoInserciones
         Init c = (Init) annotacion;
         for (Field f : claseRepresentada.getDeclaredFields()) {
             try {
-                f.setAccessible(true);
-                if (f.getType().equals(Integer.TYPE))
+                
+                if(!f.isAnnotationPresent(NoInit.class))
                 {
-                    f.set(instance, c.Integer());
-                } else if (f.getType().equals(Double.TYPE))
-                {
-                    f.set(instance, c.Double());
-                } else if (f.getType().equals(Character.TYPE))
-                {
-                    f.set(instance, c.Char());
-                } else if (f.getType().equals(String.class))
-                {
-                    f.set(instance, c.String());
-                } else if (f.getType().equals(Boolean.TYPE))
-                {
-                    f.set(instance, c.Boolean());
-                } else if (f.getType().equals(Float.TYPE))
-                {
-                    f.set(instance, c.Float());
-                } else if (f.getType().equals(Long.TYPE))
-                {
-                    f.set(instance, c.Long());
+                
+                    f.setAccessible(true);
+                    if (f.getType().equals(Integer.TYPE))
+                    {
+                        f.set(instance, c.Integer());
+                    } else if (f.getType().equals(Double.TYPE))
+                    {
+                        f.set(instance, c.Double());
+                    } else if (f.getType().equals(Character.TYPE))
+                    {
+                        f.set(instance, c.Char());
+                    } else if (f.getType().equals(String.class))
+                    {
+                        f.set(instance, c.String());
+                    } else if (f.getType().equals(Boolean.TYPE))
+                    {
+                        f.set(instance, c.Boolean());
+                    } else if (f.getType().equals(Float.TYPE))
+                    {
+                        f.set(instance, c.Float());
+                    } else if (f.getType().equals(Long.TYPE))
+                    {
+                        f.set(instance, c.Long());
+                    }
                 }
+                
 
             } 
             catch (Exception e)
