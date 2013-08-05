@@ -35,7 +35,7 @@ public class Driver
      * Anotaciones que tienen inserciones de codigo. Toda anotación que tenga un método que la
      * represente en la clase CodigoInserciones debe estar en este arreglo para que sea efectiva
      */
-    public static Class[] anotacionesInsercion = {Init.class};
+    public static Class[] anotacionesInsercion = {Init.class, Log.class};
 
     /**
      * Estructura encargada de contener las clases y sus proxys
