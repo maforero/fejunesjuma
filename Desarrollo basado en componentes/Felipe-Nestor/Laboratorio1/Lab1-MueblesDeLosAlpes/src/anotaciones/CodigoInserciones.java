@@ -67,5 +67,9 @@ public class CodigoInserciones
             }
         }
     }
+    
+    public static void Log(Object instance, Class claseRepresentada, Annotation annotacion, Method method) {
+        Logger.getInstance().logMetodo(instance.getClass().getSimpleName(), method.getName());
+    }
 
 }
