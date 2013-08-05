@@ -16,7 +16,5 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(value={ElementType.TYPE,ElementType.FIELD})
 public @interface NoInit {
-    
-    
-    
+
 }
