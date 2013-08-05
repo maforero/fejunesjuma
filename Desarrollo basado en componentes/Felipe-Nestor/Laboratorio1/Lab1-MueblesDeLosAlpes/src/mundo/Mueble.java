@@ -12,6 +12,7 @@
 
 package mundo;
 import anotaciones.Init;
+import anotaciones.Log;
 import anotaciones.NoInit;
 import anotaciones.PostConstructor;
 
@@ -71,6 +72,7 @@ public class Mueble {
      * Método que reinica los valores del mueble. No modifica el ID.
      */
     @Init(Double=-2,String="N/A")
+    @Log
     public void reiniciar(){
 
     }

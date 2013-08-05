@@ -15,6 +15,7 @@ package anotaciones;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.logging.Level;
 
 
 /**
@@ -75,7 +76,6 @@ public class CodigoInserciones
     }
     
     public static void Log(Object instance, Class claseRepresentada, Annotation annotacion, Method method) {
-        Logger.getInstance().logMetodo(instance.getClass().getSimpleName(), method.getName());
+        Logger.getInstance().logMetodo(instance.getClass().getSuperclass().getCanonicalName(), method.getName(), method.getParameterTypes());
     }
-
 }

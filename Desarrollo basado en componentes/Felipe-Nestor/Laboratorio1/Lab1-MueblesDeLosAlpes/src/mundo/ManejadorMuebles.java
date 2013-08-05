@@ -20,7 +20,7 @@ import java.util.ArrayList;
  * Clase encargada de de manejar la creación, eliminación y búsqueda de los muebles de MLA
  * @author Germán Sotelo
  */
-public class ManejadorMuebles {
+public class ManejadorMuebles implements Manejador {
 
     /**
      * Lista de muebles
@@ -49,7 +49,6 @@ public class ManejadorMuebles {
      * Crea un nuevo mueble, lo añade a la lista y lo retorna
      * @return
      */
-    @Log
     public Mueble nuevoMueble() {
         Mueble nuevo = (Mueble)Driver.instanciar(Mueble.class);
         nuevo.setId(idGenerator++);
@@ -62,7 +61,6 @@ public class ManejadorMuebles {
      * @param id Id del mueble a buscar
      * @return
      */
-    @Log
     public Mueble findMueble(int id) {
         for(int e = 0;e<muebles.size();e++){
             if(muebles.get(e).getId()==id){

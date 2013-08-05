@@ -8,6 +8,8 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.lang.reflect.Method;
+import java.lang.reflect.TypeVariable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
@@ -31,30 +33,41 @@ public class Logger {
         return instance;
     }
 
-    public void logMetodo(String clase, String metodo) {
+    public void logMetodo(String clase, String metodo, Class<?> types[]) {
         PrintWriter writter = null;
         try {
-            writter = escribirLog(writter, clase, metodo);
+            writter = escribirLog(writter, clase, metodo, types);
         } catch (FileNotFoundException ex) {
             java.util.logging.Logger.getLogger(Logger.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             java.util.logging.Logger.getLogger(Logger.class.getName()).log(Level.SEVERE, null, ex);
-        }finally {
+        } finally {
             cerrarWritter(writter);
         }
     }
 
-    private PrintWriter escribirLog(PrintWriter writter, String clase, String metodo) throws FileNotFoundException, IOException {
-        writter = new PrintWriter(new FileWriter(LOG_FILE, true));
+    private PrintWriter escribirLog(PrintWriter writer, String clase, String metodo, Class<?> types[]) throws FileNotFoundException, IOException {
+        writer = new PrintWriter(new FileWriter(LOG_FILE, true));
         SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
-        writter.print(format.format(new Date()));
-        writter.print(" - ");
-        writter.print(clase);
-        writter.print(".");
-        writter.print(metodo);
-        writter.println();
-        writter.flush();
-        return writter;
+        writer.print(format.format(new Date()));
+        writer.print(" - ");
+        writer.print(clase);
+        writer.print(".");
+        writer.print(metodo);
+        writer.print("(");
+
+        if (types != null) {
+            for (int i = 0; i < types.length; i++) {
+                writer.print(types[i]);
+                if (i < types.length - 1) {
+                    writer.print(",");
+                }
+            }
+        }
+        writer.print(")");
+        writer.println();
+        writer.flush();
+        return writer;
     }
 
     private void cerrarWritter(PrintWriter writter) {
