@@ -63,7 +63,6 @@ public class ManejadorVendedores {
      * @param id
      * @return
      */
-    @Log
     public Vendedor findVendedor(int id) {
         for(int e = 0;e<vendedores.size();e++){
             if(vendedores.get(e).getId()==id){

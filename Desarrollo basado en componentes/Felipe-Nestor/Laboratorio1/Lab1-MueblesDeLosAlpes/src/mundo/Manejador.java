@@ -4,7 +4,9 @@
  */
 package mundo;
 
+import anotaciones.Invoke;
 import anotaciones.Log;
+import anotaciones.ConfirmacionInvoker;
 
 /**
  *
@@ -13,5 +15,10 @@ import anotaciones.Log;
 public interface Manejador {
     
     @Log
+    @Invoke(preInvoke=ConfirmacionInvoker.class)
     public Mueble nuevoMueble();
+    
+    @Log
+    @Invoke(preInvoke=ConfirmacionInvoker.class)
+    public void eliminarMueble(int id);
 }

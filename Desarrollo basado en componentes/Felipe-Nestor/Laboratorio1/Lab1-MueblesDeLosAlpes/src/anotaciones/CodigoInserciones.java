@@ -78,4 +78,17 @@ public class CodigoInserciones
     public static void Log(Object instance, Class claseRepresentada, Annotation annotacion, Method method) {
         Logger.getInstance().logMetodo(instance.getClass().getSuperclass().getCanonicalName(), method.getName(), method.getParameterTypes());
     }
+    
+    public static void Invoke(Object instance, Class claseRepresentada, Annotation annotacion, Method method) {
+        Invoke c = (Invoke) annotacion;
+        Class<? extends Invokable> invoker = c.preInvoke();
+        try {
+            Invokable invokeable = invoker.newInstance();
+            invokeable.invoke();
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(CodigoInserciones.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(CodigoInserciones.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

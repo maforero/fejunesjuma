@@ -74,7 +74,6 @@ public class ManejadorMuebles implements Manejador {
      * Elimina un mueble dado su identificador
      * @param id Id del mueble
      */
-    @Log
     public void eliminarMueble(int id) {
         for(int e = 0;e<muebles.size();e++){
             if(muebles.get(e).getId()==id){

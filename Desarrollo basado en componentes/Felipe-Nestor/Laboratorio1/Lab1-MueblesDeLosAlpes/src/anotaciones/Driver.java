@@ -34,7 +34,7 @@ public class Driver {
      * método que la represente en la clase CodigoInserciones debe estar en este
      * arreglo para que sea efectiva
      */
-    public static Class[] anotacionesInsercion = {Init.class, Log.class};
+    public static Class[] anotacionesInsercion = {Init.class, Log.class, Invoke.class};
     /**
      * Estructura encargada de contener las clases y sus proxys
      */
@@ -144,10 +144,14 @@ public class Driver {
                 for (Method method : objetivo.getDeclaredMethods()) {
                     int modifi = method.getModifiers();
                     
+                    boolean interfaceMethod = false;
+                    Class interfazAnotacion = null;
                     if (method.getAnnotations() == null || method.getAnnotations().length == 0) {
                         for (Class interfaz : interfaces) {
                             try {
+                                interfazAnotacion = interfaz;
                                 method = interfaz.getMethod(method.getName(), method.getParameterTypes());
+                                interfaceMethod = true;
                                 break;
                             } catch (NoSuchMethodException ex) {
                                 continue;
@@ -180,7 +184,11 @@ public class Driver {
                         for (Class annotation : anotacionesInsercion) {
                             if (method.isAnnotationPresent(annotation)) {
                                 pw.println("{try{");
-                                pw.print("Method meth = " + objetivo.getSimpleName() + ".class.getMethod(\"" + method.getName() + "\",new Class[]{");
+                                if (interfaceMethod) {
+                                    pw.print("Method meth = " + interfazAnotacion.getSimpleName() + ".class.getMethod(\"" + method.getName() + "\",new Class[]{");
+                                } else {
+                                    pw.print("Method meth = " + objetivo.getSimpleName() + ".class.getMethod(\"" + method.getName() + "\",new Class[]{");
+                                }
                                 for (int e = 0; e < para.length; e++) {
                                     pw.print(getRealType(para[e]) + (e == para.length - 1 ? "" : ","));
                                 }
@@ -190,8 +198,6 @@ public class Driver {
                                 pw.println("} catch (NoSuchMethodException ex) {");
                                 pw.println("ex.printStackTrace();");
                                 pw.println("} catch (SecurityException ex) {");
-                                pw.println("ex.printStackTrace();");
-                                pw.println("}catch (Exception ex) {");
                                 pw.println("ex.printStackTrace();");
                                 pw.println("}}");
                             }
