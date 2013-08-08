@@ -1,0 +1,10 @@
+========================LABORATORIO I
+========================
+
+
+
+1)Para corroborar la ejecución de la anotación @PostConstructor tanto en Mueble como en Vendedor, una vez
+se hace clic sobre el botón nuevo (para el caso de muebles y vendedores) se muestra una ventana emergente que indica la nulidad de precio, nombre y apellidos.
+2)El archivo de log se genera en la carpeta raíz del proyecto bajo el nombre de LogFile.txt
+3)En la pestaña de muebles, si se selecciona un registro y se hace clic sobre el botón reiniciar una anotación @Validator se encargará de verficar si el precio
+es igual a 0.0, si es así no se reinicia el registro. Si el valor es diferente de cero se reinicia el registro leyendo la anotación @Init
