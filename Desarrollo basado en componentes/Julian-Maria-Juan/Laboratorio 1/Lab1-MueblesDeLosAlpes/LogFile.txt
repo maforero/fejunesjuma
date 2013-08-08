@@ -127,3 +127,5 @@ Wed Aug 07 18:05:21 COT 2013 >> Se ejecuto el mÃ©todo nuevoMueble de la clase 
 Wed Aug 07 18:05:56 COT 2013 >> Se ejecuto el mÃ©todo nuevoMueble de la clase mundo.ManejadorMuebles
 Wed Aug 07 18:10:09 COT 2013 >> Se ejecuto el mÃ©todo reiniciar de la clase mundo.Mueble
 Wed Aug 07 18:18:17 COT 2013 >> Se ejecuto el mÃ©todo nuevoVendedor de la clase mundo.ManejadorVendedores
+Wed Aug 07 19:28:42 COT 2013 >> Se ejecuto el mÃ©todo nuevoMueble de la clase mundo.ManejadorMuebles
+Wed Aug 07 19:29:01 COT 2013 >> Se ejecuto el mÃ©todo nuevoVendedor de la clase mundo.ManejadorVendedores

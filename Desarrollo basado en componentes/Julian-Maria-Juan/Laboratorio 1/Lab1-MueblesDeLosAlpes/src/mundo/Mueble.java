@@ -40,7 +40,10 @@ public class Mueble implements Restart {
      * Precio del mueble
      */
     private double precio;
-    
+    /**
+     * Método encargado de realizar las validación de integridad
+     * despues de instanciada la clase
+     */
     @PostConstructor
     private void validarIntegridad() {
         System.out.println("mueble");

@@ -20,7 +20,7 @@ import java.util.ArrayList;
  * Clase encargada de de manejar la creación, eliminación y búsqueda de los muebles de MLA
  * @author Germán Sotelo
  */
-public class ManejadorMuebles implements Manejador {
+public class ManejadorMuebles {
 
     /**
      * Lista de muebles
