@@ -111,7 +111,7 @@ public class Driver {
         PrintWriter pw = null;
         try {
             // La insercion sólo se realiza si el objetivo es una clase
-            if (!objetivo.isEnum()) {
+            if (!objetivo.isInterface() && !objetivo.isEnum()) {
                 boolean tieneInyecciones = false;
                 pw = new PrintWriter(source);
                 String paquete = objetivo.getPackage().getName();
@@ -128,7 +128,7 @@ public class Driver {
                 pw.println("import anotaciones.*;");
                 pw.println("import java.lang.reflect.*;");
                 pw.println("import java.lang.annotation.Annotation;");
-                
+
                 br.close();
 
                 // El proxy extiende del objetivo
@@ -138,14 +138,19 @@ public class Driver {
                 pw.println("public " + objetivo.getSimpleName() + "Proxy(){");
                 pw.println("super();");
                 pw.println("}");
-                
+
+                // se obtienen las interfaces de las que implementa la clase objetivo
                 Class interfaces[] = objetivo.getInterfaces();
                 // Se revisan todos los métodos
                 for (Method method : objetivo.getDeclaredMethods()) {
                     int modifi = method.getModifiers();
-                    
+
+                    // se recorren las interfaces implementadas, en caso de que se encuentre el metodo
+                    // en la interfaz, se buscan las anotaciones que contiene el metodo para procesarlas
                     boolean interfaceMethod = false;
                     Class interfazAnotacion = null;
+                    // si el metodo de la clase tiene anotaciones estas se procesan, de lo contrario
+                    // se buscan anotaciones en los metodos de la interfaz
                     if (method.getAnnotations() == null || method.getAnnotations().length == 0) {
                         for (Class interfaz : interfaces) {
                             try {
@@ -184,6 +189,9 @@ public class Driver {
                         for (Class annotation : anotacionesInsercion) {
                             if (method.isAnnotationPresent(annotation)) {
                                 pw.println("{try{");
+                                // en caso de que el metodo anotado este en la interfaz 
+                                // se utiliza el metodo de la interfaz en vez de la clase
+                                // para obtener las propiedades de las anotaciones
                                 if (interfaceMethod) {
                                     pw.print("Method meth = " + interfazAnotacion.getSimpleName() + ".class.getMethod(\"" + method.getName() + "\",new Class[]{");
                                 } else {
@@ -212,12 +220,12 @@ public class Driver {
                             pw.print("arg" + e + (e == para.length - 1 ? "" : ","));
                         }
                         pw.println(");");
-                        
+
                         pw.println("}");
                         tieneInyecciones = true;
                     }
                 }
-                
+
                 pw.println("}");
                 pw.close();
 
@@ -229,7 +237,7 @@ public class Driver {
                     }
                     // Se compila, para esto es necesario el JDK
                     Process b = Runtime.getRuntime().exec("javac -d \"" + classes.getCanonicalPath() + "\" -classpath " + libs + "\"" + classpa.getCanonicalPath() + "\" \"" + source.getCanonicalPath() + "\"");
-                    
+
                     BufferedReader error = new BufferedReader(new InputStreamReader(b.getErrorStream()));
                     for (String h; (h = error.readLine()) != null;) {
                         System.out.println(h);
@@ -238,7 +246,7 @@ public class Driver {
                     for (String h; (h = error.readLine()) != null;) {
                         System.out.println(h);
                     }
-                    
+
                     source.delete();
 
                     // Se carga el proxy
@@ -256,7 +264,7 @@ public class Driver {
                     proxys.put(objetivo, objetivo);
                     return objetivo;
                 }
-                
+
             } else {
                 // Si el objetivo es una interfaz no se usa un proxy
                 proxys.put(objetivo, objetivo);
@@ -291,7 +299,8 @@ public class Driver {
 
             // Se invoca el constructor
             Object objeto = constructor.newInstance();
-            
+
+            // despues de crear la instancia se ejecuta el metodo postcontructor
             for (Method method : c.getDeclaredMethods()) {
                 if (method.isAnnotationPresent(PostConstructor.class)) {
                     method.invoke(objeto);
@@ -303,7 +312,7 @@ public class Driver {
                 // Se inicializan los atributos afectador por las anotaciones Init
                 CodigoInserciones.Init(objeto, c, c.getAnnotation(Init.class), null);
             }
-            
+
             for (Field f : c.getDeclaredFields()) {
                 // Se instancian los atributos anotados con Cargar
                 if (f.isAnnotationPresent(Cargar.class)) {
@@ -311,7 +320,7 @@ public class Driver {
                     f.set(objeto, instanciar(f.getType()));
                 }
             }
-            
+
             return objeto;
         } catch (Exception e) {
             e.printStackTrace();

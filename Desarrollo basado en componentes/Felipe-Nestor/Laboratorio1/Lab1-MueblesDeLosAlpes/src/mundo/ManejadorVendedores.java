@@ -13,7 +13,9 @@
 package mundo;
 
 import anotaciones.Cargar;
+import anotaciones.ConfirmacionInvoker;
 import anotaciones.Driver;
+import anotaciones.Invoke;
 import anotaciones.Log;
 import java.util.ArrayList;
 
@@ -51,6 +53,7 @@ public class ManejadorVendedores {
      * @return
      */
     @Log
+    @Invoke(preInvoke=ConfirmacionInvoker.class)
     public Vendedor nuevoVendedor() {
         Vendedor nuevo = (Vendedor)Driver.instanciar(Vendedor.class);;
         nuevo.setId(idGenerator++);
@@ -77,6 +80,7 @@ public class ManejadorVendedores {
      * @param id
      */
     @Log
+    @Invoke(preInvoke=ConfirmacionInvoker.class)
     public void eliminarVendedor(int id) {
         for(int e = 0;e<vendedores.size();e++){
             if(vendedores.get(e).getId()==id){

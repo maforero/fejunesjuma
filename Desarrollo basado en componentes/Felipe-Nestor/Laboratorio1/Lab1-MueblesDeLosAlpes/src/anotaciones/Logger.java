@@ -8,15 +8,14 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.lang.reflect.Method;
-import java.lang.reflect.TypeVariable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 
 /**
+ * Clase encargada de crear el log de metodos
  *
- * @author Felipe
+ * @author NCRUZ
  */
 public class Logger {
 
@@ -26,6 +25,12 @@ public class Logger {
     private Logger() {
     }
 
+    /**
+     * Metodo que retorna una instancia unica para esta clase
+     * Singleton
+     * 
+     * @return Logger singleton instance
+     */
     public static Logger getInstance() {
         if (instance == null) {
             instance = new Logger();
@@ -33,6 +38,14 @@ public class Logger {
         return instance;
     }
 
+    /**
+     * Metodo encargado de ingresar al archivo de log logMetodos.log los metodos
+     * ejecutados, con el fomato dd-MM-yyyy hh:mm:ss - <clase>.<metodo>(<parametros>)
+     * 
+     * @param clase del metodo ejecutado
+     * @param metodo que se ejecuta
+     * @param types de paramametros del metodo ejecutado
+     */
     public void logMetodo(String clase, String metodo, Class<?> types[]) {
         PrintWriter writter = null;
         try {
@@ -46,6 +59,17 @@ public class Logger {
         }
     }
 
+    /**
+     * Escribe un registro especifico en el log
+     * 
+     * @param writer outputstream donde se escribe el log
+     * @param clase donde se encuentra el metodo ejecutado
+     * @param metodo que se ejecuta
+     * @param types de parametros del metodo ejecutado
+     * @return printWritter para permitir cerra el stream
+     * @throws FileNotFoundException si no encuentra el archivo
+     * @throws IOException si ocurre algun error escribiendo el log
+     */
     private PrintWriter escribirLog(PrintWriter writer, String clase, String metodo, Class<?> types[]) throws FileNotFoundException, IOException {
         writer = new PrintWriter(new FileWriter(LOG_FILE, true));
         SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
@@ -70,6 +94,10 @@ public class Logger {
         return writer;
     }
 
+    /**
+     * Metodo que cierra el writter
+     * @param writter 
+     */
     private void cerrarWritter(PrintWriter writter) {
         if (writter != null) {
             writter.close();

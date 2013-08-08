@@ -1,7 +1,0 @@
-20/4/2010 2:22:54 Se eecutÃ³ el metodo public mundo.ManejadorVendedores mundo.MLA.getManejadorVendedores() de class mundo.MLA
-20/4/2010 2:24:0 Se ejecuto el metodo public mundo.ManejadorVendedores mundo.MLA.getManejadorVendedores() de class mundo.MLA mensaje:Hola mundo
-20/4/2010 2:27:41 Se ejecuto el metodo public mundo.ManejadorVendedores mundo.MLA.getManejadorVendedores() de class mundo.MLA mensaje:Hola mundo
-20/4/2010 3:40:7 Se ejecuto el metodo public mundo.ManejadorVendedores mundo.MLA.getManejadorVendedores() de class mundo.MLA mensaje:Hola mundo
-20/4/2010 3:41:4 Se ejecuto el metodo public mundo.ManejadorVendedores mundo.MLA.getManejadorVendedores() de class mundo.MLA mensaje:Hola mundo
-20/4/2010 3:41:22 Se ejecuto el metodo public mundo.ManejadorVendedores mundo.MLA.getManejadorVendedores() de class mundo.MLA mensaje:Hola mundo
-20/4/2010 4:5:20 Se ejecuto el metodo public mundo.ManejadorVendedores mundo.MLA.getManejadorVendedores() de class mundo.MLA mensaje:Hola mundo

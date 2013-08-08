@@ -10,8 +10,10 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- *
- * @author Felipe
+ * Anotacion creada para indicar que los metodos deberan ser ingresados
+ * al archivo de log
+ * 
+ * @author NCRUZ
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
