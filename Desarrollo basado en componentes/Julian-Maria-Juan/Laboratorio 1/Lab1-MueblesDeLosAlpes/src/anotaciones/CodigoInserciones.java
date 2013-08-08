@@ -88,7 +88,8 @@ public class CodigoInserciones
     
     /**
      * Este método se invocado por la inserción de código realizada en los 
-     * métodos anotados con @Log
+     * métodos anotados con @Log. El registro de log se realiza en el 
+     * archivo LogFile.txt
      * @param instance Instancia desde que se invoca este método
      * @param claseRepresentada Clase a la que representa el proxý que hizo la invocación del método
      * @param annotacion Informacion de la anotación hecha sobre el método que invoca a este
@@ -98,6 +99,8 @@ public class CodigoInserciones
         Calendar fechaActual = Calendar.getInstance();
         List<String> logActual = new ArrayList<String>();
         File logFile = new File("./LogFile.txt");
+        // Se verifica si existe el archivo de log con anterioridad
+        // y se carga su información
         if (logFile.exists()) {
             BufferedReader br = null;
             try {
@@ -118,7 +121,8 @@ public class CodigoInserciones
                     Logger.getLogger(CodigoInserciones.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-        }                
+        }
+        //Se registra el log de la ejecución del método recibido como parametro
         logActual.add(fechaActual.getTime().toString() + 
                 " >> Se ejecuto el método " + method.getName() + 
                 " de la clase " + claseRepresentada.getName());
@@ -129,6 +133,7 @@ public class CodigoInserciones
         } catch (FileNotFoundException ex) {
             Logger.getLogger(CodigoInserciones.class.getName()).log(Level.SEVERE, null, ex);
         }
+        //Se actualiza el archivo de log
         for (String log : logActual) {
             if(pw!=null)
                 pw.println(log);            

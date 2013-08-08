@@ -12,8 +12,8 @@ import java.lang.annotation.Target;
 /**
  * Todo atributo anotado con esta anotación no puede 
  * ser alterado por la ejecución de una anotación Init.
- * Restricciones:Aplica solo para atributos de clase
- * @author Julian
+ * Restricciones: Aplica solo para atributos de clase
+ * @author Gaudí
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)

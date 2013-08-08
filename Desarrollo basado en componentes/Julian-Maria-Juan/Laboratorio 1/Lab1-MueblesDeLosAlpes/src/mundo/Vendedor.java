@@ -44,9 +44,13 @@ public class Vendedor
      * Sexo del vendedor
      */
     private String sexo;
-    
+        
+    /**
+     * Método encargado de realizar las validación de integridad
+     * despues de instanciada la clase
+     */
     @PostConstructor
-    private void validarIntegridad() {
+    public void validarIntegridad() {
        
        if(ValidatorUtil.isNullOrEmpty(nombres)==true)
             JOptionPane.showMessageDialog(null,"Los nombres son nulos");

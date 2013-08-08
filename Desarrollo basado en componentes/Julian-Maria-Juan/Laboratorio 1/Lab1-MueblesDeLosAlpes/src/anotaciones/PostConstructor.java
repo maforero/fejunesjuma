@@ -13,7 +13,7 @@ import java.lang.annotation.Target;
  * Cuando el driver encuentra esta anotación en un método
  * lo debe invocar despues de la instanciación (Constructor)
  * Restricciones: El método anotado no debe tener parametros de entrada 
- * @author Julian
+ * @author Gaudí
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
