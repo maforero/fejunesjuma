@@ -99,6 +99,9 @@ public class PanelMuebles extends JPanel implements ActionListener{
         if(e.getActionCommand().equals(NUEVO)){
             // Se crea un nuevo mueble y se añade al modelo de la tabla de vendedores
             Mueble c = manager.nuevoMueble();
+            if (c == null) {
+                return;
+            }
             Object[] data = {c.getId(),""+c.getNombre(),c.getPrecio()};
             dtmMuebles.addRow(data);
         }

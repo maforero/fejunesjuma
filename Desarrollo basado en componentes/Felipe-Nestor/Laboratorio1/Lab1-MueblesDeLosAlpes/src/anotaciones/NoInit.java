@@ -9,7 +9,9 @@ package anotaciones;
 import java.lang.annotation.*;
 
 /**
- *
+ * Esta anotacion es utilizada para que los atributos que la contengan,
+ * no sean afectados por la ejecución de la anotacion @Init
+ * 
  * @author NCRUZ
  */
 

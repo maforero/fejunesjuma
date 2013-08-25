@@ -15,6 +15,7 @@ package anotaciones;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.logging.Level;
 
 
 /**
@@ -32,10 +33,16 @@ public class CodigoInserciones
      * @param annotacion Informacion de la anotación hecha sobre el método que invoca a este
      * @param method Método que fua anotado con @Init
      */
-    public static void Init(Object instance, Class claseRepresentada, Annotation annotacion, Method method) throws Exception {
+    public static void Init(Object instance, Class claseRepresentada, Annotation annotacion, Method method) {
         Init c = (Init) annotacion;
         for (Field f : claseRepresentada.getDeclaredFields()) {
+<<<<<<< HEAD
             try {  
+=======
+            try {
+                // en caso de que el atributo este anotado en @NoInit, este no
+                // sera modificado
+>>>>>>> e7dc7a1e21f679e01c1442bcee8ccfaa48ee518e
                 if(!f.isAnnotationPresent(NoInit.class))
                 {
                     f.setAccessible(true);
@@ -65,13 +72,50 @@ public class CodigoInserciones
             } 
             catch (Exception e)
             {
-                throw new Exception(e.getMessage());
+                // se modifica la excepcion lanzada por el metodo init a InitException, de forma tal que se pueda quitar 
+                // el metodo proxy en el driver y soportar que se puedan cancelar acciones con la anotacion invoke
+                throw new InitException();
             }
         }
     }
     
+    /**
+     * Este metodo se encarga de ingresar el metodo ejecutado en un archivo de log
+     * @param instance Instancia desde que se invoca este método
+     * @param claseRepresentada Clase a la que representa el proxý que hizo la invocación del método
+     * @param annotacion Informacion de la anotación hecha sobre el método que invoca a este
+     * @param method Método que fua anotado con @Log
+     */
     public static void Log(Object instance, Class claseRepresentada, Annotation annotacion, Method method) {
-        Logger.getInstance().logMetodo(instance.getClass().getSimpleName(), method.getName());
+        Logger.getInstance().logMetodo(instance.getClass().getSuperclass().getCanonicalName(), method.getName(), method.getParameterTypes());
+    }
+    
+    /**
+     * Este metodo se encarga de invocar el metodo invoke de la clase que es
+     * pasada como elemento de la anotacion @invoke
+     * 
+     * @param instance Instancia desde que se invoca este método
+     * @param claseRepresentada Clase a la que representa el proxý que hizo la invocación del método
+     * @param annotacion Informacion de la anotación hecha sobre el método que invoca a este
+     * @param method Método que fua anotado con @Log
+     */
+    public static void Invoke(Object instance, Class claseRepresentada, Annotation annotacion, Method method) {
+        Invoke c = (Invoke) annotacion;
+        Class<? extends Invokable> invoker = c.preInvoke();
+        try {
+            Invokable invokeable = invoker.newInstance();
+            invokeable.invoke();
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(CodigoInserciones.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(CodigoInserciones.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
+    /**
+     * Es es la excepcion lanzada cuando ocurre un error en el metodo init
+     */
+    public static class InitException extends RuntimeException {
+        
+    }
 }

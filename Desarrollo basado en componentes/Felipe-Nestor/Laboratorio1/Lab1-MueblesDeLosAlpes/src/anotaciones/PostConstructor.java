@@ -10,7 +10,10 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- *
+ * Anotacion utilizada para indicar que el metodo anotado se debe ejecutar despues
+ * de crear la instancia del metodo. El metodo anotado no debe tener parametros y 
+ * debe ser publico
+ * 
  * @author Felipe
  */
 @Retention(RetentionPolicy.RUNTIME)

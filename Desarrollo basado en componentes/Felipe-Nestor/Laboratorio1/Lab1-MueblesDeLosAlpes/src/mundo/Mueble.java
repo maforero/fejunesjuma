@@ -12,8 +12,10 @@
 
 package mundo;
 import anotaciones.Init;
+import anotaciones.Log;
 import anotaciones.NoInit;
 import anotaciones.PostConstructor;
+import javax.swing.JOptionPane;
 
 /**
  * Entidad que representa un mueble de MLA
@@ -38,9 +40,12 @@ public class Mueble {
      */
     private double precio;
 
+     /**
+     * Metodo invocado depues de crear la instancia de esta clase
+     */
     @PostConstructor
     public void postConstructor() {
-        System.out.println("aca se ejecuta este metodo en mueble");
+        JOptionPane.showMessageDialog(null, "Se verifica la integridad de la clase Mueble");
     }
     
     public int getId() {
@@ -71,6 +76,7 @@ public class Mueble {
      * Método que reinica los valores del mueble. No modifica el ID.
      */
     @Init(Double=-2,String="N/A")
+    @Log
     public void reiniciar(){
 
     }

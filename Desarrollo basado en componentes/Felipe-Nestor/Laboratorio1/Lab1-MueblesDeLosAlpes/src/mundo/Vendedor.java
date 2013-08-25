@@ -14,6 +14,7 @@ package mundo;
 import anotaciones.Init;
 import anotaciones.NoInit;
 import anotaciones.PostConstructor;
+import javax.swing.JOptionPane;
 
 /**
  * Entidad que representa a un vendedor de MLA
@@ -45,9 +46,12 @@ public class Vendedor
      */
     private String sexo;
     
+    /**
+     * Metodo invocado depues de crear la instancia de esta clase
+     */
     @PostConstructor
     public void postConstructor() {
-        System.out.println("aca se ejecuta este metodo en vendedor");
+        JOptionPane.showMessageDialog(null, "Se verifica la integridad de la clase vendedor");
     }
 
     public String getApellidos() {

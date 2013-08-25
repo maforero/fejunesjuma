@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="ProcesoOrdenCompraTest" resourceRoot="" soapui-version="4.5.2" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="PurchaseOrderBinding" type="wsdl" bindingName="{http://xmlns.oracle.com/MarketPlace/ProcesoOrdenCompra/PurchaseOrder}PurchaseOrderBinding" soapVersion="1_1" anonymous="optional" definition="http://marketplace17.virtual.uniandes.edu.co:7001/soa-infra/services/default/ProcesoOrdenCompra/purchaseorder_client_ep?WSDL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://marketplace17.virtual.uniandes.edu.co:7001/soa-infra/services/default/ProcesoOrdenCompra/purchaseorder_client_ep?WSDL"><con:part><con:url>http://marketplace17.virtual.uniandes.edu.co:7001/soa-infra/services/default/ProcesoOrdenCompra/purchaseorder_client_ep?WSDL</con:url><con:content><![CDATA[<wsdl:definitions name="PurchaseOrder" targetNamespace="http://xmlns.oracle.com/MarketPlace/ProcesoOrdenCompra/PurchaseOrder" xmlns:ns1="http://schemas.oracle.com/bpel/extension" xmlns:plnk="http://schemas.xmlsoap.org/ws/2003/05/partner-link/" xmlns:client="http://xmlns.oracle.com/MarketPlace/ProcesoOrdenCompra/PurchaseOrder" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation>
+    <abstractWSDL>http://marketplace17.virtual.uniandes.edu.co:7001/soa-infra/services/default/ProcesoOrdenCompra!2.0/PurchaseOrder.wsdl</abstractWSDL>
+  </wsdl:documentation>
+  <plnk:partnerLinkType name="PurchaseOrder">
+    <plnk:role name="PurchaseOrderProvider">
+      <plnk:portType name="client:PurchaseOrder"/>
+    </plnk:role>
+  </plnk:partnerLinkType>
+  <wsdl:import namespace="http://schemas.oracle.com/bpel/extension" location="http://marketplace17.virtual.uniandes.edu.co:7001/soa-infra/services/default/ProcesoOrdenCompra/purchaseorder_client_ep?WSDL=RuntimeFault.wsdl"/>
+  <wsdl:types>
+    <schema xmlns="http://www.w3.org/2001/XMLSchema">
+      <import namespace="http://xmlns.oracle.com/MarketPlace/ProcesoOrdenCompra/PurchaseOrder" schemaLocation="http://marketplace17.virtual.uniandes.edu.co:7001/soa-infra/services/default/ProcesoOrdenCompra/purchaseorder_client_ep?XSD=xsd/PurchaseOrder.xsd"/>
+    </schema>
+  </wsdl:types>
+  <wsdl:message name="PurchaseOrderRequestMessage">
+    <wsdl:part name="payload" element="client:process"/>
+  </wsdl:message>
+  <wsdl:message name="PurchaseOrderResponseMessage">
+    <wsdl:part name="payload" element="client:processResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="PurchaseOrder">
+    <wsdl:operation name="process">
+      <wsdl:input message="client:PurchaseOrderRequestMessage"/>
+      <wsdl:output message="client:PurchaseOrderResponseMessage"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PurchaseOrderBinding" type="client:PurchaseOrder">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+    <wsdl:operation name="process">
+      <soap:operation style="document" soapAction="process" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      <wsdl:input>
+        <soap:body use="literal" namespace="http://xmlns.oracle.com/MarketPlace/ProcesoOrdenCompra/PurchaseOrder" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" namespace="http://xmlns.oracle.com/MarketPlace/ProcesoOrdenCompra/PurchaseOrder" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="purchaseorder_client_ep">
+    <wsdl:port name="PurchaseOrder_pt" binding="client:PurchaseOrderBinding">
+      <soap:address location="http://marketplace17.virtual.uniandes.edu.co:7001/soa-infra/services/default/ProcesoOrdenCompra/purchaseorder_client_ep" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>http://marketplace17.virtual.uniandes.edu.co:7001/soa-infra/services/default/ProcesoOrdenCompra/purchaseorder_client_ep?WSDL=RuntimeFault.wsdl</con:url><con:content><![CDATA[<definitions name="RuntimeFault" targetNamespace="http://schemas.oracle.com/bpel/extension" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <message name="RuntimeFaultMessage">
+    <part name="code" type="xsd:string"/>
+    <part name="summary" type="xsd:string"/>
+    <part name="detail" type="xsd:string"/>
+  </message>
+</definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>http://marketplace17.virtual.uniandes.edu.co:7001/soa-infra/services/default/ProcesoOrdenCompra/purchaseorder_client_ep?XSD=xsd/PurchaseOrder.xsd</con:url><con:content><![CDATA[<schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://xmlns.oracle.com/MarketPlace/ProcesoOrdenCompra/PurchaseOrder" xmlns="http://www.w3.org/2001/XMLSchema">
+  <element name="process">
+    <complexType>
+      <sequence>
+        <element name="fechaMaximaEntrega" type="date"/>
+        <element name="fecha" type="date"/>
+        <element name="nitComercio" nillable="false" type="string"/>
+        <element name="nombreComercio" type="string"/>
+        <element name="emailComercio" type="string"/>
+        <element name="direccionComercio" type="string"/>
+        <element name="telefonoComercio" type="string"/>
+        <element name="cantidadProducto" type="int" minOccurs="1" nillable="false"/>
+        <element name="nombreProducto" type="string" minOccurs="1" nillable="false"/>
+        <element name="categoriaProducto" type="string" minOccurs="1" nillable="false"/>
+        <element name="tipoProducto" type="string" minOccurs="0" maxOccurs="1"/>
+        <element name="estadoProducto" type="string"/>
+        <element name="nitFabricante" type="string"/>
+      </sequence>
+    </complexType>
+  </element>
+  <element name="processResponse">
+    <complexType>
+      <sequence>
+        <element name="numSeguimientoPO" type="string"/>
+      </sequence>
+    </complexType>
+  </element>
+</schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://marketplace17.virtual.uniandes.edu.co:7001/soa-infra/services/default/ProcesoOrdenCompra/purchaseorder_client_ep</con:endpoint></con:endpoints><con:operation isOneWay="false" action="process" name="process" bindingOperationName="process" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://marketplace17.virtual.uniandes.edu.co:7001/soa-infra/services/default/ProcesoOrdenCompra/purchaseorder_client_ep</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:pur="http://xmlns.oracle.com/MarketPlace/ProcesoOrdenCompra/PurchaseOrder">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <pur:process>
+         <pur:fechaMaximaEntrega>2013-10-01</pur:fechaMaximaEntrega>
+         <pur:fecha>2013-08-11-04:00</pur:fecha>
+         <pur:nitComercio>130600951</pur:nitComercio>
+         <pur:nombreComercio>Comercio gaudí</pur:nombreComercio>
+         <pur:emailComercio>lawrence701@gmail.com</pur:emailComercio>
+         <pur:direccionComercio>Cra creada nro x</pur:direccionComercio>
+         <pur:telefonoComercio>3115425212</pur:telefonoComercio>
+         <pur:cantidadProducto>4</pur:cantidadProducto>
+         <pur:nombreProducto>MacBook PRO</pur:nombreProducto>
+         <pur:categoriaProducto>Tecnologia</pur:categoriaProducto>
+         <!--Optional:-->
+         <pur:tipoProducto>PC</pur:tipoProducto>
+         <pur:estadoProducto>Activo</pur:estadoProducto>
+         <pur:nitFabricante>1094520101</pur:nitFabricante>
+      </pur:process>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="process"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/></con:soapui-project>
