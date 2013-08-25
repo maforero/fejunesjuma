@@ -35,11 +35,9 @@ public class CodigoInserciones
     public static void Init(Object instance, Class claseRepresentada, Annotation annotacion, Method method) throws Exception {
         Init c = (Init) annotacion;
         for (Field f : claseRepresentada.getDeclaredFields()) {
-            try {
-                
+            try {  
                 if(!f.isAnnotationPresent(NoInit.class))
                 {
-                
                     f.setAccessible(true);
                     if (f.getType().equals(Integer.TYPE))
                     {
@@ -64,8 +62,6 @@ public class CodigoInserciones
                         f.set(instance, c.Long());
                     }
                 }
-                
-
             } 
             catch (Exception e)
             {
