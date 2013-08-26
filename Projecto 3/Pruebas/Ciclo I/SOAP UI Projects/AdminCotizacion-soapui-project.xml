@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="AdminCotizacion" resourceRoot="" soapui-version="4.5.2" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="AdminCotizacionSOAP" type="wsdl" bindingName="{http://marketplace.losalpes.com.co/AdminCotizacion/}AdminCotizacionSOAP" soapVersion="1_1" anonymous="optional" definition="http://marketplace8.virtual.uniandes.edu.co:7001/marketplaceFrontEnd/proxy/AdminCotizacion?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://marketplace8.virtual.uniandes.edu.co:7001/marketplaceFrontEnd/proxy/AdminCotizacion?wsdl"><con:part><con:url>http://marketplace8.virtual.uniandes.edu.co:7001/marketplaceFrontEnd/proxy/AdminCotizacion?wsdl</con:url><con:content><![CDATA[<WL5G3N0:definitions name="AdminCotizacion" targetNamespace="http://marketplace.losalpes.com.co/AdminCotizacion/" xmlns:WL5G3N0="http://schemas.xmlsoap.org/wsdl/" xmlns:WL5G3N1="http://marketplace.losalpes.com.co" xmlns:WL5G3N2="http://marketplace.losalpes.com.co/AdminCotizacion/" xmlns:WL5G3N3="http://schemas.xmlsoap.org/wsdl/soap/">
+  <WL5G3N0:types>
+    <xsd:schema xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://marketplace.losalpes.com.co/AdminCotizacion/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsd1="http://marketplace.losalpes.com.co">
+      <xsd:import namespace="http://marketplace.losalpes.com.co" schemaLocation="http://marketplace8.virtual.uniandes.edu.co:7001/marketplaceFrontEnd/proxy/AdminCotizacion?SCHEMA%2FmarketplaceFrontEnd%2Fproxy%2Fwsdls%2FAdminCotizacion%2FAdminCotizacion"></xsd:import>
+    </xsd:schema>
+  </WL5G3N0:types>
+  <WL5G3N0:message name="consultarProductosRequest">
+    <WL5G3N0:part element="WL5G3N1:ConsultarProductosRequestProxy" name="parameters"/>
+  </WL5G3N0:message>
+  <WL5G3N0:message name="consultarProductosResponse">
+    <WL5G3N0:part element="WL5G3N1:ConsultarProductosResponseProxy" name="parameters"/>
+  </WL5G3N0:message>
+  <WL5G3N0:message name="consultarFabricantesProductoRequest">
+    <WL5G3N0:part element="WL5G3N1:consultarFabricantesProductoRequest" name="parameters"/>
+  </WL5G3N0:message>
+  <WL5G3N0:message name="consultarFabricantesProductoResponse">
+    <WL5G3N0:part element="WL5G3N1:consultarFabricantesProductoResponse" name="parameters"/>
+  </WL5G3N0:message>
+  <WL5G3N0:portType name="AdminCotizacion">
+    <WL5G3N0:operation name="consultarProductos">
+      <WL5G3N0:input message="WL5G3N2:consultarProductosRequest"/>
+      <WL5G3N0:output message="WL5G3N2:consultarProductosResponse"/>
+    </WL5G3N0:operation>
+    <WL5G3N0:operation name="consultarFabricantesProducto">
+      <WL5G3N0:input message="WL5G3N2:consultarFabricantesProductoRequest"/>
+      <WL5G3N0:output message="WL5G3N2:consultarFabricantesProductoResponse"/>
+    </WL5G3N0:operation>
+  </WL5G3N0:portType>
+  <WL5G3N0:binding name="AdminCotizacionSOAP" type="WL5G3N2:AdminCotizacion">
+    <WL5G3N3:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <WL5G3N0:operation name="consultarProductos">
+      <WL5G3N3:operation soapAction="http://marketplace.losalpes.com.co/AdminCotizacion/consultarProductos"/>
+      <WL5G3N0:input>
+        <WL5G3N3:body use="literal"/>
+      </WL5G3N0:input>
+      <WL5G3N0:output>
+        <WL5G3N3:body use="literal"/>
+      </WL5G3N0:output>
+    </WL5G3N0:operation>
+    <WL5G3N0:operation name="consultarFabricantesProducto">
+      <WL5G3N3:operation soapAction="http://marketplace.losalpes.com.co/AdminCotizacion/consultarFabricantesProducto"/>
+      <WL5G3N0:input>
+        <WL5G3N3:body use="literal"/>
+      </WL5G3N0:input>
+      <WL5G3N0:output>
+        <WL5G3N3:body use="literal"/>
+      </WL5G3N0:output>
+    </WL5G3N0:operation>
+  </WL5G3N0:binding>
+  <WL5G3N0:service name="AdminCotizacion">
+    <WL5G3N0:port binding="WL5G3N2:AdminCotizacionSOAP" name="AdminCotizacionSOAP">
+      <WL5G3N3:address location="http://marketplace8.virtual.uniandes.edu.co:7001/marketplaceFrontEnd/proxy/AdminCotizacion"/>
+    </WL5G3N0:port>
+  </WL5G3N0:service>
+</WL5G3N0:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>http://marketplace8.virtual.uniandes.edu.co:7001/marketplaceFrontEnd/proxy/AdminCotizacion?SCHEMA%2FmarketplaceFrontEnd%2Fproxy%2Fwsdls%2FAdminCotizacion%2FAdminCotizacion</con:url><con:content><![CDATA[<schema targetNamespace="http://marketplace.losalpes.com.co" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.example.org/AdminCotizacion" xmlns:Q1="http://marketplace.losalpes.com.co">
+  <include schemaLocation="http://marketplace8.virtual.uniandes.edu.co:7001/marketplaceFrontEnd/proxy/AdminCotizacion?SCHEMA%2FmarketplaceFrontEnd%2Fcanonicos%2FProducto"/>
+  <include schemaLocation="http://marketplace8.virtual.uniandes.edu.co:7001/marketplaceFrontEnd/proxy/AdminCotizacion?SCHEMA%2FmarketplaceFrontEnd%2Fcanonicos%2FCliente"/>
+  <complexType name="ConsultarProductosRequestProxy"/>
+  <complexType name="ConsultarProductosResponseProxy">
+    <sequence>
+      <element name="productos" type="Q1:Producto" maxOccurs="unbounded" minOccurs="1"></element>
+    </sequence>
+  </complexType>
+  <element name="ConsultarProductosRequestProxy" type="Q1:ConsultarProductosRequestProxy"></element>
+  <element name="ConsultarProductosResponseProxy" type="Q1:ConsultarProductosResponseProxy"></element>
+  <complexType name="ConsultarFabricantesProductoRequest">
+    <sequence>
+      <element name="nombreProducto" type="string" maxOccurs="1" minOccurs="1"></element>
+      <element name="categoria" type="string" maxOccurs="1" minOccurs="1"></element>
+    </sequence>
+  </complexType>
+  <complexType name="ConsultarFabricantesProductoResponse">
+    <sequence>
+      <element name="cliente" type="Q1:Cliente" maxOccurs="unbounded" minOccurs="0"/>
+    </sequence>
+  </complexType>
+  <element name="consultarFabricantesProductoRequest" type="Q1:ConsultarFabricantesProductoRequest"></element>
+  <element name="consultarFabricantesProductoResponse" type="Q1:ConsultarFabricantesProductoResponse"></element>
+</schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://marketplace8.virtual.uniandes.edu.co:7001/marketplaceFrontEnd/proxy/AdminCotizacion?SCHEMA%2FmarketplaceFrontEnd%2Fcanonicos%2FProducto</con:url><con:content><![CDATA[<schema targetNamespace="http://marketplace.losalpes.com.co" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://marketplace.losalpes.com.co">
+  <include schemaLocation="http://marketplace8.virtual.uniandes.edu.co:7001/marketplaceFrontEnd/proxy/AdminCotizacion?SCHEMA%2FmarketplaceFrontEnd%2Fcanonicos%2FFabricante"/>
+  <complexType name="Producto">
+    <sequence>
+      <element name="id" type="string" minOccurs="0" maxOccurs="1"/>
+      <element name="nombre" type="string" minOccurs="1"/>
+      <element name="categoria" type="string" minOccurs="1" maxOccurs="1"></element>
+      <element name="tipo" type="string" minOccurs="0" maxOccurs="1"></element>
+      <element name="estado" type="string" minOccurs="1" maxOccurs="1"></element>
+      <element name="referencia" type="string" minOccurs="0" maxOccurs="1"/>
+    </sequence>
+  </complexType>
+  <element name="producto" type="tns:Producto"/>
+</schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://marketplace8.virtual.uniandes.edu.co:7001/marketplaceFrontEnd/proxy/AdminCotizacion?SCHEMA%2FmarketplaceFrontEnd%2Fcanonicos%2FFabricante</con:url><con:content><![CDATA[<schema targetNamespace="http://marketplace.losalpes.com.co" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://marketplace.losalpes.com.co">
+  <include schemaLocation="http://marketplace8.virtual.uniandes.edu.co:7001/marketplaceFrontEnd/proxy/AdminCotizacion?SCHEMA%2FmarketplaceFrontEnd%2Fcanonicos%2FProducto"/>
+  <include schemaLocation="http://marketplace8.virtual.uniandes.edu.co:7001/marketplaceFrontEnd/proxy/AdminCotizacion?SCHEMA%2FmarketplaceFrontEnd%2Fcanonicos%2FAvisoDespacho"/>
+  <complexType name="Fabricante">
+    <sequence>
+      <element name="id" type="long" minOccurs="0" maxOccurs="1"/>
+      <element name="nombre" type="string" minOccurs="1" maxOccurs="1"/>
+      <element name="nit" type="string" minOccurs="1" maxOccurs="1"/>
+      <element name="direccion" type="string" minOccurs="0" maxOccurs="1"/>
+      <element name="telefono" type="string" minOccurs="0" maxOccurs="1"/>
+      <element name="email" type="string" minOccurs="0" maxOccurs="1"/>
+      <element name="productos" type="tns:Producto" minOccurs="0" maxOccurs="unbounded"></element>
+      <element name="das" type="tns:DispatchAdvice" minOccurs="0" maxOccurs="unbounded"/>
+    </sequence>
+  </complexType>
+  <element name="fabricante" type="tns:Fabricante"/>
+</schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://marketplace8.virtual.uniandes.edu.co:7001/marketplaceFrontEnd/proxy/AdminCotizacion?SCHEMA%2FmarketplaceFrontEnd%2Fcanonicos%2FAvisoDespacho</con:url><con:content><![CDATA[<schema targetNamespace="http://marketplace.losalpes.com.co" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://marketplace.losalpes.com.co">
+  <include schemaLocation="http://marketplace8.virtual.uniandes.edu.co:7001/marketplaceFrontEnd/proxy/AdminCotizacion?SCHEMA%2FmarketplaceFrontEnd%2Fcanonicos%2FPurchaseOrder"/>
+  <include schemaLocation="http://marketplace8.virtual.uniandes.edu.co:7001/marketplaceFrontEnd/proxy/AdminCotizacion?SCHEMA%2FmarketplaceFrontEnd%2Fcanonicos%2FItem"/>
+  <element name="da" type="tns:DispatchAdvice"/>
+  <complexType name="DispatchAdvice">
+    <sequence>
+      <element name="id" type="long" minOccurs="0" maxOccurs="1"/>
+      <element name="numSeguimiento" type="string" minOccurs="0" maxOccurs="1"></element>
+      <element name="fechaEmision" type="dateTime" maxOccurs="1" minOccurs="1"></element>
+      <element name="fechaLlegada" type="dateTime" maxOccurs="1" minOccurs="1"></element>
+      <element name="montoOperacion" type="long" minOccurs="1" maxOccurs="1"></element>
+      <element name="camiones" type="string" maxOccurs="1" minOccurs="1"></element>
+      <element name="ordenCompra" type="tns:PurchaseOrder" maxOccurs="1" minOccurs="1"></element>
+      <element name="items" type="tns:Item" maxOccurs="unbounded" minOccurs="1"></element>
+      <element name="fabricante" type="tns:Fabricante" minOccurs="1" maxOccurs="1"></element>
+    </sequence>
+  </complexType>
+</schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://marketplace8.virtual.uniandes.edu.co:7001/marketplaceFrontEnd/proxy/AdminCotizacion?SCHEMA%2FmarketplaceFrontEnd%2Fcanonicos%2FPurchaseOrder</con:url><con:content><![CDATA[<schema targetNamespace="http://marketplace.losalpes.com.co" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://marketplace.losalpes.com.co">
+  <include schemaLocation="http://marketplace8.virtual.uniandes.edu.co:7001/marketplaceFrontEnd/proxy/AdminCotizacion?SCHEMA%2FmarketplaceFrontEnd%2Fcanonicos%2FComercio"/>
+  <include schemaLocation="http://marketplace8.virtual.uniandes.edu.co:7001/marketplaceFrontEnd/proxy/AdminCotizacion?SCHEMA%2FmarketplaceFrontEnd%2Fcanonicos%2FItem"/>
+  <element name="po" type="tns:PurchaseOrder"/>
+  <complexType name="PurchaseOrder">
+    <sequence>
+      <element name="id" type="long" minOccurs="0" maxOccurs="1"></element>
+      <element name="numSeguimiento" type="string" minOccurs="0" maxOccurs="1"></element>
+      <element name="item" type="tns:Item" minOccurs="1" maxOccurs="1"></element>
+      <element name="fechaMaxima" type="dateTime" minOccurs="1"/>
+      <element name="tiempoSubasta" type="dateTime" minOccurs="1"></element>
+      <element name="comercio" type="tns:Comercio" minOccurs="1"></element>
+      <element name="fabricanteAtiende" type="tns:Fabricante" minOccurs="0" maxOccurs="1"></element>
+      <element name="estado" type="string" minOccurs="1" maxOccurs="1"></element>
+      <element name="fecha" type="dateTime" minOccurs="1" maxOccurs="1"/>
+    </sequence>
+  </complexType>
+</schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://marketplace8.virtual.uniandes.edu.co:7001/marketplaceFrontEnd/proxy/AdminCotizacion?SCHEMA%2FmarketplaceFrontEnd%2Fcanonicos%2FComercio</con:url><con:content><![CDATA[<schema targetNamespace="http://marketplace.losalpes.com.co" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://marketplace.losalpes.com.co">
+  <include schemaLocation="http://marketplace8.virtual.uniandes.edu.co:7001/marketplaceFrontEnd/proxy/AdminCotizacion?SCHEMA%2FmarketplaceFrontEnd%2Fcanonicos%2FPurchaseOrder"/>
+  <include schemaLocation="http://marketplace8.virtual.uniandes.edu.co:7001/marketplaceFrontEnd/proxy/AdminCotizacion?SCHEMA%2FmarketplaceFrontEnd%2Fcanonicos%2FReturnMaterialAdvice"/>
+  <element name="comercio" type="tns:Comercio"/>
+  <complexType name="Comercio">
+    <sequence>
+      <element name="id" type="long" minOccurs="0" maxOccurs="1"></element>
+      <element name="nombre" type="string" minOccurs="1" maxOccurs="1"></element>
+      <element name="nit" type="string" maxOccurs="1" minOccurs="1"></element>
+      <element name="direccion" type="string" minOccurs="0" maxOccurs="1"></element>
+      <element name="telefono" type="string" minOccurs="0" maxOccurs="1"></element>
+      <element name="email" type="string" minOccurs="0" maxOccurs="1"></element>
+      <element name="pos" type="tns:PurchaseOrder" minOccurs="0" maxOccurs="unbounded"></element>
+      <element name="rmas" type="tns:ReturnMaterialAdvice" minOccurs="0" maxOccurs="unbounded"/>
+    </sequence>
+  </complexType>
+</schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://marketplace8.virtual.uniandes.edu.co:7001/marketplaceFrontEnd/proxy/AdminCotizacion?SCHEMA%2FmarketplaceFrontEnd%2Fcanonicos%2FReturnMaterialAdvice</con:url><con:content><![CDATA[<schema targetNamespace="http://marketplace.losalpes.com.co" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://marketplace.losalpes.com.co">
+  <include schemaLocation="http://marketplace8.virtual.uniandes.edu.co:7001/marketplaceFrontEnd/proxy/AdminCotizacion?SCHEMA%2FmarketplaceFrontEnd%2Fcanonicos%2FPurchaseOrder"/>
+  <include schemaLocation="http://marketplace8.virtual.uniandes.edu.co:7001/marketplaceFrontEnd/proxy/AdminCotizacion?SCHEMA%2FmarketplaceFrontEnd%2Fcanonicos%2FItem"/>
+  <include schemaLocation="http://marketplace8.virtual.uniandes.edu.co:7001/marketplaceFrontEnd/proxy/AdminCotizacion?SCHEMA%2FmarketplaceFrontEnd%2Fcanonicos%2FAvisoDespacho"/>
+  <element name="rma" type="tns:ReturnMaterialAdvice"/>
+  <complexType name="ReturnMaterialAdvice">
+    <sequence>
+      <element name="id" type="long" minOccurs="0" maxOccurs="1"></element>
+      <element name="numSeguimiento" type="string" minOccurs="0" maxOccurs="1"/>
+      <element name="causa" type="string" maxOccurs="1" minOccurs="1"></element>
+      <element name="fecha" type="dateTime" maxOccurs="1" minOccurs="1"></element>
+      <element name="avisoDespacho" type="tns:DispatchAdvice" maxOccurs="1" minOccurs="1"></element>
+      <element name="ordenCompra" type="tns:PurchaseOrder" maxOccurs="1" minOccurs="1"></element>
+      <element name="items" type="tns:Item" maxOccurs="1" minOccurs="1"></element>
+      <element name="comercio" type="tns:Comercio" minOccurs="1" maxOccurs="1"/>
+    </sequence>
+  </complexType>
+</schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://marketplace8.virtual.uniandes.edu.co:7001/marketplaceFrontEnd/proxy/AdminCotizacion?SCHEMA%2FmarketplaceFrontEnd%2Fcanonicos%2FItem</con:url><con:content><![CDATA[<schema targetNamespace="http://marketplace.losalpes.com.co" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://marketplace.losalpes.com.co">
+  <include schemaLocation="http://marketplace8.virtual.uniandes.edu.co:7001/marketplaceFrontEnd/proxy/AdminCotizacion?SCHEMA%2FmarketplaceFrontEnd%2Fcanonicos%2FFabricante"/>
+  <include schemaLocation="http://marketplace8.virtual.uniandes.edu.co:7001/marketplaceFrontEnd/proxy/AdminCotizacion?SCHEMA%2FmarketplaceFrontEnd%2Fcanonicos%2FProducto"/>
+  <element name="item" type="tns:Item"/>
+  <complexType name="Item">
+    <sequence>
+      <element name="id" type="long" minOccurs="0" maxOccurs="1"/>
+      <element name="valor" type="long" minOccurs="0" maxOccurs="1"/>
+      <element name="cantidad" type="int" minOccurs="1" maxOccurs="1"/>
+      <element name="producto" type="tns:Producto" minOccurs="1"></element>
+    </sequence>
+  </complexType>
+</schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://marketplace8.virtual.uniandes.edu.co:7001/marketplaceFrontEnd/proxy/AdminCotizacion?SCHEMA%2FmarketplaceFrontEnd%2Fcanonicos%2FCliente</con:url><con:content><![CDATA[<schema targetNamespace="http://marketplace.losalpes.com.co" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://marketplace.losalpes.com.co">
+  <include schemaLocation="http://marketplace8.virtual.uniandes.edu.co:7001/marketplaceFrontEnd/proxy/AdminCotizacion?SCHEMA%2FmarketplaceFrontEnd%2Fcanonicos%2FContacto"/>
+  <include schemaLocation="http://marketplace8.virtual.uniandes.edu.co:7001/marketplaceFrontEnd/proxy/AdminCotizacion?SCHEMA%2FmarketplaceFrontEnd%2Fcanonicos%2FSolicitudRegistro"/>
+  <include schemaLocation="http://marketplace8.virtual.uniandes.edu.co:7001/marketplaceFrontEnd/proxy/AdminCotizacion?SCHEMA%2FmarketplaceFrontEnd%2Fcanonicos%2FCuentaFacturacion"/>
+  <complexType name="Cliente">
+    <sequence>
+      <element name="id" type="string" minOccurs="0" maxOccurs="1"></element>
+      <element name="nombre" type="string" minOccurs="1" maxOccurs="1"></element>
+      <element name="nit" type="string" minOccurs="1" maxOccurs="1"></element>
+      <element name="direccion" type="string" minOccurs="0" maxOccurs="1"></element>
+      <element name="telefono" type="string" minOccurs="0" maxOccurs="1"></element>
+      <element name="email" type="string" minOccurs="0" maxOccurs="1"></element>
+      <element name="ctaFact" type="tns:CuentaFacturacion" minOccurs="0" maxOccurs="1"></element>
+      <element name="solicitudes" type="tns:SolicitudRegistro" minOccurs="0" maxOccurs="unbounded"></element>
+      <element name="contactos" type="tns:Contacto" minOccurs="0" maxOccurs="unbounded"></element>
+      <element name="razonSocial" type="string" minOccurs="0" maxOccurs="1"></element>
+      <element name="estado" type="string" minOccurs="0" maxOccurs="1"></element>
+      <element name="tipo" type="string" minOccurs="0" maxOccurs="1"/>
+      <element name="comision" type="double" minOccurs="0" maxOccurs="1"></element>
+    </sequence>
+  </complexType>
+  <element name="cliente" type="tns:Cliente"/>
+</schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://marketplace8.virtual.uniandes.edu.co:7001/marketplaceFrontEnd/proxy/AdminCotizacion?SCHEMA%2FmarketplaceFrontEnd%2Fcanonicos%2FContacto</con:url><con:content><![CDATA[<schema targetNamespace="http://marketplace.losalpes.com.co" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://marketplace.losalpes.com.co">
+  <element name="contacto" type="tns:Contacto"/>
+  <complexType name="Contacto">
+    <sequence>
+      <element name="id" type="string" minOccurs="1" maxOccurs="1"></element>
+      <element name="numIdentificacion" type="string" minOccurs="1" maxOccurs="1"></element>
+      <element name="tipoIdentificacion" type="string" minOccurs="1" maxOccurs="1"></element>
+      <element name="nombre" type="string" minOccurs="1" maxOccurs="1"></element>
+      <element name="direccion" type="string" minOccurs="1" maxOccurs="1"></element>
+      <element name="telefono" type="string" minOccurs="1" maxOccurs="1"></element>
+      <element name="celular" type="string" minOccurs="0" maxOccurs="1"></element>
+      <element name="estado" type="string" minOccurs="0" maxOccurs="1"/>
+      <element name="email" type="string" minOccurs="1" maxOccurs="1"></element>
+    </sequence>
+  </complexType>
+</schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://marketplace8.virtual.uniandes.edu.co:7001/marketplaceFrontEnd/proxy/AdminCotizacion?SCHEMA%2FmarketplaceFrontEnd%2Fcanonicos%2FSolicitudRegistro</con:url><con:content><![CDATA[<schema targetNamespace="http://marketplace.losalpes.com.co" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://marketplace.losalpes.com.co">
+  <include schemaLocation="http://marketplace8.virtual.uniandes.edu.co:7001/marketplaceFrontEnd/proxy/AdminCotizacion?SCHEMA%2FmarketplaceFrontEnd%2Fcanonicos%2FProducto"/>
+  <include schemaLocation="http://marketplace8.virtual.uniandes.edu.co:7001/marketplaceFrontEnd/proxy/AdminCotizacion?SCHEMA%2FmarketplaceFrontEnd%2Fcanonicos%2FDocumento"/>
+  <element name="solicitudRegistro" type="tns:SolicitudRegistro"/>
+  <complexType name="SolicitudRegistro">
+    <sequence>
+      <element name="id" type="long" minOccurs="1" maxOccurs="1"/>
+      <element name="numRadicacion" type="string" minOccurs="0" maxOccurs="1"></element>
+      <element name="fecha" type="date" minOccurs="1" maxOccurs="1"></element>
+      <element name="estado" type="string" minOccurs="1" maxOccurs="1"></element>
+      <element name="causa" type="string" minOccurs="0" maxOccurs="1"/>
+      <element name="documentos" type="tns:Documento" minOccurs="1" maxOccurs="unbounded"></element>
+      <element name="productos" type="tns:Producto" minOccurs="0" maxOccurs="unbounded"></element>
+    </sequence>
+  </complexType>
+</schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://marketplace8.virtual.uniandes.edu.co:7001/marketplaceFrontEnd/proxy/AdminCotizacion?SCHEMA%2FmarketplaceFrontEnd%2Fcanonicos%2FDocumento</con:url><con:content><![CDATA[<schema targetNamespace="http://marketplace.losalpes.com.co" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://marketplace.losalpes.com.co">
+  <element name="documento" type="tns:Documento"/>
+  <complexType name="Documento">
+    <sequence>
+      <element name="id" type="long" minOccurs="1" maxOccurs="1"/>
+      <element name="nombre" type="string" minOccurs="1" maxOccurs="1"></element>
+      <element name="url" type="string" minOccurs="1" maxOccurs="1"></element>
+      <element name="tipo" type="string" minOccurs="1" maxOccurs="1"></element>
+    </sequence>
+  </complexType>
+</schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://marketplace8.virtual.uniandes.edu.co:7001/marketplaceFrontEnd/proxy/AdminCotizacion?SCHEMA%2FmarketplaceFrontEnd%2Fcanonicos%2FCuentaFacturacion</con:url><con:content><![CDATA[<schema targetNamespace="http://marketplace.losalpes.com.co" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://marketplace.losalpes.com.co" xmlns:Q1="http://marketplace.losalpes.com.co">
+  <include schemaLocation="http://marketplace8.virtual.uniandes.edu.co:7001/marketplaceFrontEnd/proxy/AdminCotizacion?SCHEMA%2FmarketplaceFrontEnd%2Fcanonicos%2FFactura"/>
+  <include schemaLocation="http://marketplace8.virtual.uniandes.edu.co:7001/marketplaceFrontEnd/proxy/AdminCotizacion?SCHEMA%2FmarketplaceFrontEnd%2Fcanonicos%2FTransaccion"/>
+  <complexType name="CuentaFacturacion">
+    <sequence>
+      <element name="id" type="long" minOccurs="0" maxOccurs="1"></element>
+      <element name="numReferencia" type="string" minOccurs="1" maxOccurs="1"></element>
+      <element name="transacciones" type="Q1:Transaccion" minOccurs="0" maxOccurs="unbounded"></element>
+      <element name="facturas" type="tns:Factura" minOccurs="0" maxOccurs="unbounded"/>
+    </sequence>
+  </complexType>
+  <element name="cuentaFacturacion" type="tns:CuentaFacturacion"/>
+</schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://marketplace8.virtual.uniandes.edu.co:7001/marketplaceFrontEnd/proxy/AdminCotizacion?SCHEMA%2FmarketplaceFrontEnd%2Fcanonicos%2FFactura</con:url><con:content><![CDATA[<schema targetNamespace="http://marketplace.losalpes.com.co" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://marketplace.losalpes.com.co">
+  <complexType name="Factura">
+    <sequence>
+      <element name="id" type="long" minOccurs="0" maxOccurs="1"></element>
+      <element name="url" type="string" minOccurs="1" maxOccurs="1"></element>
+      <element name="nombre" type="string" minOccurs="1" maxOccurs="1"></element>
+      <element name="fechaInicio" type="dateTime" minOccurs="1" maxOccurs="1"></element>
+      <element name="fechaFin" type="dateTime" minOccurs="1" maxOccurs="1"></element>
+      <element name="valorPago" type="long" minOccurs="1" maxOccurs="1"/>
+    </sequence>
+  </complexType>
+  <element name="factura" type="tns:Factura"/>
+</schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://marketplace8.virtual.uniandes.edu.co:7001/marketplaceFrontEnd/proxy/AdminCotizacion?SCHEMA%2FmarketplaceFrontEnd%2Fcanonicos%2FTransaccion</con:url><con:content><![CDATA[<schema targetNamespace="http://marketplace.losalpes.com.co" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://marketplace.losalpes.com.co">
+  <complexType name="Transaccion">
+    <sequence>
+      <element name="id" type="long" minOccurs="0" maxOccurs="1"></element>
+      <element name="referencia" type="string" minOccurs="1" maxOccurs="1"></element>
+      <element name="fecha" type="dateTime" minOccurs="1" maxOccurs="1"></element>
+      <element name="descripcion" type="string" minOccurs="1" maxOccurs="1"></element>
+      <element name="valor" type="long" minOccurs="1" maxOccurs="1"/>
+    </sequence>
+  </complexType>
+  <element name="transaccion" type="string"/>
+</schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://marketplace8.virtual.uniandes.edu.co:7001/marketplaceFrontEnd/proxy/AdminCotizacion</con:endpoint></con:endpoints><con:operation isOneWay="false" action="http://marketplace.losalpes.com.co/AdminCotizacion/consultarProductos" name="consultarProductos" bindingOperationName="consultarProductos" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://marketplace8.virtual.uniandes.edu.co:7001/marketplaceFrontEnd/proxy/AdminCotizacion</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:mar="http://marketplace.losalpes.com.co">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <mar:ConsultarProductosRequest/>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://marketplace.losalpes.com.co/AdminCotizacion/consultarProductos"/><con:wsrmConfig version="1.2"/></con:call><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://marketplace8.virtual.uniandes.edu.co:7001/marketplaceFrontEnd/proxy/AdminCotizacion</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:mar="http://marketplace.losalpes.com.co">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <mar:ConsultarProductosRequestProxy/>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://marketplace.losalpes.com.co/AdminCotizacion/consultarProductos"/></con:call></con:operation><con:operation isOneWay="false" action="http://marketplace.losalpes.com.co/AdminCotizacion/consultarFabricantesProducto" name="consultarFabricantesProducto" bindingOperationName="consultarFabricantesProducto" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://marketplace8.virtual.uniandes.edu.co:7001/marketplaceFrontEnd/proxy/AdminCotizacion</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:mar="http://marketplace.losalpes.com.co">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <mar:consultarFabricantesProductoRequest>
+         <mar:nombreProducto>Yox</mar:nombreProducto>
+         <mar:categoria>Lacteos</mar:categoria>
+      </mar:consultarFabricantesProductoRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://marketplace.losalpes.com.co/AdminCotizacion/consultarFabricantesProducto"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/></con:soapui-project>
