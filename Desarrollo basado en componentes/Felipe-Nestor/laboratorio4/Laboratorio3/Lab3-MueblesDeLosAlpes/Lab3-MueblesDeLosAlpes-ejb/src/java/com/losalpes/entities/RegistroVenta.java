@@ -17,14 +17,12 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 /**
  * Clase que modela un registro de venta realizado por un cliente
  * @author Juan Sebastián Urrego
  */
-@Entity 
+@Entity
 public class RegistroVenta
 {
 
@@ -32,19 +30,13 @@ public class RegistroVenta
     // Atributos
     //-----------------------------------------------------------
     @EmbeddedId
-    private RegistroVentaPK id;
-    
-    /** 
-     * Fecha en la que se vendió el producto
-     */
-    @Temporal(TemporalType.DATE)
-    private Date fechaVenta;
+    private RegistroVentaPK registroVentaPK;
 
     /**
      * Producto vendido
      */
     @ManyToOne
-    @JoinColumn(name="producto", insertable=false, updatable=false)
+    @JoinColumn(name="producto", updatable=false,insertable=false)
     private Mueble producto;
 
     /**
@@ -56,14 +48,13 @@ public class RegistroVenta
      * Ciudad en la que se vendió el producto
      */
     @ManyToOne
-    @JoinColumn(name="ciudad", insertable=false, updatable=false)
     private Ciudad ciudad;
 
     /**
      * Usuario que compró el producto
      */
     @ManyToOne
-    @JoinColumn(name="comprador", insertable=false, updatable=false)
+    @JoinColumn(name="comprador", updatable=false,insertable=false)
     private Usuario comprador;
 
     //-----------------------------------------------------------
@@ -88,7 +79,7 @@ public class RegistroVenta
     public RegistroVenta(Date fechaVenta, Mueble producto, int cantidad,
             Ciudad ciudad, Usuario comprador)
     {
-        this.fechaVenta = fechaVenta;
+        this.registroVentaPK = new RegistroVentaPK(fechaVenta, comprador.getLogin(), producto.getReferencia());
         this.producto = producto;
         this.cantidad = cantidad;
         this.ciudad = ciudad;
@@ -115,25 +106,7 @@ public class RegistroVenta
     public void setCantidad(int cantidad)
     {
         this.cantidad = cantidad;
-    }
-
-    /**
-     * Devuelve la fecha en que se vendió el mueble
-     * @return fechaVenta Fecha de venta del mueble
-     */
-    public Date getFechaVenta()
-    {
-        return fechaVenta;
-    }
-
-    /**
-     * Modifica la fecha en que se vendió el mueble
-     * @param fechaVenta Nueva fecha de venta
-     */
-    public void setFechaVenta(Date fechaVenta)
-    {
-        this.fechaVenta = fechaVenta;
-    }
+    }    
 
     /**
      * Devuelve el mueble adquirido
@@ -189,11 +162,12 @@ public class RegistroVenta
         this.comprador = comprador;
     }
 
-    public RegistroVentaPK getId() {
-        return id;
+    public RegistroVentaPK getRegistroVentaPK() {
+        return registroVentaPK;
     }
 
-    public void setId(RegistroVentaPK id) {
-        this.id = id;
+    public void setRegistroVentaPK(RegistroVentaPK registroVentaPK) {
+        this.registroVentaPK = registroVentaPK;
     }
+
 }

@@ -12,10 +12,12 @@
 
 package com.losalpes.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Transient;
 
@@ -35,12 +37,13 @@ public class Mueble
      * Referencia que identifica el modelo del mueble en el sistema.
      */
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private long referencia;
 
     /**
      * Nombre del mueble.
      */
+    @Column(nullable=false)
     private String nombre;
 
     /**
@@ -52,6 +55,7 @@ public class Mueble
      * Tipo de mueble.
      */
     @Enumerated(EnumType.STRING)
+    @Column(nullable=false)
     private TipoMueble tipo;
 
     /**

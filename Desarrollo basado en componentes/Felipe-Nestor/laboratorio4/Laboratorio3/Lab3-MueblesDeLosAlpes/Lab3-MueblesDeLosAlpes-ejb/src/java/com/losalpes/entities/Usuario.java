@@ -13,13 +13,12 @@
 package com.losalpes.entities;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -34,23 +33,17 @@ public class Usuario
     //-----------------------------------------------------------
     // Atributos
     //-----------------------------------------------------------
-    
-    /**
-     * Id del usuario
-     */
-    @Id
-    @GeneratedValue
-    private long id;
-    
+
     /**
      * Nombre del usuario
-     */
+     */    
+    @Id
     private String login;
 
     /**
      * Contraseña del usuario
      */
-    private String contraseña;
+    private String contrasena;
 
     /**
      * Tipo de usuario
@@ -61,11 +54,12 @@ public class Usuario
     /**
      * Nombres y apellidos del usuario
      */
+    @Column(nullable=false)
     private String nombreCompleto;
 
     /**
      * Número de documento de identidad
-     */
+     */    
     private long documento;
 
     /**
@@ -77,6 +71,7 @@ public class Usuario
     /**
      * Número del teléfono local
      */
+    @Column(nullable=false)
     private long telefonoLocal;
 
     /*
@@ -88,12 +83,12 @@ public class Usuario
      * Ciudad de residencia del usuario
      */
     @ManyToOne
-    @JoinColumn(name = "ciudad")
     private Ciudad ciudad;
 
     /**
      * Dirección de residencia del usuario
      */
+    @Column(nullable=false)
     private String direccion;
 
     /**
@@ -105,6 +100,7 @@ public class Usuario
     /**
      * Correo electrónico del usuario
      */
+    @Column(nullable=false)
     private String correo;
 
     /**
@@ -116,7 +112,7 @@ public class Usuario
      * Devuelve un lista con todos las compras del usuario
      */
     @OneToMany(mappedBy="comprador")
-    private List<RegistroVenta>compras;
+    private Collection<RegistroVenta>compras;
 
     //-----------------------------------------------------------
     // Constructores
@@ -136,10 +132,10 @@ public class Usuario
      * @param contraseña Constraseña del usuario
      * @param tipo Tipo de usuario
      */
-    public Usuario(String login, String contraseña, TipoUsuario tipoUsuario)
+    public Usuario(String login, String contrasena, TipoUsuario tipoUsuario)
     {
         this.login = login;
-        this.contraseña = contraseña;
+        this.contrasena = contrasena;
         this.tipoUsuario = tipoUsuario;
         this.compras=new ArrayList<RegistroVenta>();
     }
@@ -148,20 +144,6 @@ public class Usuario
     // Getters y setters
     //-----------------------------------------------------------
 
-    /**
-     * Devuelve el id de usuario
-     * @return ID id del usuario
-     */
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-    
-    
-    
     /**
      * Devuelve el nombre de usuario
      * @return nombre Nombre del usuario
@@ -186,7 +168,7 @@ public class Usuario
      */
     public String getContraseña()
     {
-        return contraseña;
+        return contrasena;
     }
 
     /**
@@ -195,7 +177,7 @@ public class Usuario
      */
     public void setContraseña(String contraseña)
     {
-        this.contraseña = contraseña;
+        this.contrasena = contraseña;
     }
 
     /**
@@ -382,7 +364,7 @@ public class Usuario
      * Devuelve las compras realizadas por un cliente
      * @return compras Lista con las compras realizadas por el cliente
      */
-    public List<RegistroVenta> getCompras()
+    public Collection<RegistroVenta> getCompras()
     {
         return compras;
     }
@@ -391,7 +373,7 @@ public class Usuario
      * Modifica las compras realizadas por un cliente
      * @param compras Nueva lista de compras
      */
-    public void setCompras(ArrayList<RegistroVenta> compras)
+    public void setCompras(Collection<RegistroVenta> compras)
     {
         this.compras = compras;
     }

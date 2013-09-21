@@ -13,11 +13,12 @@ package com.losalpes.entities;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 /**
@@ -36,7 +37,7 @@ public class Vendedor
      * Número de identificación del vendedor
      */
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private long id;
 
     /**
@@ -52,8 +53,8 @@ public class Vendedor
     /**
      * Lista de ítems de experiencia del vendedor.
      */
-    @OneToMany
-    @JoinColumn(name = "vendedor")
+    @OneToMany(cascade= CascadeType.ALL)
+    @JoinColumn(name="VENDEDOR_FK")
     private List<ExperienciaVendedor> experiencia;
 
     /**
