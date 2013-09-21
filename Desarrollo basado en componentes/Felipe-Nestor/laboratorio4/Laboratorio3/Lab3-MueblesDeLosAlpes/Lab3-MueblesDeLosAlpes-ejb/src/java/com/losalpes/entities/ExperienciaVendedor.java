@@ -15,6 +15,8 @@ package com.losalpes.entities;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  * Clase que modela un ìtem de experiencia de vendedor.
@@ -54,6 +56,10 @@ public class ExperienciaVendedor
      * Año de terminación del vínculo laboral.
      */
     private int ano;
+    
+    @ManyToOne
+    @JoinColumn(name = "vendedor")
+    private Vendedor vendedor;
 
     //-----------------------------------------------------------
     // Constructores
@@ -178,6 +184,14 @@ public class ExperienciaVendedor
     public void setNombreEmpesa(String nombreEmpesa)
     {
         this.nombreEmpesa = nombreEmpesa;
+    }
+
+    public Vendedor getVendedor() {
+        return vendedor;
+    }
+
+    public void setVendedor(Vendedor vendedor) {
+        this.vendedor = vendedor;
     }
 
 }

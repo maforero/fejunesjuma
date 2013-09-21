@@ -13,26 +13,38 @@
 package com.losalpes.entities;
 
 import java.util.Date;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * Clase que modela un registro de venta realizado por un cliente
  * @author Juan Sebastián Urrego
  */
+@Entity 
 public class RegistroVenta
 {
 
     //-----------------------------------------------------------
     // Atributos
     //-----------------------------------------------------------
+    @EmbeddedId
+    private RegistroVentaPK id;
     
-    /**
+    /** 
      * Fecha en la que se vendió el producto
      */
+    @Temporal(TemporalType.DATE)
     private Date fechaVenta;
 
     /**
      * Producto vendido
      */
+    @ManyToOne
+    @JoinColumn(name = "producto")
     private Mueble producto;
 
     /**
@@ -48,6 +60,8 @@ public class RegistroVenta
     /**
      * Usuario que compró el producto
      */
+    @ManyToOne
+    @JoinColumn(name = "comprador")
     private Usuario comprador;
 
     //-----------------------------------------------------------
@@ -173,4 +187,11 @@ public class RegistroVenta
         this.comprador = comprador;
     }
 
+    public RegistroVentaPK getId() {
+        return id;
+    }
+
+    public void setId(RegistroVentaPK id) {
+        this.id = id;
+    }
 }
