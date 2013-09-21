@@ -1,0 +1,444 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+    Document   : catalogoCliente
+    Created on : 25-jul-2011
+    Author     : Juan Sebastián Urrego
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/main-template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ice="http://www.icesoft.com/icefaces/component"
+                xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <ui:param name="titulo" value="Catálogo de muebles" />
+    <ui:define name="body">
+
+        <ice:panelGroup>
+
+
+            <!-- Panel para adquirir nuevos muebles -->
+
+
+            <ice:panelCollapsible id="linkPanel" expanded="true" disabled="true">
+                <f:facet name="header">
+
+                    <ice:outputText id="linkHeader"
+                                    value="Sesión cliente" style="color:white"/>
+                </f:facet>
+            </ice:panelCollapsible>
+
+            <h:form>
+                <div align="right">
+                    <ice:commandButton  action="#{loginBean.logout}"  style="background: transparent;
+                                        padding-right: 12px" image="./resources/img/pag/logOff.png"
+                                        title="Cerrar sesión"/>
+                </div>
+            </h:form>
+
+            <h:form>
+                <ice:panelTabSet id="icePnlTbSet"
+                                 selectedIndex="0"
+                                 tabPlacement="top"
+                                 style="padding: 10px"
+                                 summary="Se realiza el registro de un nuevo usuario en el sistema">
+
+
+                    <!-- Panel Tab 1 defined with some basic content -->
+                    <ice:panelTab rendered="true"
+                                  label="Catálogo de productos"
+                                  title="Catálogo de productos">
+
+                        <ice:panelGrid columns="2">
+
+                            <ice:panelGroup style="background-color: white;">
+
+
+
+                                <!-- Cart Title -->
+
+                                <ice:panelGroup style="background-color: white">
+
+                                    <ice:outputText value="Carro de compra" style="font-weight: bold" />
+                                    <br/>
+                                    <ice:outputText value="Haz click en Remover para eliminar un elemento del carro" />
+                                </ice:panelGroup>
+
+                                <!-- Conainer for shopping cart summary, also a drop target. -->
+                                <ice:panelGroup id="shoppingCart"
+                                                styleClass="chartContainer backBeanChangeContainer"
+                                                style="border: none;padding:2px;background-color: white"
+                                                hoverclass="cartDropTarget"
+                                                dropTarget="true" >
+                                    <ice:panelGroup style="background-color: white">
+
+                                        <!-- Items del carrito -->
+                                        <ice:dataTable id="DataTbl"
+                                                       value="#{carritoBean.inventario}"
+                                                       var="cartItem"
+                                                       style="padding: 0px; margin: 0px;"
+                                                       border="0" cellpadding="2">
+                                            <ice:column>
+                                                <f:facet name="header">
+                                                    <ice:outputText style="color:white"
+                                                                    value="Imágen"/>
+                                                </f:facet>
+                                                <ice:panelGroup style="background-color: transparent">
+                                                    <ice:graphicImage id="cartItemImage"
+                                                                      url="./resources/img/pag/#{cartItem.imagen}_small.png"
+                                                                      alt="#{cartItem.nombre}"/>
+                                                </ice:panelGroup>
+                                            </ice:column>
+
+                                            <ice:column>
+                                                <f:facet name="header">
+                                                    <ice:outputText
+                                                        value="Nombre"
+                                                        style="color:white"/>
+                                                </f:facet>
+                                                <ice:outputText id="DDNameout" value="#{cartItem.nombre}"/>
+                                            </ice:column>
+
+                                            <ice:column>
+                                                <f:facet name="header">
+                                                    <ice:outputText
+                                                        style="display:inline;color:white"
+                                                        value="Precio"/>
+                                                </f:facet>
+                                                <ice:outputText id="DDPriceout"
+                                                                style="display:inline"
+                                                                value="$ #{cartItem.precio}">
+                                                    <f:convertNumber type="currency"
+                                                                     groupingUsed="true" maxFractionDigits="2" />
+                                                </ice:outputText>
+                                            </ice:column>
+
+                                            <ice:column>
+                                                <f:facet name="header">
+                                                    <ice:outputText
+                                                        value="Cantidad"
+                                                        style="color:white"/>
+                                                </f:facet>
+                                                <ice:panelGroup  effect="#{carritoBean.cambioEfecto}" style="text-align:center;background-color: transparent" >
+                                                    <ice:outputText id="DDQtyout"
+                                                                    value="#{cartItem.cantidad}" />
+                                                </ice:panelGroup>
+
+                                            </ice:column>
+
+                                            <ice:column>
+                                                <f:facet name="header">
+                                                    <ice:outputText
+                                                        value="Costo"
+                                                        style="color:white"/>
+                                                </f:facet>
+                                                <ice:outputText id="DDQCostout"
+                                                                style="display:inline;"
+                                                                value="$ #{cartItem.precio * cartItem.cantidad}">
+                                                    <f:convertNumber type="currency"
+                                                                     groupingUsed="true" maxIntegerDigits="9" maxFractionDigits="2"/>
+                                                </ice:outputText>
+                                            </ice:column>
+
+                                            <ice:column>
+                                                <f:facet name="header">
+                                                    <ice:outputText
+                                                        value="Remover"
+                                                        style="color:white"/>
+                                                </f:facet>
+
+                                                <ice:panelGroup styleClass="returnItemButton" style="background-color: transparent">
+
+                                                    <ice:commandLink id="DDRtn"
+                                                                     actionListener="#{carritoBean.removerItemCarrito}"
+                                                                     value="Remover" >
+                                                        <f:param name="inventoryId" value="#{cartItem.referencia}" />
+
+                                                    </ice:commandLink>
+
+
+                                                </ice:panelGroup>
+
+                                            </ice:column>
+                                        </ice:dataTable>
+                                    </ice:panelGroup>
+
+                                </ice:panelGroup>
+
+                                <!--
+                                    Drop Target, drag event is fire when an Iventory item is dragged on this
+                                    panelGroup.
+                                -->
+
+                                <ice:panelGroup styleClass="chartContainer backBeanChangeContainer"
+                                                style="padding:2px;border-style: solid;border-color: #D9D9D9;border-width: 1px"
+                                                dropTarget="true"
+                                                hoverclass="cartDropTarget"
+                                                rendered="#{empty carritoBean.inventario}">
+                                    <ice:panelGroup id="cartDropTarget"
+                                                    style="text-align: center;background-color:white;padding:20px;" >
+
+                                        <ice:graphicImage value="./resources/img/pag/carrito.png"
+                                                          alt="Carro de compras"
+                                                          width="55" height="45"/>
+                                    </ice:panelGroup>
+                                </ice:panelGroup>
+
+                                <!-- Cuenta total, también es un dropTarget -->
+                                <ice:panelGroup styleClass="chartContainer backBeanChangeContainer"
+                                                style="text-align: right;background-color: white"
+                                                dropTarget="true"
+                                                hoverclass="cartDropTarget"
+                                                rendered="#{!empty carritoBean.inventario}">
+                                    <ice:panelGroup style="background-color: white;border-style: solid;border-color: #D9D9D9;border-width: 1px">
+                                        <ice:outputText
+                                            style="display: inline;"
+                                            value="Total: "/>
+                                        <ice:outputText
+                                            style="display: inline;"
+                                            value="$ #{carritoBean.precioTotal}" >
+                                            <f:convertNumber type="currency"
+                                                             groupingUsed="true" maxFractionDigits="2" />
+                                        </ice:outputText>
+                                        <ice:outputText style="padding-right: 4px"
+                                                        value="(#{carritoBean.totalUnidades} mueble(s))" />
+                                    </ice:panelGroup>
+                                </ice:panelGroup>
+                            </ice:panelGroup>
+
+
+
+                            <!-- Muebles del sistema  -->
+                            <ice:panelSeries id="data"
+                                             value="#{carritoBean.muebles}"
+                                             var="inventoryItem"
+                                             style="width: 200px;padding-left: 130px"
+                                             rows="2"
+                                             >
+
+                                <ice:panelGroup
+                                    styleClass="inventoryItemContainer"
+                                    style="background-color: white"
+                                    >
+                                    <!--
+                                        Drag the image, name and price over to the cart...
+                                        The dragListener event is responsible for handling what happens
+                                        after a drag event has occured.
+
+                                        DragMask should be used to avoid the unnessary nework trafic when
+                                        a particular drag or drop event is not being used.
+                                    -->
+
+                                    <ice:panelGrid columns="2">
+                                        <ice:panelGroup id="PnlGrp"
+                                                        draggable="true"
+                                                        dragListener="#{carritoBean.agregarItemCarrito}"
+                                                        dragValue="#{inventoryItem}"
+                                                        dragOptions="dragGhost"                                                        
+                                                        dragMask="dragging,drag_cancel,hover_start,hover_end"
+                                                        dropMask="dragging,drag_cancel,hover_start,hover_end"
+                                                        style="background-color: white">
+                                            <ice:graphicImage id="GrphImg"
+                                                              width="90px"
+                                                              height="90px"
+                                                              url="./resources/img/pag/#{inventoryItem.imagen}.png"
+                                                              alt="#{inventoryItem.nombre}"/>
+                                        </ice:panelGroup>
+                                        <ice:panelGroup panelTooltip="panelToolTip" style="text-align:center;background-color: white">
+                                            <b><ice:outputText id="DDName"
+                                                               value="#{inventoryItem.nombre}"/></b>
+                                            <br/>
+                                            <ice:outputText value="Precio: " />
+                                            <ice:outputText id="DDPrice"
+                                                            value="$ #{inventoryItem.precio}">
+                                                <f:convertNumber type="currency"
+                                                                 groupingUsed="true" maxFractionDigits="2" />
+                                            </ice:outputText>
+                                            <br />
+                                            <ice:outputText id="DDQty"
+                                                            value="Cantidad: #{inventoryItem.cantidad}"/>
+                                        </ice:panelGroup>
+
+                                        <!-- Panel desplegado al momento de localizar el cursor encima de la imágen -->
+                                        <ice:panelTooltip id="panelToolTip" displayOn="hover"
+                                                          hideOn="mouseout" moveWithMouse="false"
+                                                          hoverDelay="500"
+                                                          style="width:100px;height:75px;text-align:left">
+                                            <f:facet name="header">
+                                                <ice:outputText
+                                                    value="Descripción"/>
+                                            </f:facet>
+                                            <f:facet name="body">
+                                                <ice:panelGroup style="background-color: white">
+                                                    <div align="justify">
+                                                        <ice:outputText value="#{inventoryItem.descripcion}"/>
+                                                    </div>                                                   
+                                                </ice:panelGroup>
+                                            </f:facet>
+                                        </ice:panelTooltip>
+                                    </ice:panelGrid>
+                                </ice:panelGroup>
+
+                            </ice:panelSeries>
+
+                            <ice:panelGroup style="background-color: white">
+
+                                <ice:commandButton value="Comprar" action="#{carritoBean.comprar}"/>
+
+                            </ice:panelGroup>
+
+                            <ice:panelGroup style="background-color: white;padding-left: 130px">
+
+                                <!-- Se crea y establecen propiedades del paginador -->
+                                <ice:dataPaginator id="dataScroll_1"
+
+                                                   for="data"
+                                                   vertical="false"
+                                                   fastStep="3"
+                                                   paginator="true"
+                                                   paginatorMaxPages="4"
+                                                   style="background-color: white">
+                                    <f:facet name="first">
+                                        <ice:graphicImage id="firstpage_1"
+                                                          url="./resources/img/graphics/arrow-first.gif"
+                                                          style="border:none;background-color: white"
+                                                          title="Ir a la primera página"/>
+                                    </f:facet>
+                                    <f:facet name="last">
+                                        <ice:graphicImage id="lastpage_1"
+                                                          url="./resources/img/graphics/arrow-last.gif"
+                                                          style="border:none;background-color: white"
+                                                          title="Ir a la última página"/>
+                                    </f:facet>
+                                    <f:facet name="previous">
+                                        <ice:graphicImage id="previouspage_1"
+                                                          url="./resources/img/graphics/arrow-previous.gif"
+                                                          style="border:none;background-color: white"
+                                                          title="Atrás"/>
+                                    </f:facet>
+                                    <f:facet name="next">
+                                        <ice:graphicImage id="nextpage_1"
+                                                          url="./resources/img/graphics/arrow-next.gif"
+                                                          style="border:none;background-color: white"
+                                                          title="Siguiente"/>
+                                    </f:facet>
+                                    <f:facet name="fastforward">
+                                        <ice:graphicImage id="fastforward_1"
+                                                          url="./resources/img/graphics/arrow-ff.gif"
+                                                          style="border:none;background-color: white"/>
+                                    </f:facet>
+                                    <f:facet name="fastrewind">
+                                        <ice:graphicImage id="fastrewind_1"
+                                                          url="./resources/img/graphics/arrow-fr.gif"
+                                                          style="border:none;background-color: white"/>
+                                    </f:facet>
+                                </ice:dataPaginator>
+                            </ice:panelGroup>
+
+                        </ice:panelGrid>
+                    </ice:panelTab>
+                    <ice:panelTab rendered="true"
+                                  label="Productos adquiridos"
+                                  title="Productos adquiridos">
+                        <h:form>
+                            <ice:panelGroup style="background-color: white;padding-left: 150px">
+                                <ice:panelGroup style="background-color: white">
+
+
+                                    <!-- Se crea una tabla donde se presentan los muebles del sistema -->
+                                    <ice:dataTable
+                                        id="data"
+                                        value="#{loginBean.sesion.compras}"
+                                        var="file"
+                                        scrollable="false"
+                                        scrollHeight="100px"
+                                        cellpadding="0"
+                                        resizable="true"
+                                        rows="8">
+
+                                        <ice:column>
+
+                                            <f:facet name="header">
+                                                Nombre
+                                            </f:facet>
+                                            <ice:outputText value="#{file.producto.nombre}"/>
+                                        </ice:column>
+                                        <ice:column>
+                                            <f:facet name="header">
+                                                Cantidad
+                                            </f:facet>
+                                            <ice:outputText value="#{file.cantidad}"/>
+                                        </ice:column>
+                                        <ice:column>
+                                            <f:facet name="header">
+                                                Imágen
+                                            </f:facet>
+                                            <ice:graphicImage id="imgTable"
+                                                              url="./resources/img/pag/#{file.producto.imagen}_small.png"/>
+                                            <ice:outputText value="#{file.ciudad}"/>
+                                        </ice:column>
+                                        <ice:column>
+                                            <f:facet name="header">
+                                                Fecha de compra
+                                            </f:facet>
+                                            <ice:outputText value="#{file.fechaVenta}"/>
+                                        </ice:column>
+
+                                    </ice:dataTable>
+                                </ice:panelGroup>
+
+                                <ice:panelGroup style="background-color: white;padding-left: 100px">
+
+                                    <!-- Se crea y establecen propiedades del paginador -->
+                                    <ice:dataPaginator id="dataScroll_1"
+
+                                                       for="data"
+                                                       vertical="false"
+                                                       fastStep="3"
+                                                       paginator="true"
+                                                       paginatorMaxPages="4">
+                                        <f:facet name="first">
+                                            <ice:graphicImage id="firstpage_1"
+                                                              url="./resources/img/graphics/arrow-first.gif"
+                                                              style="border:none;"
+                                                              title="Ir a la primera página"/>
+                                        </f:facet>
+                                        <f:facet name="last">
+                                            <ice:graphicImage id="lastpage_1"
+                                                              url="./resources/img/graphics/arrow-last.gif"
+                                                              style="border:none;"
+                                                              title="Ir a la última página"/>
+                                        </f:facet>
+                                        <f:facet name="previous">
+                                            <ice:graphicImage id="previouspage_1"
+                                                              url="./resources/img/graphics/arrow-previous.gif"
+                                                              style="border:none;"
+                                                              title="Atrás"/>
+                                        </f:facet>
+                                        <f:facet name="next">
+                                            <ice:graphicImage id="nextpage_1"
+                                                              url="./resources/img/graphics/arrow-next.gif"
+                                                              style="border:none;"
+                                                              title="Siguiente"/>
+                                        </f:facet>
+                                        <f:facet name="fastforward">
+                                            <ice:graphicImage id="fastforward_1"
+                                                              url="./resources/img/graphics/arrow-ff.gif"
+                                                              style="border:none;"/>
+                                        </f:facet>
+                                        <f:facet name="fastrewind">
+                                            <ice:graphicImage id="fastrewind_1"
+                                                              url="./resources/img/graphics/arrow-fr.gif"
+                                                              style="border:none;"/>
+                                        </f:facet>
+                                    </ice:dataPaginator>
+                                </ice:panelGroup>
+                            </ice:panelGroup>
+                        </h:form>
+                    </ice:panelTab>
+                </ice:panelTabSet>
+            </h:form>
+        </ice:panelGroup>
+    </ui:define>
+</ui:composition>

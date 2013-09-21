@@ -5,7 +5,10 @@
 package com.losalpes.entities;
 
 import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -13,9 +16,10 @@ import javax.persistence.Embeddable;
  */
 @Embeddable
 public class RegistroVentaPK {
-    
+
     private long comprador;
     private long producto;
+    @Temporal(TemporalType.DATE)
     private Date fechaVenta;
 
     public long getComprador() {

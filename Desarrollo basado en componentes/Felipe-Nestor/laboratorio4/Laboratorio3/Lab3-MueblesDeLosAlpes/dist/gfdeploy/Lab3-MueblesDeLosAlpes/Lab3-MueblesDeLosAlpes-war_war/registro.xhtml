@@ -1,0 +1,311 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+    Document   : registro
+    Created on : 14-jul-2011
+    Author     : Juan Sebastián Urrego
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/main-template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ice="http://www.icesoft.com/icefaces/component"
+                xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <ui:param name="titulo" value="Catálogo de muebles" />
+    <ui:define name="body">
+
+        <h:form>
+            <ice:panelCollapsible id="linkPanel" expanded="true" disabled="true">
+                <f:facet name="header">
+                    <ice:outputText id="linkHeader"
+                                    value="Registro de usuario" style="color:white"/>
+                </f:facet>
+
+                <!-- Panel para registrar un nuevo cliente al sistema -->
+                <h:panelGroup >
+                    <ice:panelGrid columns="2" columnClasses="pnlGrdClass, pnlGrdClass, pnlGrdClassLong">
+                        <h:form>
+                            <h:panelGroup>
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <ice:outputLabel for="TxtID"
+                                                             value="Documento"
+                                                             style="font-weight: bold"/>
+                                        </td>
+                                        <td>
+                                            <ice:inputText id="TxtID"
+                                                           size="20"
+                                                           maxlength="15"
+                                                           value="#{registroBean.usuario.documento}"
+                                                           partialSubmit="true"
+                                                           required="true">
+
+                                                <f:validateLength minimum="5" />
+
+
+                                            </ice:inputText>
+
+                                        </td>
+                                        <td>
+                                            <ice:selectOneMenu value="#{registroBean.usuario.tipoDocumento}">
+                                                <f:selectItems value="#{registroBean.tiposDocumentos}" />
+                                            </ice:selectOneMenu>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <ice:message id="messageID" for="TxtID"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <ice:outputLabel for="TxtName"
+                                                             value="Nombre"
+                                                             style="font-weight: bold"/>
+                                        </td>
+                                        <td>
+                                            <ice:inputText id="TxtName"
+                                                           size="20"
+                                                           maxlength="45"
+                                                           value="#{registroBean.usuario.nombreCompleto}"
+                                                           partialSubmit="true"
+                                                           required="true">
+                                                <f:validateLength minimum="10"/>
+                                            </ice:inputText>
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <ice:message id="messageName" for="TxtName"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <ice:outputLabel for="TxtTelLocal"
+                                                             value="Teléfono local"
+                                                             style="font-weight: bold"/>
+                                        </td>
+                                        <td>
+                                            <ice:inputText id="TxtTelLocal"
+                                                           size="20"
+                                                           maxlength="7"
+                                                           value="#{registroBean.usuario.telefonoLocal}"
+                                                           partialSubmit="true"
+                                                           required="true">
+                                                <f:validateLength minimum="7" maximum="7"/>
+                                            </ice:inputText>
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <ice:message id="messageLocal" for="TxtTelLocal"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <ice:outputLabel for="TxtTelCel"
+                                                             value="Teléfono celular"
+                                                             style="font-weight: bold"/>
+                                        </td>
+                                        <td>
+                                            <ice:inputText id="TxtTelCel"
+                                                           size="20"
+                                                           maxlength="10"
+                                                           value="#{registroBean.usuario.telefonoCelular}"
+                                                           partialSubmit="true"
+                                                           required="true">
+                                                <f:validateLength minimum="10" maximum="10"/>
+                                            </ice:inputText>
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <ice:message id="messageCel" for="TxtTelCel"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <ice:outputLabel for="TxtPais"
+                                                             value="País"
+                                                             style="font-weight: bold"/>
+                                        </td>
+                                        <td>
+                                            <ice:selectOneMenu id="TextPais" partialSubmit="true" value="#{registroBean.pais}" valueChangeListener="#{registroBean.cambioPais}">
+                                                <f:selectItems value="#{registroBean.paises}" />
+                                            </ice:selectOneMenu>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <ice:outputLabel for="TxtCity"
+                                                             value="Ciudad"
+                                                             style="font-weight: bold"/>
+                                        </td>
+                                        <td>
+                                            <ice:selectOneMenu id="TxtCity" partialSubmit="true" value="#{registroBean.ciudad}">
+                                                <f:selectItems value="#{registroBean.ciudades}" />
+                                            </ice:selectOneMenu>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <ice:outputLabel for="TxtDir"
+                                                             value="Dirección"
+                                                             style="font-weight: bold"/>
+                                        </td>
+                                        <td>
+                                            <ice:inputText id="TxtDir"
+                                                           size="20"
+                                                           maxlength="45"
+                                                           value="#{registroBean.usuario.direccion}"
+                                                           partialSubmit="true"
+                                                           required="true">
+                                                <f:validateLength minimum="6"/>
+                                            </ice:inputText>
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <ice:message id="messageDir" for="TxtDir"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <ice:outputLabel for="TxtJob"
+                                                             value="Profesión"
+                                                             style="font-weight: bold"/>
+                                        </td>
+                                        <td>
+                                            <ice:selectOneMenu id="TxtJob" value="#{registroBean.usuario.profesion}">
+                                                <f:selectItems value="#{registroBean.profesiones}" />
+                                            </ice:selectOneMenu>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <ice:outputLabel for="TxtEmail"
+                                                             value="Correo electrónico"
+                                                             style="font-weight: bold"/>
+                                        </td>
+                                        <td>
+                                            <ice:inputText id="TxtEmail"
+                                                           size="20"
+                                                           maxlength="35"
+                                                           value="#{registroBean.usuario.correo}"
+                                                           partialSubmit="true"
+                                                           required="true">
+                                                <f:validateLength minimum="10"/>
+                                            </ice:inputText>
+                                        </td>
+                                        <tr>
+                                            <td>
+                                                <ice:message id="messageEmail" for="TxtEmail"/>
+                                            </td>
+                                        </tr>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <ice:outputLabel for="TxtLog"
+                                                             value="Login"
+                                                             style="font-weight: bold"/>
+                                        </td>
+                                        <td>
+                                            <ice:inputText id="TxtLog"
+                                                           size="20"
+                                                           maxlength="15"
+                                                           value="#{registroBean.usuario.login}"
+                                                           partialSubmit="true"
+                                                           required="true">
+                                                <f:validateLength minimum="6"/>
+                                            </ice:inputText>
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <ice:message id="messageLog" for="TxtLog"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <ice:outputLabel for="TxtPwd"
+                                                             value="Contraseña"
+                                                             style="font-weight: bold"/>
+                                        </td>
+                                        <td>
+                                            <ice:inputSecret id="TxtPwd"
+                                                             maxlength="20"
+                                                             size="20"
+                                                             value="#{registroBean.usuario.contraseña}"
+
+                                                             required="true">
+                                                <f:validateLength minimum="6" maximum="15" />
+                                            </ice:inputSecret>
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <ice:message id="messagePwd" for="TxtPwd"/>
+                                        </td>
+                                    </tr>
+
+                                </table>
+
+                                <ice:commandButton value="Aceptar" action="#{registroBean.registrarUsuario}"/>
+                            </h:panelGroup>
+
+                        </h:form>
+                        <h:panelGroup style="padding-left: 80px;background-color: white">
+                            <h:graphicImage url="./resources/img/pag/newUser.png" title="Nuevo usuario" width="256" height="256"/>
+                        </h:panelGroup>
+                    </ice:panelGrid>
+                </h:panelGroup>
+            </ice:panelCollapsible>
+
+        </h:form>
+
+
+        <h:form>
+
+            <!-- Se establecen las propiedades para el panel popup de confirmación-->
+            <ice:panelPopup id="popupDiv"
+                            rendered="true"
+                            visible="#{registroBean.mostrarVentana}"
+                            modal="true">
+
+                <f:facet name="header">
+                    <ice:panelGrid columns="2" columnClasses="er1,er2">
+                        <ice:outputText value="Muebles de los Alpes"/>
+                    </ice:panelGrid>
+                </f:facet>
+                <f:facet name="body">
+
+                    <h:panelGroup>
+
+                        <ice:panelGrid width="100%" cellpadding="0" columns="2" style="background-position: center"
+                                       cellspacing="10" styleClass="popupModalBody">
+                            <ice:graphicImage url="./resources/img/graphics/warning.png"/>
+                            <ice:outputText
+                                value="#{registroBean.mensaje}"/>
+                        </ice:panelGrid>
+                        <ice:panelGroup style="vertical-align: middle;background: transparent">
+
+                            <div align="center">
+                                <ice:commandButton id="closeModal"
+                                                   actionListener="#{registroBean.cerrarVentana}"
+                                                   value="Cerrar" style="z-index:2;"/>
+                            </div>
+                        </ice:panelGroup>
+                    </h:panelGroup>
+                </f:facet>
+            </ice:panelPopup>
+        </h:form>
+    </ui:define>
+</ui:composition>

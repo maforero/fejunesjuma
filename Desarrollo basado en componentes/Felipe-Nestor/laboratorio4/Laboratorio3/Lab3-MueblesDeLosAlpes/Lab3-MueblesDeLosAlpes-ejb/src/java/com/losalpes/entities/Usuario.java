@@ -13,6 +13,7 @@
 package com.losalpes.entities;
 
 import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -21,7 +22,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 /**
  * Clase que representa un usuario del sistema
@@ -116,7 +116,7 @@ public class Usuario
      * Devuelve un lista con todos las compras del usuario
      */
     @OneToMany(mappedBy="comprador")
-    private ArrayList<RegistroVenta>compras;
+    private List<RegistroVenta>compras;
 
     //-----------------------------------------------------------
     // Constructores
@@ -382,7 +382,7 @@ public class Usuario
      * Devuelve las compras realizadas por un cliente
      * @return compras Lista con las compras realizadas por el cliente
      */
-    public ArrayList<RegistroVenta> getCompras()
+    public List<RegistroVenta> getCompras()
     {
         return compras;
     }

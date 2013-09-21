@@ -44,7 +44,7 @@ public class RegistroVenta
      * Producto vendido
      */
     @ManyToOne
-    @JoinColumn(name = "producto")
+    @JoinColumn(name="producto", insertable=false, updatable=false)
     private Mueble producto;
 
     /**
@@ -55,13 +55,15 @@ public class RegistroVenta
     /**
      * Ciudad en la que se vendió el producto
      */
-    private String ciudad;
+    @ManyToOne
+    @JoinColumn(name="ciudad", insertable=false, updatable=false)
+    private Ciudad ciudad;
 
     /**
      * Usuario que compró el producto
      */
     @ManyToOne
-    @JoinColumn(name = "comprador")
+    @JoinColumn(name="comprador", insertable=false, updatable=false)
     private Usuario comprador;
 
     //-----------------------------------------------------------
@@ -84,7 +86,7 @@ public class RegistroVenta
      * @param comprador Usuario que compro el mueble
      */
     public RegistroVenta(Date fechaVenta, Mueble producto, int cantidad,
-            String ciudad, Usuario comprador)
+            Ciudad ciudad, Usuario comprador)
     {
         this.fechaVenta = fechaVenta;
         this.producto = producto;
@@ -155,7 +157,7 @@ public class RegistroVenta
      * Devuelve la ciudad en dónde se realizó la venta
      * @return ciudad Ciudad
      */
-    public String getCiudad()
+    public Ciudad getCiudad()
     {
         return ciudad;
     }
@@ -164,7 +166,7 @@ public class RegistroVenta
      * Modifica la ciudad dónde se realizó la venta
      * @param ciudad Nueva ciudad
      */
-    public void setCiudad(String ciudad)
+    public void setCiudad(Ciudad ciudad)
     {
         this.ciudad = ciudad;
     }

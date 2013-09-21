@@ -17,6 +17,8 @@ import com.losalpes.excepciones.OperacionInvalidaException;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 /**
  * Implementación de los servicios de persistencia
@@ -30,6 +32,8 @@ public class ServicioPersistencia implements IServicioPersistenciaMockLocal,ISer
     // Atributos
     //-----------------------------------------------------------
 
+    @PersistenceContext
+    private EntityManager entityManager;
     
     /**
      * La entidad encargada de persistir en la base de datos
