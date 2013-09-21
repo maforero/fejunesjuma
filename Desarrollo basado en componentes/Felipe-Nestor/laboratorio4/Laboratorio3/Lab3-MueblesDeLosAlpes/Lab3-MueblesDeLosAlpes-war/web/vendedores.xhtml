@@ -1,0 +1,362 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+    Document   : vendedores
+    Created on : 25-jul-2011
+    Author     : Juan Sebastián Urrego
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/main-template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ice="http://www.icesoft.com/icefaces/component"
+                xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <ui:param name="titulo" value="Catálogo de muebles" />
+    <ui:define name="body">
+
+        <!-- Header del panel -->
+        <h:form>
+
+            <ice:panelCollapsible id="linkPanel" expanded="true" disabled="true">
+                <f:facet name="header">
+                    <ice:outputText id="linkHeader"
+                                    value="Administración de vendedores" style="color:white"/>
+                </f:facet>
+            </ice:panelCollapsible>
+        </h:form>
+
+        <!-- Panel para adquirir nuevos muebles -->
+        <ice:panelGroup>
+            <ice:panelGrid columns="2">
+                <ice:panelGroup style="float:left;padding-right: 50px;padding-bottom: 80px">
+                    <ice:panelGrid columns="2">
+                        <ice:panelGroup>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <!-- Panel para agregar la experiencia de un vendedor -->
+                                        <ice:panelGroup>
+                                            <ice:outputText value="Experiencia vendedor" style="font-weight: bold;padding-left: 10px"/>
+                                            <ice:panelGroup style="border-color:gray;border-width: 1px;border-style: solid ">
+                                                <h:form>
+                                                    <table>
+                                                        <tr>
+                                                            <td>
+                                                                <ice:outputLabel for="TxtNombreEmpresa"
+                                                                                 value="Nombre empresa"
+                                                                                 style="font-weight: bold"/>
+                                                            </td>
+                                                            <td>
+                                                                <ice:inputText id="TxtNombreEmpresa"
+                                                                               size="20"
+                                                                               maxlength="45"
+                                                                               value="#{vendedorBean.experiencia.nombreEmpesa}"
+                                                                               partialSubmit="true"
+                                                                               required="true">
+                                                                    <f:validateLength minimum="6"/>
+                                                                </ice:inputText>
+                                                            </td>
+
+                                                            <td>
+                                                                <ice:outputLabel for="TxtCargo"
+                                                                                 value="Cargo"
+                                                                                 style="font-weight: bold"/>
+                                                            </td>
+                                                            <td>
+                                                                <ice:inputText id="TxtCargo"
+                                                                               size="20"
+                                                                               maxlength="45"
+                                                                               value="#{vendedorBean.experiencia.cargo}"
+                                                                               partialSubmit="true"
+                                                                               required="true">
+                                                                    <f:validateLength minimum="6"/>
+                                                                </ice:inputText>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td/>
+                                                            <td>
+                                                                <ice:message id="descMsg" for="TxtNombreEmpresa" />
+                                                            </td>
+                                                            <td/>
+                                                            <td>
+                                                                <ice:message id="imgMsg" for="TxtCargo" />
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <ice:outputLabel for="TxtAño"
+                                                                                 value="Año"
+                                                                                 style="font-weight: bold"/>
+                                                            </td>
+                                                            <td>
+                                                                <ice:inputText id="TxtAño"
+                                                                               size="20"
+                                                                               maxlength="4"
+                                                                               value="#{vendedorBean.experiencia.ano}"
+                                                                               partialSubmit="true"
+                                                                               required="true">
+                                                                    <f:validateLength minimum="4"/>
+                                                                </ice:inputText>
+
+                                                            </td>
+                                                            <td/>
+
+                                                            <td>
+                                                                <ice:commandButton value="Agregar" action="#{vendedorBean.agregarItemExperiencia}"/>
+                                                            </td>
+
+                                                        </tr>
+                                                        <tr>
+                                                            <td/>
+                                                            <td>
+                                                                <ice:message id="anoMsg" for="TxtAño" />
+                                                            </td>
+                                                        </tr>
+
+                                                    </table>
+
+                                                </h:form>
+                                            </ice:panelGroup>
+                                            <ice:panelGroup/>
+                                            <ice:panelGroup>
+                                                <ice:outputText value="Datos vendedor" style="font-weight: bold;padding-left: 10px"/>
+                                            </ice:panelGroup>
+
+                                            <!-- Panel para agregar un nuevo vendedor -->
+                                            <ice:panelGroup style="border-color:gray;border-width: 1px;border-style: solid ">
+                                                <h:form>
+                                                    <table>
+                                                        <tr>
+                                                            <td>
+                                                                <ice:outputLabel for="TxtNombre"
+                                                                                 value="Nombre(s)"
+                                                                                 style="font-weight: bold"/>
+                                                            </td>
+                                                            <td>
+                                                                <ice:inputText id="TxtNombre"
+                                                                               maxlength="20"
+                                                                               size="20"
+                                                                               value="#{vendedorBean.vendedor.nombres}"
+                                                                               partialSubmit="true"
+                                                                               required="true">
+                                                                    <f:validateLength minimum="1"/>
+                                                                </ice:inputText>
+                                                            </td>
+
+                                                            <td>
+                                                                <ice:outputLabel for="TxtApellido"
+                                                                                 value="Apellidos"
+                                                                                 style="font-weight: bold"/>
+                                                            </td>
+                                                            <td>
+                                                                <ice:inputText id="TxtApellido"
+                                                                               size="20"
+                                                                               maxlength="7"
+                                                                               value="#{vendedorBean.vendedor.apellidos}"
+                                                                               partialSubmit="true"
+                                                                               required="true">
+                                                                    <f:validateLength minimum="7" maximum="7"/>
+                                                                </ice:inputText>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+
+                                                            </td>
+                                                            <td>
+                                                                <ice:message id="nameMsg" for="TxtNombre" />
+                                                            </td>
+                                                            <td>
+                                                            </td>
+                                                            <td>
+                                                                <ice:message id="lastNameMsg" for="TxtApellido" />
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <ice:outputLabel for="TxtSalario"
+                                                                                 value="Salario"
+                                                                                 style="font-weight: bold"/>
+                                                            </td>
+                                                            <td>
+                                                                <ice:inputText id="TxtSalario"
+                                                                               size="20"
+                                                                               maxlength="15"
+                                                                               value="#{vendedorBean.vendedor.salario}"
+                                                                               partialSubmit="true"
+                                                                               required="true">
+
+                                                                    <f:validateLength minimum="2" />
+
+
+                                                                </ice:inputText>
+                                                            </td>
+                                                            <td>
+                                                                <ice:outputLabel for="TxtVentas"
+                                                                                 value="Comisión"
+                                                                                 style="font-weight: bold"/>
+                                                            </td>
+                                                            <td>
+                                                                <ice:inputText id="TxtVentas"
+                                                                               size="20"
+                                                                               maxlength="10"
+                                                                               value="#{vendedorBean.vendedor.comisionVentas}"
+                                                                               partialSubmit="true"
+                                                                               required="true">
+                                                                    <f:validateLength minimum="1"/>
+                                                                </ice:inputText>
+                                                            </td>
+
+                                                        </tr>
+                                                        <tr>
+                                                            <td/>
+                                                            <td>
+                                                                <ice:message id="salarioMsg" for="TxtSalario" />
+                                                            </td>
+                                                            <td/>
+                                                            <td>
+                                                                <ice:message id="ventasMsg" for="TxtVentas" />
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <ice:outputLabel for="TxtPerfil"
+                                                                                 value="Perfil"
+                                                                                 style="font-weight: bold"/>
+                                                            </td>
+                                                            <td>
+
+                                                                <ice:inputTextarea id="TxtPerfil"
+
+                                                                                   maxlength="10"
+                                                                                   rows="4"
+                                                                                   style="width: 125px"
+                                                                                   value="#{vendedorBean.vendedor.perfil}"
+                                                                                   partialSubmit="true"
+                                                                                   required="true">
+                                                                    <f:validateLength minimum="5"/>
+                                                                </ice:inputTextarea>
+                                                            </td>
+                                                            <td/>
+                                                            <td>
+                                                                <ice:message id="perfilMsg" for="TxtPerfil" />
+                                                            </td>
+
+                                                        </tr>
+                                                    </table>
+                                                    <div align="center">
+                                                        <ice:commandButton value="Agregar vendedor" action="#{vendedorBean.agregarVendedor}"/>
+                                                    </div>
+                                                </h:form>
+                                            </ice:panelGroup>
+                                        </ice:panelGroup>
+                                    </td>
+                                </tr>
+                            </table>
+                        </ice:panelGroup>
+                    </ice:panelGrid>
+                </ice:panelGroup>
+
+                <!-- Paneles con la información de los vendedores -->
+                <ice:panelGroup styleClass="exampleBox panelSeriesContainer">
+
+                    <h:form>
+                        <div align="right" style="padding-right: 10px">
+                            <ice:commandButton style="background: transparent" image="./resources/img/pag/atras.png" action="menu.jsf"/>
+                        </div>
+                    </h:form>
+
+                    <h:form>     
+                        <ice:panelSeries id="data"
+                                         value="#{vendedorBean.vendedores}"
+                                         rows="2"
+                                         var="employee" style="float:left">
+                            
+                            <ice:panelGroup id="employeeBox" styleClass="employeeBox">
+                                <ice:panelGrid columns="1">
+                                    <ice:panelGroup styleClass="iceDatTblColHdr">
+                                        <ice:outputText id="nombre" value="#{employee.nombres} #{employee.apellidos}" style="font-weight:bold;color:white"/>
+                                    </ice:panelGroup>
+                                    <ice:panelGrid columns="2">
+                                        <ice:panelGroup>
+                                            <ice:graphicImage value="./resources/img/pag/#{employee.foto}.png"
+                                                              width="128" height="128" style="float:right"/>
+                                        </ice:panelGroup>
+                                        <ice:panelGroup style="padding:10px;">
+
+                                            <ice:outputText value="Identificación: " style="font-weight:bold;"/>
+                                            <ice:outputText id="identificacion" value="#{employee.identificacion}"/>
+                                            <br/>
+                                            <ice:outputText value="Perfil: " style="font-weight:bold;"/>
+                                            <ice:outputText id="perfil" value="#{employee.perfil}" />
+                                            <br/>
+                                            <ice:outputText value="Salario: $ " style="font-weight:bold;"/>
+                                            <ice:outputText id="salario" value="#{employee.salario}"/>
+                                        </ice:panelGroup>
+                                    </ice:panelGrid>
+                                </ice:panelGrid>
+                                <center>
+                                    <ice:commandLink id="DDRtn"
+                                                     actionListener="#{vendedorBean.eliminarVendedor}"
+                                                     value="Eliminar" >
+                                        <f:param name="vendedorId" value="#{employee.identificacion}" />
+
+                                    </ice:commandLink>
+                                </center>
+                            </ice:panelGroup>
+
+                        </ice:panelSeries>
+                        <ice:panelGroup style="padding-left: 25px">
+
+                            <!-- Se crea y establecen propiedades del paginador -->
+                            <ice:dataPaginator id="dataScroll_1"
+                                               for="data"
+                                               vertical="false"
+                                               fastStep="5"
+                                               paginatorMaxPages="4"                                               
+                                               paginator="true">
+                                <f:facet name="first">
+                                    <ice:graphicImage id="firstpage_1"
+                                                      url="./resources/img/graphics/arrow-first.gif"
+                                                      style="border:none;"
+                                                      title="Ir a la primera página"/>
+                                </f:facet>
+                                <f:facet name="last">
+                                    <ice:graphicImage id="lastpage_1"
+                                                      url="./resources/img/graphics/arrow-last.gif"
+                                                      style="border:none;"
+                                                      title="Ir a la última página"/>
+                                </f:facet>
+                                <f:facet name="previous">
+                                    <ice:graphicImage id="previouspage_1"
+                                                      url="./resources/img/graphics/arrow-previous.gif"
+                                                      style="border:none;"
+                                                      title="Atrás"/>
+                                </f:facet>
+                                <f:facet name="next">
+                                    <ice:graphicImage id="nextpage_1"
+                                                      url="./resources/img/graphics/arrow-next.gif"
+                                                      style="border:none;"
+                                                      title="Siguiente"/>
+                                </f:facet>
+                                <f:facet name="fastforward">
+                                    <ice:graphicImage id="fastforward_1"
+                                                      url="./resources/img/graphics/arrow-ff.gif"
+                                                      style="border:none;"/>
+                                </f:facet>
+                                <f:facet name="fastrewind">
+                                    <ice:graphicImage id="fastrewind_1"
+                                                      url="./resources/img/graphics/arrow-fr.gif"
+                                                      style="border:none;"/>
+                                </f:facet>
+                            </ice:dataPaginator>
+                        </ice:panelGroup>
+                    </h:form>
+                </ice:panelGroup>
+            </ice:panelGrid>
+        </ice:panelGroup>
+    </ui:define>
+</ui:composition>
