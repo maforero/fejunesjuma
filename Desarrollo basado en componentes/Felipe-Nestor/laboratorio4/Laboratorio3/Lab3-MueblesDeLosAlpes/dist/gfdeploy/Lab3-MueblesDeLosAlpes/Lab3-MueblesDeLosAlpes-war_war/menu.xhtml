@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+    Document   : index
+    Created on : 25-jul-2011
+    Author     : Juan Sebastián Urrego E.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/main-template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ice="http://www.icesoft.com/icefaces/component"
+                xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <ui:param name="titulo" value="Control de Acceso" />
+    <ui:define name="body">
+
+        <h:form>
+            <ice:panelCollapsible id="linkPanel" expanded="true" disabled="true">
+                <f:facet name="header">
+                    <ice:outputText id="linkHeader"
+                                    value="Administración del sistema" style="color:white"/>
+                </f:facet>
+            </ice:panelCollapsible>
+        </h:form>
+
+        <div align="right">
+            <ice:panelGroup>
+                <h:form>
+                    <ice:commandButton  action="#{loginBean.logout}"  style="background: transparent;
+                                        padding-right: 12px" image="./resources/img/pag/logOff.png"
+                                        title="Cerrar sesión"/>
+                </h:form>
+            </ice:panelGroup>
+        </div>
+
+        <ice:panelGroup style="padding-bottom: 20px">
+            <center>
+                <h:form>
+                    <table>
+                        <tr>
+                            <td width="180">
+
+                                <ice:commandButton style="background: transparent"
+                                                   image="./resources/img/pag/vendedores.png"
+                                                   title="Vendedores"
+                                                   action="vendedores.jsf"/>
+                            </td>
+                            <td width="180">
+
+                                <ice:commandButton style="background: transparent"
+                                                   image="./resources/img/pag/muebles.png"
+                                                   title="Muebles"
+                                                   action="catalogo.jsf"/>
+                            </td>
+                            <td width="180">
+                                <ice:commandButton style="background: transparent"
+                                                   image="./resources/img/pag/clientes.png"
+                                                   title="Clientes"
+                                                   action="clientes.jsf"/>
+                            </td>
+                        </tr>
+                    </table>
+                </h:form>
+            </center>
+        </ice:panelGroup>
+    </ui:define>
+</ui:composition>
