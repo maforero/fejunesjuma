@@ -13,18 +13,35 @@
 package com.losalpes.entities;
 
 import java.util.ArrayList;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 /**
  * Clase que representa un usuario del sistema
  * @author Juan Sebastián Urrego
  */
+@Entity
 public class Usuario
 {
 
     //-----------------------------------------------------------
     // Atributos
     //-----------------------------------------------------------
-
+    
+    /**
+     * Id del usuario
+     */
+    @Id
+    @GeneratedValue
+    private long id;
+    
     /**
      * Nombre del usuario
      */
@@ -38,6 +55,7 @@ public class Usuario
     /**
      * Tipo de usuario
      */
+    @Enumerated(EnumType.STRING)
     private TipoUsuario tipoUsuario;
 
     /**
@@ -53,6 +71,7 @@ public class Usuario
     /**
      * Tipo de documento
      */
+    @Enumerated(EnumType.STRING)
     private TipoDocumento tipoDocumento;
 
     /**
@@ -68,6 +87,8 @@ public class Usuario
     /**
      * Ciudad de residencia del usuario
      */
+    @ManyToOne
+    @JoinColumn(name = "ciudad")
     private Ciudad ciudad;
 
     /**
@@ -78,6 +99,7 @@ public class Usuario
     /**
      * Profesión del usuario
      */
+    @Enumerated(EnumType.STRING)
     private Profesion profesion;
 
     /**
@@ -93,6 +115,7 @@ public class Usuario
     /**
      * Devuelve un lista con todos las compras del usuario
      */
+    @OneToMany(mappedBy="comprador")
     private ArrayList<RegistroVenta>compras;
 
     //-----------------------------------------------------------
@@ -125,6 +148,20 @@ public class Usuario
     // Getters y setters
     //-----------------------------------------------------------
 
+    /**
+     * Devuelve el id de usuario
+     * @return ID id del usuario
+     */
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+    
+    
+    
     /**
      * Devuelve el nombre de usuario
      * @return nombre Nombre del usuario

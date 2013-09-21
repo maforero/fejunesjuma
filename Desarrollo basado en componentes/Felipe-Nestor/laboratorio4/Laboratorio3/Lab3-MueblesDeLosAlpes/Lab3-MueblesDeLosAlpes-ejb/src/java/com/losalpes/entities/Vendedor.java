@@ -13,11 +13,18 @@ package com.losalpes.entities;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 /**
  * Clase que modela un vendedor dentro del sistema.
  * @author Juan Sebastián Urrego
  */
+@Entity
 public class Vendedor
 {
 
@@ -28,6 +35,8 @@ public class Vendedor
     /**
      * Número de identificación del vendedor
      */
+    @Id
+    @GeneratedValue
     private long id;
 
     /**
@@ -43,6 +52,8 @@ public class Vendedor
     /**
      * Lista de ítems de experiencia del vendedor.
      */
+    @OneToMany
+    @JoinColumn(name = "vendedor")
     private List<ExperienciaVendedor> experiencia;
 
     /**
