@@ -12,17 +12,26 @@
 package com.losalpes.entities;
 
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  * Clase que representa un país en el sistema
  * @author Juan Sebastián Urrego
  */
+@Entity
 public class Pais
 {
 
     //-----------------------------------------------------------
     // Atributos
     //-----------------------------------------------------------
+    
+    @Id
+    @GeneratedValue
+    private long id;
     
     /**
      * Nombre del país
@@ -31,6 +40,7 @@ public class Pais
     /**
      * Ciudades que tiene el país
      */
+    @OneToMany(mappedBy = "pais")
     private List<Ciudad> ciudades;
 
     //-----------------------------------------------------------
@@ -96,4 +106,12 @@ public class Pais
         this.ciudades = ciudades;
     }
 
-}
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+ }

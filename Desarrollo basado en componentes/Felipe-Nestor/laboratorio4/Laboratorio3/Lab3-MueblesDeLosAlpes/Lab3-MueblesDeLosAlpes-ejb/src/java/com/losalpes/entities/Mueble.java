@@ -12,10 +12,18 @@
 
 package com.losalpes.entities;
 
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Transient;
+
 /**
  * Clase que representa la información de un mueble en el sistema
  * @author Juan Sebastián Urrego
  */
+@Entity
 public class Mueble
 {
 
@@ -26,6 +34,8 @@ public class Mueble
     /**
      * Referencia que identifica el modelo del mueble en el sistema.
      */
+    @Id
+    @GeneratedValue
     private long referencia;
 
     /**
@@ -41,6 +51,7 @@ public class Mueble
     /**
      * Tipo de mueble.
      */
+    @Enumerated(EnumType.STRING)
     private TipoMueble tipo;
 
     /**
@@ -61,6 +72,7 @@ public class Mueble
     /**
      * Indica si el mueble fue seleccionado
      */
+    @Transient
     private boolean seleccion;
 
     //-----------------------------------------------------------

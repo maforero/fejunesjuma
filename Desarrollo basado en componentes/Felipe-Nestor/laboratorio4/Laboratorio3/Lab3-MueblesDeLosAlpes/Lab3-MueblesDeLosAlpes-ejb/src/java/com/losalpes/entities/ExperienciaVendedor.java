@@ -12,10 +12,15 @@
 
 package com.losalpes.entities;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 /**
  * Clase que modela un ìtem de experiencia de vendedor.
  * @author Juan Sebastián Urrego
  */
+@Entity
 public class ExperienciaVendedor
 {
 
@@ -26,6 +31,8 @@ public class ExperienciaVendedor
     /**
      * Identificador del item de experiencia.
      */
+    @Id
+    @GeneratedValue
     private long id;
 
     /**

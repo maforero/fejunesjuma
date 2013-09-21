@@ -12,10 +12,17 @@
 
 package com.losalpes.entities;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 /**
  * Clase que representa una ciudad en el sistema
  * @author Juan Sebastián Urrego
  */
+@Entity
 public class Ciudad
 {
       
@@ -23,11 +30,19 @@ public class Ciudad
     // Atributos
     //-----------------------------------------------------------
 
+    @Id
+    @GeneratedValue
+    private long id;
+    
     /**
      * Nombre de la ciudad
      */
     private String nombre;
 
+    @ManyToOne
+    @JoinColumn(name = "pais")
+    private Pais pais;
+            
     /**
      * Devuelve el nombre de la ciudad
      * @return nombre Nombre de la ciudad
@@ -71,4 +86,20 @@ public class Ciudad
         this.nombre = nombre;
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public Pais getPais() {
+        return pais;
+    }
+
+    public void setPais(Pais pais) {
+        this.pais = pais;
+    }
+    
 }
