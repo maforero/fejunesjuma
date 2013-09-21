@@ -23,7 +23,7 @@ import javax.ejb.Remote;
  */
 @Remote
 public interface IServicioVendedoresMockRemote
-{
+{ 
     /**
      * Agrega un vendedor al sistema
      * @param vendedor Nuevo vendedor
