@@ -12,6 +12,7 @@
 
 package com.losalpes.servicios;
 
+import com.losalpes.servicios.persistencia.IServicioPersistenciaMockLocal;
 import com.losalpes.entities.Mueble;
 import com.losalpes.excepciones.OperacionInvalidaException;
 import java.util.ArrayList;
@@ -97,7 +98,7 @@ public class ServicioCatalogoMock implements IServicioCatalogoMockRemote,IServic
     @Override
     public void removerEjemplarMueble(long id)
     {
-        ArrayList<Mueble>muebles=(ArrayList<Mueble>) persistencia.findAll(Mueble.class);
+        List<Mueble>muebles = persistencia.findAll(Mueble.class);
         Mueble mueble;
         for (int i = 0; i < muebles.size(); i++)
         {

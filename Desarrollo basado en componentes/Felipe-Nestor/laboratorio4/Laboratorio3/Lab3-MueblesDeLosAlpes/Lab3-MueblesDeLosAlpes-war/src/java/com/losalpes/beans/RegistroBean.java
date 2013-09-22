@@ -20,11 +20,13 @@ import com.losalpes.entities.TipoUsuario;
 import com.losalpes.entities.Usuario;
 import com.losalpes.excepciones.OperacionInvalidaException;
 import com.losalpes.servicios.IServicioRegistroMockLocal;
+import com.losalpes.servicios.IServicioSeleccionMockLocal;
 import com.losalpes.servicios.ServicioRegistroMock;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
@@ -47,6 +49,9 @@ public class RegistroBean implements Serializable
      */
     @EJB
     private IServicioRegistroMockLocal usuarioServices;
+    
+    @EJB
+    private IServicioSeleccionMockLocal seleccionService;
 
     /**
      * Mensaje utilizado para mostrar información importante al usuario.
@@ -92,38 +97,14 @@ public class RegistroBean implements Serializable
      */
     public RegistroBean() 
     {
-        paises = new ArrayList<Pais>();
-        ciudades = new ArrayList<Ciudad>();   
-        mostrarVentana=false;
         usuario = new Usuario();
-
-        ArrayList<Ciudad> array = new ArrayList<Ciudad>();
-        array.add(new Ciudad("Bogotá"));
-        array.add(new Ciudad("Cali"));
-        array.add(new Ciudad("Cartagena"));
-        array.add(new Ciudad("Medellín"));
-        array.add(new Ciudad("Santa Marta"));
-        pais = new Pais("Colombia", array);
-        paises.add(pais);
-
-        ArrayList<Ciudad> array2 = new ArrayList<Ciudad>();
-        array2.add(new Ciudad("Atlanta"));
-        array2.add(new Ciudad("Chicago"));
-        array2.add(new Ciudad("Miami"));
-        array2.add(new Ciudad("New York"));
-        array2.add(new Ciudad("Washington D.C"));      
-
-        paises.add(new Pais("Estados Unidos", array2));
-
-        ArrayList<Ciudad> array3 = new ArrayList<Ciudad>();
-        array3.add(new Ciudad("Cambridge"));
-        array3.add(new Ciudad("Canterbury"));
-        array3.add(new Ciudad("Liverpool"));
-        array3.add(new Ciudad("Manchester"));
-        array3.add(new Ciudad("Oxford"));
-
-        paises.add(new Pais("Inglaterra", array3));
-
+        mostrarVentana = false;
+    }
+    
+    @PostConstruct
+    public void construirRegstro() {
+        paises = seleccionService.obtenerPaises();
+        pais = paises.get(0);
         ciudades = pais.getCiudades();
     }
 

@@ -12,6 +12,7 @@
 
 package com.losalpes.servicios;
 
+import com.losalpes.servicios.persistencia.IServicioPersistenciaMockLocal;
 import com.losalpes.entities.Mueble;
 import com.losalpes.entities.RegistroVenta;
 import com.losalpes.entities.Usuario;

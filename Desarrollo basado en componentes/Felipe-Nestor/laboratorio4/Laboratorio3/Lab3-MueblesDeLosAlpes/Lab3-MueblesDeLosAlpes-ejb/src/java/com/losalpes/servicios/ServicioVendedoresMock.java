@@ -12,6 +12,7 @@
 
 package com.losalpes.servicios;
 
+import com.losalpes.servicios.persistencia.IServicioPersistenciaMockLocal;
 import com.losalpes.entities.Vendedor;
 import com.losalpes.excepciones.OperacionInvalidaException;
 import java.util.List;

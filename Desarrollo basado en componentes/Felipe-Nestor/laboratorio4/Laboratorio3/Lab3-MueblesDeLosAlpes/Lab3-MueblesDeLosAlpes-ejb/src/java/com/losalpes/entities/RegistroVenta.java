@@ -17,18 +17,26 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 /**
  * Clase que modela un registro de venta realizado por un cliente
  * @author Juan Sebastián Urrego
  */
 @Entity
+@NamedQueries({
+    @NamedQuery(name="reporteHistorialComprasCliente", query="SELECT r FROM RegistroVenta r WHERE r.comprador=?1 ORDER BY r.registroVentaPK.fechaVenta")
+})
 public class RegistroVenta
 {
 
     //-----------------------------------------------------------
     // Atributos
     //-----------------------------------------------------------
+    /**
+     * Llave primaria compuesta
+     */
     @EmbeddedId
     private RegistroVentaPK registroVentaPK;
 
