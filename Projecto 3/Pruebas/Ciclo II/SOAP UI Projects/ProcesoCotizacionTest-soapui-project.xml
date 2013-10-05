@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="ProcesoCotizacionTest" resourceRoot="" soapui-version="4.5.2" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="ProcesoCotizacionBinding" type="wsdl" bindingName="{http://xmlns.oracle.com/MarketPlace/ProcesoCotizacion/ProcesoCotizacion}ProcesoCotizacionBinding" soapVersion="1_1" anonymous="optional" definition="http://marketplace17.virtual.uniandes.edu.co:7001/soa-infra/services/default/ProcesoCotizacion/procesocotizacion_client_ep?WSDL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://marketplace17.virtual.uniandes.edu.co:7001/soa-infra/services/default/ProcesoCotizacion/procesocotizacion_client_ep?WSDL"><con:part><con:url>http://marketplace17.virtual.uniandes.edu.co:7001/soa-infra/services/default/ProcesoCotizacion/procesocotizacion_client_ep?WSDL</con:url><con:content><![CDATA[<wsdl:definitions name="ProcesoCotizacion" targetNamespace="http://xmlns.oracle.com/MarketPlace/ProcesoCotizacion/ProcesoCotizacion" xmlns:plnk="http://schemas.xmlsoap.org/ws/2003/05/partner-link/" xmlns:client="http://xmlns.oracle.com/MarketPlace/ProcesoCotizacion/ProcesoCotizacion" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation>
+    <abstractWSDL>http://marketplace17.virtual.uniandes.edu.co:7001/soa-infra/services/default/ProcesoCotizacion!1.0/ProcesoCotizacion.wsdl</abstractWSDL>
+  </wsdl:documentation>
+  <plnk:partnerLinkType name="ProcesoCotizacion">
+    <plnk:role name="ProcesoCotizacionProvider">
+      <plnk:portType name="client:ProcesoCotizacion"/>
+    </plnk:role>
+  </plnk:partnerLinkType>
+  <wsdl:types>
+    <schema xmlns="http://www.w3.org/2001/XMLSchema">
+      <import namespace="http://xmlns.oracle.com/MarketPlace/ProcesoCotizacion/ProcesoCotizacion" schemaLocation="http://marketplace17.virtual.uniandes.edu.co:7001/soa-infra/services/default/ProcesoCotizacion/procesocotizacion_client_ep?XSD=xsd/ProcesoCotizacion.xsd"/>
+    </schema>
+  </wsdl:types>
+  <wsdl:message name="ProcesoCotizacionRequestMessage">
+    <wsdl:part name="payload" element="client:process"/>
+  </wsdl:message>
+  <wsdl:message name="ProcesoCotizacionResponseMessage">
+    <wsdl:part name="payload" element="client:processResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="ProcesoCotizacion">
+    <wsdl:operation name="process">
+      <wsdl:input message="client:ProcesoCotizacionRequestMessage"/>
+      <wsdl:output message="client:ProcesoCotizacionResponseMessage"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ProcesoCotizacionBinding" type="client:ProcesoCotizacion">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+    <wsdl:operation name="process">
+      <soap:operation style="document" soapAction="process" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      <wsdl:input>
+        <soap:body use="literal" namespace="http://xmlns.oracle.com/MarketPlace/ProcesoCotizacion/ProcesoCotizacion" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" namespace="http://xmlns.oracle.com/MarketPlace/ProcesoCotizacion/ProcesoCotizacion" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="procesocotizacion_client_ep">
+    <wsdl:port name="ProcesoCotizacion_pt" binding="client:ProcesoCotizacionBinding">
+      <soap:address location="http://marketplace17.virtual.uniandes.edu.co:7001/soa-infra/services/default/ProcesoCotizacion/procesocotizacion_client_ep" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>http://marketplace17.virtual.uniandes.edu.co:7001/soa-infra/services/default/ProcesoCotizacion/procesocotizacion_client_ep?XSD=xsd/ProcesoCotizacion.xsd</con:url><con:content><![CDATA[<schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://xmlns.oracle.com/MarketPlace/ProcesoCotizacion/ProcesoCotizacion" xmlns="http://www.w3.org/2001/XMLSchema">
+  <element name="process">
+    <complexType>
+      <sequence>
+        <element name="nitComercio" type="string"/>
+        <element name="nombreComercio" type="string"/>
+        <element name="emailComercio" type="string"/>
+        <element name="nombreProducto" type="string"/>
+        <element name="categoriaProducto" type="string"/>
+        <element name="precioMaximoProducto" type="long"/>
+        <element name="fechaEntrega" type="date"/>
+        <element name="fechaCierreCotizacion" type="date"/>
+        <element name="cantidadProducto" type="int"/>
+        <element name="fabricantes" minOccurs="0" maxOccurs="unbounded">
+          <complexType>
+            <sequence>
+              <element name="nombre" type="string"/>
+              <element name="nitFabricante" type="string"/>
+              <element name="emailFabricante" type="string"/>
+            </sequence>
+          </complexType>
+        </element>
+      </sequence>
+    </complexType>
+  </element>
+  <element name="processResponse">
+    <complexType>
+      <sequence>
+        <element name="numSeguimientoCotizacion" type="string"/>
+      </sequence>
+    </complexType>
+  </element>
+</schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://marketplace17.virtual.uniandes.edu.co:7001/soa-infra/services/default/ProcesoCotizacion/procesocotizacion_client_ep</con:endpoint></con:endpoints><con:operation isOneWay="false" action="process" name="process" bindingOperationName="process" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="TEST_1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://marketplace17.virtual.uniandes.edu.co:7001/soa-infra/services/default/ProcesoCotizacion/procesocotizacion_client_ep</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:proc="http://xmlns.oracle.com/MarketPlace/ProcesoCotizacion/ProcesoCotizacion">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <proc:process>
+         <proc:nitComercio>73478341</proc:nitComercio>
+         <proc:nombreComercio>Comercio</proc:nombreComercio>
+         <proc:emailComercio>lawrence701@gmail.com</proc:emailComercio>
+         <proc:nombreProducto>PC</proc:nombreProducto>
+         <proc:categoriaProducto>Tecnologia</proc:categoriaProducto>
+         <proc:precioMaximoProducto>800000</proc:precioMaximoProducto>
+         <proc:fechaEntrega>2013-10-05T11:16:36</proc:fechaEntrega>
+         <proc:fechaCierreCotizacion>2013-10-05T14:50:36</proc:fechaCierreCotizacion>
+         <proc:cantidadProducto>4</proc:cantidadProducto>
+         <!--Zero or more repetitions:-->
+         <proc:fabricantes>
+            <proc:nombre>Gaudi</proc:nombre>
+            <proc:nitFabricante>918274653</proc:nitFabricante>
+            <proc:emailFabricante>lawrence701@gmail.com</proc:emailFabricante>
+         </proc:fabricantes>
+      </proc:process>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="process"/><con:wsrmConfig version="1.2"/></con:call><con:call name="TEST_2"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://marketplace17.virtual.uniandes.edu.co:7001/soa-infra/services/default/ProcesoCotizacion/procesocotizacion_client_ep</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:proc="http://xmlns.oracle.com/MarketPlace/ProcesoCotizacion/ProcesoCotizacion">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <proc:process>
+         <proc:nitComercio>73478341</proc:nitComercio>
+         <proc:nombreComercio>Comercio</proc:nombreComercio>
+         <proc:emailComercio>lawrence701@gmail.com</proc:emailComercio>
+         <proc:nombreProducto>PC</proc:nombreProducto>
+         <proc:categoriaProducto>Tecnologia</proc:categoriaProducto>
+         <proc:precioMaximoProducto>124545</proc:precioMaximoProducto>
+         <proc:fechaEntrega>2013-10-01T02:16:36</proc:fechaEntrega>
+         <proc:fechaCierreCotizacion>2013-09-29T04:03:36</proc:fechaCierreCotizacion>
+         <proc:cantidadProducto>4</proc:cantidadProducto>
+         <!--Zero or more repetitions:-->
+         <proc:fabricantes>
+         	  <proc:nombre>Gaudi</proc:nombre>
+            <proc:nitFabricante>918274653</proc:nitFabricante>
+            <proc:emailFabricante>lawrence701@gmail.com</proc:emailFabricante>
+         </proc:fabricantes>        
+      </proc:process>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="process"/><con:wsrmConfig version="1.2"/></con:call><con:call name="TEST_3"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://marketplace17.virtual.uniandes.edu.co:7001/soa-infra/services/default/ProcesoCotizacion/procesocotizacion_client_ep</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:proc="http://xmlns.oracle.com/MarketPlace/ProcesoCotizacion/ProcesoCotizacion">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <proc:process>
+         <proc:nitComercio>73478341</proc:nitComercio>
+         <proc:nombreComercio>Comercio</proc:nombreComercio>
+         <proc:emailComercio>lawrence701@gmail.com</proc:emailComercio>
+         <proc:nombreProducto>PC</proc:nombreProducto>
+         <proc:categoriaProducto>Tecnologia</proc:categoriaProducto>
+         <proc:precioMaximoProducto>124545</proc:precioMaximoProducto>
+         <proc:fechaEntrega>2013-10-01T02:16:36</proc:fechaEntrega>
+         <proc:fechaCierreCotizacion>2013-09-29T04:03:36</proc:fechaCierreCotizacion>
+         <proc:cantidadProducto>4</proc:cantidadProducto>
+         <!--Zero or more repetitions:-->
+         <proc:fabricantes>
+         	  <proc:nombre>Gaudi</proc:nombre>
+            <proc:nitFabricante>918274653</proc:nitFabricante>
+            <proc:emailFabricante>lawrence701@gmail.com</proc:emailFabricante>
+         </proc:fabricantes>
+         <proc:fabricantes>
+         	  <proc:nombre>enterprise z</proc:nombre>
+            <proc:nitFabricante>9999111</proc:nitFabricante>
+            <proc:emailFabricante>ja.aguirre10@uniandes.edu.co</proc:emailFabricante>
+         </proc:fabricantes>
+      </proc:process>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="process"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:sensitiveInformation/></con:soapui-project>
