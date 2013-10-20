@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ws="http://ws.stockmanager.marketplace.losalpes.com.co/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ws:consultarIntecionCompraVentaPorIntencionCompra>
+         <!--Optional:-->
+         <numSeguimientoIntencionCompra>1</numSeguimientoIntencionCompra>
+      </ws:consultarIntecionCompraVentaPorIntencionCompra>
+   </soapenv:Body>
+</soapenv:Envelope>

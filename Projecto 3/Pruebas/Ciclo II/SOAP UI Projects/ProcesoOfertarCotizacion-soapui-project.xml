@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="ProcesoOfertaCotizacionTest" resourceRoot="" soapui-version="4.5.2" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="ProcesoOfertaCotizacionBinding" type="wsdl" bindingName="{http://xmlns.oracle.com/MarketPlace/ProcesoOfertaCotizacion/ProcesoOfertaCotizacion}ProcesoOfertaCotizacionBinding" soapVersion="1_1" anonymous="optional" definition="http://marketplace17.virtual.uniandes.edu.co:7001/soa-infra/services/default/ProcesoOfertaCotizacion/procesoofertacotizacion_client_ep?WSDL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://marketplace17.virtual.uniandes.edu.co:7001/soa-infra/services/default/ProcesoOfertaCotizacion/procesoofertacotizacion_client_ep?WSDL"><con:part><con:url>http://marketplace17.virtual.uniandes.edu.co:7001/soa-infra/services/default/ProcesoOfertaCotizacion/procesoofertacotizacion_client_ep?WSDL</con:url><con:content><![CDATA[<wsdl:definitions name="ProcesoOfertaCotizacion" targetNamespace="http://xmlns.oracle.com/MarketPlace/ProcesoOfertaCotizacion/ProcesoOfertaCotizacion" xmlns:ns1="http://schemas.oracle.com/bpel/extension" xmlns:plnk="http://schemas.xmlsoap.org/ws/2003/05/partner-link/" xmlns:client="http://xmlns.oracle.com/MarketPlace/ProcesoOfertaCotizacion/ProcesoOfertaCotizacion" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation>
+    <abstractWSDL>http://marketplace17.virtual.uniandes.edu.co:7001/soa-infra/services/default/ProcesoOfertaCotizacion!1.0/ProcesoOfertaCotizacion.wsdl</abstractWSDL>
+  </wsdl:documentation>
+  <plnk:partnerLinkType name="ProcesoOfertaCotizacion">
+    <plnk:role name="ProcesoOfertaCotizacionProvider">
+      <plnk:portType name="client:ProcesoOfertaCotizacion"/>
+    </plnk:role>
+  </plnk:partnerLinkType>
+  <wsdl:import namespace="http://schemas.oracle.com/bpel/extension" location="http://marketplace17.virtual.uniandes.edu.co:7001/soa-infra/services/default/ProcesoOfertaCotizacion/procesoofertacotizacion_client_ep?WSDL=RuntimeFault.wsdl"/>
+  <wsdl:types>
+    <schema xmlns="http://www.w3.org/2001/XMLSchema">
+      <import namespace="http://xmlns.oracle.com/MarketPlace/ProcesoOfertaCotizacion/ProcesoOfertaCotizacion" schemaLocation="http://marketplace17.virtual.uniandes.edu.co:7001/soa-infra/services/default/ProcesoOfertaCotizacion/procesoofertacotizacion_client_ep?XSD=xsd/ProcesoOfertaCotizacion.xsd"/>
+    </schema>
+  </wsdl:types>
+  <wsdl:message name="ProcesoOfertaCotizacionRequestMessage">
+    <wsdl:part name="payload" element="client:process"/>
+  </wsdl:message>
+  <wsdl:message name="ProcesoOfertaCotizacionResponseMessage">
+    <wsdl:part name="payload" element="client:processResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="ProcesoOfertaCotizacion">
+    <wsdl:operation name="process">
+      <wsdl:input message="client:ProcesoOfertaCotizacionRequestMessage"/>
+      <wsdl:output message="client:ProcesoOfertaCotizacionResponseMessage"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ProcesoOfertaCotizacionBinding" type="client:ProcesoOfertaCotizacion">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+    <wsdl:operation name="process">
+      <soap:operation style="document" soapAction="process" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      <wsdl:input>
+        <soap:body use="literal" namespace="http://xmlns.oracle.com/MarketPlace/ProcesoOfertaCotizacion/ProcesoOfertaCotizacion" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" namespace="http://xmlns.oracle.com/MarketPlace/ProcesoOfertaCotizacion/ProcesoOfertaCotizacion" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="procesoofertacotizacion_client_ep">
+    <wsdl:port name="ProcesoOfertaCotizacion_pt" binding="client:ProcesoOfertaCotizacionBinding">
+      <soap:address location="http://marketplace17.virtual.uniandes.edu.co:7001/soa-infra/services/default/ProcesoOfertaCotizacion/procesoofertacotizacion_client_ep" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>http://marketplace17.virtual.uniandes.edu.co:7001/soa-infra/services/default/ProcesoOfertaCotizacion/procesoofertacotizacion_client_ep?WSDL=RuntimeFault.wsdl</con:url><con:content><![CDATA[<definitions name="RuntimeFault" targetNamespace="http://schemas.oracle.com/bpel/extension" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <message name="RuntimeFaultMessage">
+    <part name="code" type="xsd:string"/>
+    <part name="summary" type="xsd:string"/>
+    <part name="detail" type="xsd:string"/>
+  </message>
+</definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>http://marketplace17.virtual.uniandes.edu.co:7001/soa-infra/services/default/ProcesoOfertaCotizacion/procesoofertacotizacion_client_ep?XSD=xsd/ProcesoOfertaCotizacion.xsd</con:url><con:content><![CDATA[<schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://xmlns.oracle.com/MarketPlace/ProcesoOfertaCotizacion/ProcesoOfertaCotizacion" xmlns="http://www.w3.org/2001/XMLSchema">
+  <element name="process">
+    <complexType>
+      <sequence>
+        <element name="nitComercio" type="string"/>
+        <element name="nitFabricante" type="string"/>
+        <element name="precioOferta" type="long"/>
+        <element name="fechaEntregaProducto" type="date"/>
+        <element name="numSeguimientoCotizacion" type="string"/>
+      </sequence>
+    </complexType>
+  </element>
+  <element name="processResponse">
+    <complexType>
+      <sequence>
+        <element name="numSeguimientoOferta" type="string"/>
+      </sequence>
+    </complexType>
+  </element>
+</schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://marketplace17.virtual.uniandes.edu.co:7001/soa-infra/services/default/ProcesoOfertaCotizacion/procesoofertacotizacion_client_ep</con:endpoint></con:endpoints><con:operation isOneWay="false" action="process" name="process" bindingOperationName="process" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="TEST_1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://marketplace17.virtual.uniandes.edu.co:7001/soa-infra/services/default/ProcesoOfertaCotizacion/procesoofertacotizacion_client_ep</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:proc="http://xmlns.oracle.com/MarketPlace/ProcesoOfertaCotizacion/ProcesoOfertaCotizacion">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <proc:process>
+         <proc:nitComercio>73478341</proc:nitComercio>
+         <proc:nitFabricante>918274653</proc:nitFabricante>
+         <proc:precioOferta>700000</proc:precioOferta>
+         <proc:fechaEntregaProducto>2014-09-28</proc:fechaEntregaProducto>
+         <proc:numSeguimientoCotizacion>1380984451974</proc:numSeguimientoCotizacion>
+      </proc:process>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="process"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/></con:soapui-project>
